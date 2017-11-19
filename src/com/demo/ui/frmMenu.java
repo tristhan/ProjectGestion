@@ -5,6 +5,8 @@
  */
 package com.demo.ui;
 
+import java.util.Locale;
+
 /**
  *
  * @author Jona
@@ -16,8 +18,14 @@ public class frmMenu extends javax.swing.JFrame {
      */
     public frmMenu() {
         initComponents();
-        setSize(1050,550); 
+        setTitle("Sistema de Inventario y Gestión - Center Techno - ");
+        setSize(1050, 550);
         setLocationRelativeTo(null);
+        // agregro el desktop al formulario padre
+        escritorio.setSize(1050, 550);
+        setContentPane(escritorio);
+        escritorio.setLayout(null);
+        
     }
 
     /**
@@ -29,6 +37,7 @@ public class frmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuHome = new javax.swing.JMenu();
         menuRrhh = new javax.swing.JMenu();
@@ -40,6 +49,11 @@ public class frmMenu extends javax.swing.JFrame {
         menuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        escritorio.setBackground(new java.awt.Color(102, 102, 255));
+        escritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 260));
 
         menuHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/home.png"))); // NOI18N
         menuHome.setText("SIFI");
@@ -52,6 +66,11 @@ public class frmMenu extends javax.swing.JFrame {
 
         itemEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/cargose.png"))); // NOI18N
         itemEmpleado.setText("Empleado");
+        itemEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEmpleadoActionPerformed(evt);
+            }
+        });
         menuRrhh.add(itemEmpleado);
 
         jMenuBar1.add(menuRrhh);
@@ -82,19 +101,17 @@ public class frmMenu extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 266, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEmpleadoActionPerformed
+        // TODO add your handling code here:
+        frmIntEmpleado intEmpleado = new frmIntEmpleado();
+        escritorio.add(intEmpleado);
+
+        intEmpleado.setVisible(true);
+
+    }//GEN-LAST:event_itemEmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,6 +149,7 @@ public class frmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem itemEmpleado;
     private javax.swing.JMenuItem itemFacturar;
     private javax.swing.JMenuBar jMenuBar1;
