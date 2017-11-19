@@ -31,7 +31,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_usernameEmp = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -44,13 +44,13 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txt_nombreEmp = new javax.swing.JTextField();
+        txt_correoEmp = new javax.swing.JTextField();
+        txt_apellidoEmp = new javax.swing.JTextField();
+        txt_telefonoEmp = new javax.swing.JTextField();
+        txt_rolEmp = new javax.swing.JTextField();
+        txt_identificacionEmp = new javax.swing.JTextField();
+        txt_direccionEmp = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
 
@@ -71,7 +71,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Apellidos:");
         pRegistroEmpleado.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-        pRegistroEmpleado.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 230, -1));
+        pRegistroEmpleado.add(txt_usernameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 230, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Identificación");
@@ -126,18 +126,18 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         btnEliminar.setText("Eliminar");
         pRegistroEmpleado.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombreEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_nombreEmpActionPerformed(evt);
             }
         });
-        pRegistroEmpleado.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 230, -1));
-        pRegistroEmpleado.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 230, -1));
-        pRegistroEmpleado.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 230, -1));
-        pRegistroEmpleado.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 230, -1));
-        pRegistroEmpleado.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 230, -1));
-        pRegistroEmpleado.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 230, -1));
-        pRegistroEmpleado.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 230, -1));
+        pRegistroEmpleado.add(txt_nombreEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 230, -1));
+        pRegistroEmpleado.add(txt_correoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 230, -1));
+        pRegistroEmpleado.add(txt_apellidoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 230, -1));
+        pRegistroEmpleado.add(txt_telefonoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 230, -1));
+        pRegistroEmpleado.add(txt_rolEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 230, -1));
+        pRegistroEmpleado.add(txt_identificacionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 230, -1));
+        pRegistroEmpleado.add(txt_direccionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 230, -1));
 
         getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 410));
 
@@ -158,9 +158,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_nombreEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreEmpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_nombreEmpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -180,14 +180,14 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel pRegistroEmpleado;
+    private javax.swing.JTextField txt_apellidoEmp;
+    private javax.swing.JTextField txt_correoEmp;
+    private javax.swing.JTextField txt_direccionEmp;
+    private javax.swing.JTextField txt_identificacionEmp;
+    private javax.swing.JTextField txt_nombreEmp;
+    private javax.swing.JTextField txt_rolEmp;
+    private javax.swing.JTextField txt_telefonoEmp;
+    private javax.swing.JTextField txt_usernameEmp;
     // End of variables declaration//GEN-END:variables
 }
