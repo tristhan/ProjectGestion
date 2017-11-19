@@ -9,6 +9,7 @@ import com.demo.dominio.FacturaCabecera;
 import com.demo.interfaces.facturaInterface;
 import com.demo.utileria.conexion_mysql;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,20 +24,22 @@ public class facturaDaoImpl implements facturaInterface{
     @Override
     public boolean save(FacturaCabecera factura) {
          boolean registrar = false;
-        Statement stm = null;
         Connection con = null;
 
-        String sql = "INSERT INTO factura values (NULL,'"
-                + factura.getDireccion() + "','"
-                + factura.getTelefono() + "','"
-                + factura.getIva() + "')";
+        String sql = "INSERT INTO factura values ";
 
         try {
-            con = conexion_mysql.conectar();
-            stm = con.createStatement();
-            stm.execute(sql);
+           con = conexion_mysql.conectar();
+            PreparedStatement pst=con.prepareStatement(sql);
+			//pst.setInt(1, factura.getCliente());
+			//pst.setString(2, factura.getApellido());
+                        //pst.setString(3,factura.getCorreo());
+			//pst.setString(4,factura.getCedulaIdentidad());
+			pst.setString(5, factura.getDireccion());
+                        pst.setString(6, factura.getTelefono());
+                        pst.execute();
             registrar = true;
-            stm.close();
+            pst.close();
             con.close();
         } catch (SQLException e) {
             System.out.println("Error: Clase FacturaDaoImple, método registrar");

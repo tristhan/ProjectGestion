@@ -122,7 +122,7 @@ public class FacturaCabecera {
 
     @Override
     public String toString() {
-        return "FacturaCabecera{" + "id_facturaCab=" + id_facturaCab + ", cliente=" + cliente + ", empleado=" + empleado + ", fecha=" + fecha + ", Telefono=" + Telefono + ", direccion=" + direccion + ", descuento=" + descuento + ", subtotal=" + subtotal + ", iva=" + iva + ", totalPagar=" + totalPagar + '}';
+        return "FacturaCabecera{" + "id_facturaCab=" + id_facturaCab + ", cliente=" + cliente.toString() + ", empleado=" + empleado + ", fecha=" + fecha + ", Telefono=" + Telefono + ", direccion=" + direccion + ", descuento=" + descuento + ", subtotal=" + subtotal + ", iva=" + iva + ", totalPagar=" + totalPagar + '}';
     }
     
 
