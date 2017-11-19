@@ -6,6 +6,7 @@
 package com.demo.dao;
 
 import com.demo.dominio.Empleado;
+import com.demo.dominio.User;
 import com.demo.interfaces.empleadoInterface;
 import com.demo.utileria.conexion_mysql;
 import java.sql.Connection;
@@ -25,12 +26,13 @@ public class empleadoDaoImpl implements empleadoInterface{
     public boolean save(Empleado empleado) {
         boolean registrar = false;
         Connection con = null;
+        PreparedStatement pst = null;
 
         String sql = "INSERT INTO empleado values ";
 
         try {
             con = conexion_mysql.conectar();
-            PreparedStatement pst=con.prepareStatement(sql);
+            pst=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, empleado.getNombre());
 			pst.setString(2, empleado.getApellido());
                         pst.setString(3,empleado.getCorreo());
@@ -38,6 +40,19 @@ public class empleadoDaoImpl implements empleadoInterface{
 			pst.setString(5, empleado.getDireccion());
                         pst.setString(6, empleado.getTelefono());
                         pst.execute();
+             ResultSet rs = pst.getGeneratedKeys();	
+                        //envio los demas datos
+            sql = "";
+            if (rs.next())
+		    empleado.setId_empleado(rs.getInt(1));
+            pst=con.prepareStatement(sql);
+			pst.setInt(1, empleado.getId_empleado());
+			pst.setString(2, empleado.getUsuraio().getNick());
+                        pst.setString(3, empleado.getUsuraio().getPassword());
+                        pst.setString(4, empleado.getUsuraio().getRol());
+                        pst.setBoolean(5, empleado.getUsuraio().isActivo());//enviar true o 1
+			pst.execute();	
+                        
             registrar = true;
             pst.close();
             con.close();
@@ -50,7 +65,7 @@ public class empleadoDaoImpl implements empleadoInterface{
 
     @Override
     public List<Empleado> getEmpleadoAll() {
-         Connection co = null;
+         Connection con = null;
         Statement stm = null;
         ResultSet rs = null;
 
@@ -58,20 +73,24 @@ public class empleadoDaoImpl implements empleadoInterface{
 
         List<Empleado> listaCliente = new ArrayList<Empleado>();
         try {
-            co = conexion_mysql.conectar();
-            stm = co.createStatement();
+            con = conexion_mysql.conectar();
+            stm = con.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
                 Empleado e = new Empleado();
                 e.setId_empleado(rs.getInt(1));
-                e.setCedulaIdentidad(rs.getString(2));
-                e.setNombre(rs.getString(3));
-                e.setApellido(rs.getString(4));
+                e.setNombre(rs.getString(2));
+                e.setApellido(rs.getString(3));
+                e.setCedulaIdentidad(rs.getString(4));
+                e.setCorreo(rs.getString(5));
+                e.setDireccion(rs.getString(6));
+                e.setTelefono(rs.getString(7));
+                e.setUsuraio(new User(rs.getString(8),rs.getString(9),rs.getString(10),rs.getBoolean(11)));
                 listaCliente.add(e);
             }
             stm.close();
             rs.close();
-            co.close();
+            con.close();
         } catch (SQLException e) {
             System.out.println("Error: Clase EmpleadoDaoImple, método getEmpleadoAll");
             e.printStackTrace();
@@ -83,19 +102,35 @@ public class empleadoDaoImpl implements empleadoInterface{
 
     @Override
     public boolean updateEmpleado(Empleado empleado) {
-         Connection connect = null;
-        Statement stm = null;
+         Connection con = null;
+        PreparedStatement pst= null;
 
         boolean actualizar = false;
 
-        String sql = "UPDATE empleado SET cedula='" + empleado.getCedulaIdentidad() + "', "
-                + "nombres='" + empleado.getNombre() + "', "
-                + "apellidos='" + empleado.getApellido() + "'"
-                + " WHERE ID=" + empleado.getId_empleado();
+        String sql = "UPDATE empleado SET cedula='";
         try {
-            connect = conexion_mysql.conectar();
-            stm = connect.createStatement();
-            stm.execute(sql);
+           con = conexion_mysql.conectar();
+            pst=con.prepareStatement(sql);
+			pst.setString(1, empleado.getNombre());
+			pst.setString(2, empleado.getApellido());
+                        pst.setString(3,empleado.getCorreo());
+			pst.setString(4,empleado.getCedulaIdentidad());
+			pst.setString(5, empleado.getDireccion());
+                        pst.setString(6, empleado.getTelefono());
+                        pst.setInt(7, empleado.getId_empleado());
+                        pst.execute();
+                        
+                        //actualizo rol, nick o password
+            sql = "";
+            pst=con.prepareStatement(sql);
+			pst.setString(1, empleado.getUsuraio().getNick());
+                        pst.setString(2, empleado.getUsuraio().getPassword());
+                        pst.setString(3, empleado.getUsuraio().getRol());
+                        pst.setBoolean(4, empleado.getUsuraio().isActivo());//enviar true o 1
+                        pst.setInt(5, empleado.getId_empleado());
+			pst.execute();	
+                        
+            pst.execute(sql);
             actualizar = true;
         } catch (SQLException e) {
             System.out.println("Error: Clase EmpleadoDaoImple, método actualizar");

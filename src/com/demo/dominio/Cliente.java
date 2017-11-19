@@ -8,7 +8,6 @@ package com.demo.dominio;
 import java.util.List;
 
 /**
- *
  * @author Jona
  */
 public class Cliente {

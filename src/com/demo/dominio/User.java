@@ -24,6 +24,13 @@ public class User {
     public User() {
     }
 
+    public User(String nick, String password, String rol, boolean activo) {
+        this.nick = nick;
+        this.password = password;
+        this.rol = rol;
+        this.activo = activo;
+    }
+
     public User(int id_user, List<Empleado> empleado, String nick, String password, String rol, boolean activo, Empleado empleadoUsuario) {
         this.id_user = id_user;
         this.empleado = empleado;
