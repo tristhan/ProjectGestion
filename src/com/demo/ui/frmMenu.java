@@ -97,6 +97,11 @@ public class frmMenu extends javax.swing.JFrame {
         menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/menusalir.png"))); // NOI18N
         menuSalir.setText("Salir");
         menuSalir.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        menuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(menuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -112,6 +117,12 @@ public class frmMenu extends javax.swing.JFrame {
         intEmpleado.setVisible(true);
 
     }//GEN-LAST:event_itemEmpleadoActionPerformed
+
+    private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
+        // TODO add your handling code here:
+        // tengo que salir y cerrar sesion del logeo
+        
+    }//GEN-LAST:event_menuSalirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,6 +16,7 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
+        setTitle("Control de Acceso");
         setSize(350,350); 
         setLocationRelativeTo(null);
     }
@@ -38,6 +39,8 @@ public class frmLogin extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
@@ -63,10 +66,20 @@ public class frmLogin extends javax.swing.JFrame {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
