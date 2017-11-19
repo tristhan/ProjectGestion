@@ -30,39 +30,36 @@ public class frmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        imagen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        imagen = new javax.swing.JLabel();
         txtConstrasena = new javax.swing.JPasswordField();
-        btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/login.png"))); // NOI18N
+        getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 160, 160));
+
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel1.setText("Usuario: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel2.setText("Contraseña:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
 
         txtUsuario.setText("jona");
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 120, -1));
-
-        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/login.png"))); // NOI18N
-        getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 160, 160));
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 120, -1));
 
         txtConstrasena.setText("jPasswordField1");
-        getContentPane().add(txtConstrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 120, -1));
-
-        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnok.png"))); // NOI18N
-        btnAceptar.setText("Aceptar");
-        getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        getContentPane().add(txtConstrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 120, -1));
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -71,7 +68,11 @@ public class frmLogin extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnok.png"))); // NOI18N
+        btnAceptar.setText("Aceptar");
+        getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
