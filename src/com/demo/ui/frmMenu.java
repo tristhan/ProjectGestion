@@ -5,7 +5,12 @@
  */
 package com.demo.ui;
 
+import java.awt.Color;
 import java.util.Locale;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -19,13 +24,21 @@ public class frmMenu extends javax.swing.JFrame {
     public frmMenu() {
         initComponents();
         setTitle("Sistema de Inventario y Gestión - Center Techno - ");
-        setSize(1050, 550);
+        setSize(1150, 650);
         setLocationRelativeTo(null);
+        
         // agregro el desktop al formulario padre
-        escritorio.setSize(1050, 550);
+        //escritorio.setSize(1150, 650);
         setContentPane(escritorio);
         escritorio.setLayout(null);
         
+        //imagen
+        Imagen_fondo.setBounds(348, 30,550, 550);
+        //setContentPane(Imagen_fondo);
+        //Imagen_fondo.setHorizontalAlignment(SwingConstants.CENTER);
+        //Imagen_fondo.setVerticalAlignment(SwingConstants.CENTER);
+        //Imagen_fondo.setLocation((getWidth() - getHeight())/2,80);
+                
     }
 
     /**
@@ -38,6 +51,7 @@ public class frmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        Imagen_fondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuHome = new javax.swing.JMenu();
         menuRrhh = new javax.swing.JMenu();
@@ -49,11 +63,19 @@ public class frmMenu extends javax.swing.JFrame {
         menuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 255));
+        setMinimumSize(new java.awt.Dimension(1050, 550));
+        setPreferredSize(new java.awt.Dimension(1050, 260));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        escritorio.setBackground(new java.awt.Color(102, 102, 255));
+        escritorio.setBackground(new java.awt.Color(153, 153, 255));
         escritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 260));
+
+        Imagen_fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Imagen_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/logo_center.png"))); // NOI18N
+        escritorio.add(Imagen_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 360, 250));
+
+        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 360));
 
         menuHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/home.png"))); // NOI18N
         menuHome.setText("SIFI");
@@ -160,6 +182,7 @@ public class frmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Imagen_fondo;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem itemEmpleado;
     private javax.swing.JMenuItem itemFacturar;
