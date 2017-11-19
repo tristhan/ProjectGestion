@@ -5,6 +5,8 @@
  */
 package com.demo.dominio;
 
+import java.util.List;
+
 /**
  *
  * @author Jona
@@ -17,13 +19,13 @@ public class Empleado {
     private String correo;
     private String direccion;
     private String telefono;
+    List<FacturaCabecera> factura;
+    private User usuraio;
 
     public Empleado() {
     }
-    
-   
 
-    public Empleado(int id_empleado, String nombre, String apellido, String cedulaIdentidad, String correo, String direccion, String telefono) {
+    public Empleado(int id_empleado, String nombre, String apellido, String cedulaIdentidad, String correo, String direccion, String telefono, List<FacturaCabecera> factura, User usuraio) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -31,6 +33,8 @@ public class Empleado {
         this.correo = correo;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.factura = factura;
+        this.usuraio = usuraio;
     }
 
     public int getId_empleado() {
@@ -89,4 +93,33 @@ public class Empleado {
         this.telefono = telefono;
     }
 
+    public List<FacturaCabecera> getFactura() {
+        return factura;
+    }
+
+    public void setFactura(List<FacturaCabecera> factura) {
+        this.factura = factura;
+    }
+
+    public User getUsuraio() {
+        return usuraio;
+    }
+
+    public void setUsuraio(User usuraio) {
+        this.usuraio = usuraio;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "id_empleado=" + id_empleado + 
+                ", nombre=" + nombre + 
+                ", apellido=" + apellido + 
+                ", cedulaIdentidad=" + cedulaIdentidad + 
+                ", correo=" + correo + 
+                ", direccion=" + direccion + 
+                ", telefono=" + telefono + 
+                ", factura=" + factura + 
+                ", usuraio=" + usuraio + '}';
+    }
+    
 }

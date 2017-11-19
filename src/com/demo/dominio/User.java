@@ -19,18 +19,19 @@ public class User {
     private String password;
     private String rol;
     private boolean activo;
+    private Empleado empleadoUsuario;
 
     public User() {
     }
 
-    
-    public User(int id_user, List<Empleado> empleado, String nick, String password, String rol, boolean activo) {
+    public User(int id_user, List<Empleado> empleado, String nick, String password, String rol, boolean activo, Empleado empleadoUsuario) {
         this.id_user = id_user;
         this.empleado = empleado;
         this.nick = nick;
         this.password = password;
         this.rol = rol;
         this.activo = activo;
+        this.empleadoUsuario = empleadoUsuario;
     }
 
     public int getId_user() {
@@ -73,11 +74,32 @@ public class User {
         this.rol = rol;
     }
 
-    public boolean getActivo() {
+    public boolean isActivo() {
         return activo;
     }
 
     public void setActivo(boolean activo) {
         this.activo = activo;
-}
+    }
+
+    public Empleado getEmpleadoUsuario() {
+        return empleadoUsuario;
+    }
+
+    public void setEmpleadoUsuario(Empleado empleadoUsuario) {
+        this.empleadoUsuario = empleadoUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id_user=" + id_user + 
+                ", empleado=" + empleado.toString() + 
+                ", nick=" + nick + 
+                ", password=" + password + 
+                ", rol=" + rol + 
+                ", activo=" + activo + 
+                ", empleadoUsuario=" + empleadoUsuario.toString() + '}';
+    }
+    
+    
 }

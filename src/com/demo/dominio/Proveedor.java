@@ -5,6 +5,8 @@
  */
 package com.demo.dominio;
 
+import java.util.List;
+
 /**
  *
  * @author Jona
@@ -19,12 +21,12 @@ public class Proveedor {
     private int celular;
     private String direccion;
     private String correo;
+    List<Articulo> articulos;
 
     public Proveedor() {
     }
-    
 
-    public Proveedor(int id_proveedor, String nombre, String apellido, String empresa, String ruc, int telefono, int celular, String direccion, String correo) {
+    public Proveedor(int id_proveedor, String nombre, String apellido, String empresa, String ruc, int telefono, int celular, String direccion, String correo, List<Articulo> articulos) {
         this.id_proveedor = id_proveedor;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,6 +36,7 @@ public class Proveedor {
         this.celular = celular;
         this.direccion = direccion;
         this.correo = correo;
+        this.articulos = articulos;
     }
 
     public int getId_proveedor() {
@@ -106,5 +109,29 @@ public class Proveedor {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-}
+    }
+
+    public List<Articulo> getArticulos() {
+        return articulos;
+    }
+
+    public void setArticulos(List<Articulo> articulos) {
+        this.articulos = articulos;
+    }
+
+    @Override
+    public String toString() {
+        return "Proveedor{" + "id_proveedor=" + id_proveedor + 
+                ", nombre=" + nombre + 
+                ", apellido=" + apellido + 
+                ", empresa=" + empresa + 
+                ", ruc=" + ruc + 
+                ", telefono=" + telefono + 
+                ", celular=" + celular + 
+                ", direccion=" + direccion + 
+                ", correo=" + correo + 
+                ", articulos=" + articulos.toString() + '}';
+    }
+    
+    
 }

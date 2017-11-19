@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Articulo {
      private int id_articulo;
-    private List<Proveedor> proveedor;
+    private Proveedor proveedor;
     private String nombre;
     private String codigo_fisico;
     private String descripcion;
@@ -25,8 +25,7 @@ public class Articulo {
     public Articulo() {
     }
 
-    
-    public Articulo(int id_articulo, List<Proveedor> proveedor, String nombre, String codigo_fisico, String descripcion, int stock, double precio_venta, double precio_compra, boolean estado) {
+    public Articulo(int id_articulo, Proveedor proveedor, String nombre, String codigo_fisico, String descripcion, int stock, double precio_venta, double precio_compra, boolean estado) {
         this.id_articulo = id_articulo;
         this.proveedor = proveedor;
         this.nombre = nombre;
@@ -46,11 +45,11 @@ public class Articulo {
         this.id_articulo = id_articulo;
     }
 
-    public List<Proveedor> getProveedor() {
+    public Proveedor getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(List<Proveedor> proveedor) {
+    public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
 
@@ -109,4 +108,19 @@ public class Articulo {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Articulo{" + "id_articulo=" + id_articulo + 
+                ", proveedor=" + proveedor.toString() + 
+                ", nombre=" + nombre + 
+                ", codigo_fisico=" + codigo_fisico + 
+                ", descripcion=" + descripcion + 
+                ", stock=" + stock + 
+                ", precio_venta=" + precio_venta + 
+                ", precio_compra=" + precio_compra + 
+                ", estado=" + estado + '}';
+    }
+    
+ 
 }

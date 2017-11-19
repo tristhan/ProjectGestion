@@ -13,18 +13,17 @@ import java.util.List;
  */
 public class FacturaDetalle {
     private int id_detalleFactura;
-    private List <FacturaCabecera> facturaCabezera;
+    private FacturaCabecera facturaCabecera;
     private List <Articulo> articulo;
     private int cantidad;
     private double precioUnitario;
 
     public FacturaDetalle() {
     }
-    
 
-    public FacturaDetalle(int id_detalleFactura, List<FacturaCabecera> facturaCabezera, List<Articulo> articulo, int cantidad, double precioUnitario) {
+    public FacturaDetalle(int id_detalleFactura, FacturaCabecera facturaCabecera, List<Articulo> articulo, int cantidad, double precioUnitario) {
         this.id_detalleFactura = id_detalleFactura;
-        this.facturaCabezera = facturaCabezera;
+        this.facturaCabecera = facturaCabecera;
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
@@ -38,12 +37,12 @@ public class FacturaDetalle {
         this.id_detalleFactura = id_detalleFactura;
     }
 
-    public List<FacturaCabecera> getFacturaCabezera() {
-        return facturaCabezera;
+    public FacturaCabecera getFacturaCabecera() {
+        return facturaCabecera;
     }
 
-    public void setFacturaCabezera(List<FacturaCabecera> facturaCabezera) {
-        this.facturaCabezera = facturaCabezera;
+    public void setFacturaCabecera(FacturaCabecera facturaCabecera) {
+        this.facturaCabecera = facturaCabecera;
     }
 
     public List<Articulo> getArticulo() {
@@ -72,9 +71,11 @@ public class FacturaDetalle {
 
     @Override
     public String toString() {
-        return "FacturaDetalle{" + "id_detalleFactura=" + id_detalleFactura + ", facturaCabezera=" + facturaCabezera + ", articulo=" + articulo + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + '}';
+        return "FacturaDetalle{" + "id_detalleFactura=" + id_detalleFactura + 
+                ", facturaCabecera=" + facturaCabecera.toString() + 
+                ", articulo=" + articulo + 
+                ", cantidad=" + cantidad + 
+                ", precioUnitario=" + precioUnitario + '}';
     }
-    
-    
     
 }

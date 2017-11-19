@@ -5,6 +5,8 @@
  */
 package com.demo.dominio;
 
+import java.util.List;
+
 /**
  *
  * @author Jona
@@ -15,12 +17,12 @@ public class Cliente {
     private String apellido;
     private String correo;
     private String identificacion;
-    FacturaCabecera factura;
+    List<FacturaCabecera> factura;
 
     public Cliente() {
     }
 
-    public Cliente(int id_cliente, String nombre, String apellido, String correo, String identificacion, FacturaCabecera factura) {
+    public Cliente(int id_cliente, String nombre, String apellido, String correo, String identificacion, List<FacturaCabecera> factura) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -69,18 +71,23 @@ public class Cliente {
         this.identificacion = identificacion;
     }
 
-    public FacturaCabecera getFactura() {
+    public List<FacturaCabecera> getFactura() {
         return factura;
     }
 
-    public void setFactura(FacturaCabecera factura) {
+    public void setFactura(List<FacturaCabecera> factura) {
         this.factura = factura;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "id_cliente=" + id_cliente + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", identificacion=" + identificacion + ", factura=" + factura + '}';
+        return "Cliente{" + "id_cliente=" + id_cliente + 
+                ", nombre=" + nombre + 
+                ", apellido=" + apellido + 
+                ", correo=" + correo + 
+                ", identificacion=" + identificacion + 
+                ", factura=" + factura.toString() + '}';
     }
-    
+
     
 }

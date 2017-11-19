@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class FacturaCabecera {
     private int id_facturaCab;
-    private List <Cliente> cliente;
-    private List <Empleado> empleado;
+    private Cliente cliente;
+    private Empleado empleado;
     private Date fecha;
     private String Telefono;
     private String direccion;
@@ -22,22 +22,22 @@ public class FacturaCabecera {
     private double subtotal;
     private double iva;
     private double totalPagar;
+    private FacturaDetalle facturaDetalle;
 
     public FacturaCabecera() {
     }
-    
 
-    public FacturaCabecera(int id_facturaCab, List<Cliente> cliente, List<Empleado> empleado, Date fecha, String Telefono, String direccion, double descuento, double subtotal, double iva, double totalPagar) {
+    public FacturaCabecera(int id_facturaCab, Cliente cliente, Empleado empleado, Date fecha, String Telefono, double descuento, double subtotal, double iva, double totalPagar, FacturaDetalle facturaDetalle) {
         this.id_facturaCab = id_facturaCab;
         this.cliente = cliente;
         this.empleado = empleado;
         this.fecha = fecha;
         this.Telefono = Telefono;
-        this.direccion = direccion;
         this.descuento = descuento;
         this.subtotal = subtotal;
         this.iva = iva;
         this.totalPagar = totalPagar;
+        this.facturaDetalle = facturaDetalle;
     }
 
     public int getId_facturaCab() {
@@ -48,19 +48,19 @@ public class FacturaCabecera {
         this.id_facturaCab = id_facturaCab;
     }
 
-    public List<Cliente> getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(List<Cliente> cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public List<Empleado> getEmpleado() {
+    public Empleado getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(List<Empleado> empleado) {
+    public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
 
@@ -120,12 +120,28 @@ public class FacturaCabecera {
         this.totalPagar = totalPagar;
     }
 
+    public FacturaDetalle getFacturaDetalle() {
+        return facturaDetalle;
+    }
+
+    public void setFacturaDetalle(FacturaDetalle facturaDetalle) {
+        this.facturaDetalle = facturaDetalle;
+    }
+
     @Override
     public String toString() {
-        return "FacturaCabecera{" + "id_facturaCab=" + id_facturaCab + ", cliente=" + cliente.toString() + ", empleado=" + empleado + ", fecha=" + fecha + ", Telefono=" + Telefono + ", direccion=" + direccion + ", descuento=" + descuento + ", subtotal=" + subtotal + ", iva=" + iva + ", totalPagar=" + totalPagar + '}';
+        return "FacturaCabecera{" + "id_facturaCab=" + id_facturaCab + 
+                ", cliente=" + cliente.toString() + 
+                ", empleado=" + empleado.toString() + 
+                ", fecha=" + fecha + 
+                ", Telefono=" + Telefono + 
+                ", direccion=" + direccion + 
+                ", descuento=" + descuento + 
+                ", subtotal=" + subtotal + 
+                ", iva=" + iva + 
+                ", totalPagar=" + totalPagar + 
+                ", facturaDetalle=" + facturaDetalle.toString() + '}';
     }
-    
 
     
-            
 }
