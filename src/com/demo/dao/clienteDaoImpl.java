@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.demo.utileria.conexion_mysql;
 import com.demo.interfaces.clienteInterface;
+import java.sql.PreparedStatement;
 
 /**
  * @author Jona
@@ -19,20 +20,21 @@ public class clienteDaoImpl implements clienteInterface {
     @Override
     public boolean save(Cliente cliente) {
         boolean registrar = false;
-        Statement stm = null;
         Connection con = null;
 
-        String sql = "INSERT INTO cliente values (NULL,'"
-                + cliente.getIdentificacion() + "','"
-                + cliente.getNombre() + "','"
-                + cliente.getApellido() + "')";
-
+        String sql = "INSERT INTO cliente values ";
+        
         try {
             con = conexion_mysql.conectar();
-            stm = con.createStatement();
-            stm.execute(sql);
+            PreparedStatement pst=con.prepareStatement(sql);
+			pst.setString(1, cliente.getNombre());
+			pst.setString(2, cliente.getApellido());
+			pst.setString(3,cliente.getCorreo());
+			pst.setString(4, cliente.getIdentificacion());
+            
+            pst.execute();
             registrar = true;
-            stm.close();
+            pst.close();
             con.close();
         } catch (SQLException e) {
             System.out.println("Error: Clase ClienteDaoImple, método registrar");
@@ -57,9 +59,10 @@ public class clienteDaoImpl implements clienteInterface {
             while (rs.next()) {
                 Cliente c = new Cliente();
                 c.setId_cliente(rs.getInt(1));
-                c.setIdentificacion(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
+                c.setNombre(rs.getString(2));
+                c.setApellido(rs.getString(3));
+                c.setCorreo(rs.getString(4));
+                c.setIdentificacion(rs.getString(5));
                 listaCliente.add(c);
             }
             stm.close();
@@ -75,19 +78,21 @@ public class clienteDaoImpl implements clienteInterface {
 
     @Override
     public boolean updateCliente(Cliente cliente) {
-        Connection connect = null;
-        Statement stm = null;
+        Connection con = null;
 
         boolean actualizar = false;
 
-        String sql = "UPDATE CLIENTE SET cedula='" + cliente.getIdentificacion() + "', "
-                + "nombres='" + cliente.getNombre() + "', "
-                + "apellidos='" + cliente.getApellido() + "'"
-                + " WHERE ID=" + cliente.getId_cliente();
+        String sql = "UPDATE CLIENTE SET cedula='" ;
         try {
-            connect = conexion_mysql.conectar();
-            stm = connect.createStatement();
-            stm.execute(sql);
+            con = conexion_mysql.conectar();
+            PreparedStatement pst=con.prepareStatement(sql);
+			pst.setString(1, cliente.getNombre());
+			pst.setString(2, cliente.getApellido());
+			pst.setString(3,cliente.getCorreo());
+			pst.setString(4, cliente.getIdentificacion());
+                        pst.setInt(5, cliente.getId_cliente());
+            
+            pst.execute();
             actualizar = true;
         } catch (SQLException e) {
             System.out.println("Error: Clase ClienteDaoImple, método actualizar");
@@ -98,16 +103,16 @@ public class clienteDaoImpl implements clienteInterface {
 
     @Override
     public boolean deleteCliente(Cliente cliente) {
-        Connection connect = null;
-        Statement stm = null;
+        Connection con = null;
 
         boolean eliminar = false;
 
-        String sql = "DELETE FROM CLIENTE WHERE ID=" + cliente.getId_cliente();
+        String sql = "DELETE FROM CLIENTE WHERE ID=";
         try {
-            connect = conexion_mysql.conectar();
-            stm = connect.createStatement();
-            stm.execute(sql);
+            con = conexion_mysql.conectar();
+            PreparedStatement pst=con.prepareStatement(sql);
+			pst.setInt(1, cliente.getId_cliente());
+                        pst.execute();
             eliminar = true;
         } catch (SQLException e) {
             System.out.println("Error: Clase ClienteDaoImple, método eliminar");

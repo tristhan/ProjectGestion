@@ -9,13 +9,13 @@ import java.sql.SQLException;
  */
 public class conexion_mysql {
 
-    private static String ACCESO_BASE = "jdbc:mysql://localhost:3306/disprovef";
+    private static String ACCESO_BASE = "jdbc:mysql://localhost:3306/proyecto";
     private static String USERNAME = "root";
-    private static String PASSWORD = "Cmullo*079";
+    private static String PASSWORD = "";
 
     public static Connection conectar() {
         Connection con = null;
-        String url = "jdbc:mysql://localhost/disprovef?user=" + USERNAME
+        String url = "jdbc:mysql://localhost/proyecto?user=" + USERNAME
                 + "&password=" + PASSWORD;
         try {
             con = DriverManager.getConnection(url);

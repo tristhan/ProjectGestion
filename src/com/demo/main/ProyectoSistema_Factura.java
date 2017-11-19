@@ -27,7 +27,6 @@ public class ProyectoSistema_Factura {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         controllerCliente c = new controllerCliente();
-        
         c.verClientes();
     }
  

@@ -9,6 +9,7 @@ import com.demo.dominio.Empleado;
 import com.demo.interfaces.empleadoInterface;
 import com.demo.utileria.conexion_mysql;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,20 +24,22 @@ public class empleadoDaoImpl implements empleadoInterface{
     @Override
     public boolean save(Empleado empleado) {
         boolean registrar = false;
-        Statement stm = null;
         Connection con = null;
 
-        String sql = "INSERT INTO empleado values (NULL,'"
-                + empleado.getCedulaIdentidad() + "','"
-                + empleado.getNombre() + "','"
-                + empleado.getApellido() + "')";
+        String sql = "INSERT INTO empleado values ";
 
         try {
             con = conexion_mysql.conectar();
-            stm = con.createStatement();
-            stm.execute(sql);
+            PreparedStatement pst=con.prepareStatement(sql);
+			pst.setString(1, empleado.getNombre());
+			pst.setString(2, empleado.getApellido());
+                        pst.setString(3,empleado.getCorreo());
+			pst.setString(4,empleado.getCedulaIdentidad());
+			pst.setString(5, empleado.getDireccion());
+                        pst.setString(6, empleado.getTelefono());
+                        pst.execute();
             registrar = true;
-            stm.close();
+            pst.close();
             con.close();
         } catch (SQLException e) {
             System.out.println("Error: Clase EmpleadoDaoImple, método save");
