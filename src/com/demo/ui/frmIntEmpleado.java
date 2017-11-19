@@ -102,11 +102,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
-        pRegistroEmpleado.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        pRegistroEmpleado.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
-        pRegistroEmpleado.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
+        pRegistroEmpleado.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btnEditar.setText("Actualizar");
@@ -115,11 +115,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        pRegistroEmpleado.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, -1, -1));
+        pRegistroEmpleado.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
-        pRegistroEmpleado.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, -1, -1));
+        pRegistroEmpleado.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
         getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 410));
 
