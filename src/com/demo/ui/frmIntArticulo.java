@@ -9,14 +9,13 @@ package com.demo.ui;
  *
  * @author Jona
  */
-public class frmIntEmpleado extends javax.swing.JInternalFrame {
+public class frmIntArticulo extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form frmIntEmpleado
+     * Creates new form frmIntArticulo
      */
-    public frmIntEmpleado() {
-        initComponents();        
-        setSize(750, 550);
+    public frmIntArticulo() {
+        initComponents();
     }
 
     /**
@@ -30,7 +29,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setResizable(true);
-        setTitle("Empleado");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pack();
