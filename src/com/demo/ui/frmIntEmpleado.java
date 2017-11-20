@@ -31,7 +31,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txt_activoEmp = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -53,6 +52,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txt_direccionEmp = new javax.swing.JTextField();
         txt_usernameEmp = new javax.swing.JTextField();
         txt_contrasenaEmp = new javax.swing.JTextField();
+        comboBox_activoEmp = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
 
@@ -73,7 +73,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Apellidos:");
         pRegistroEmpleado.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-        pRegistroEmpleado.add(txt_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 230, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Identificación");
@@ -143,6 +142,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado.add(txt_usernameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 230, -1));
         pRegistroEmpleado.add(txt_contrasenaEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 230, -1));
 
+        comboBox_activoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pRegistroEmpleado.add(comboBox_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 230, -1));
+
         getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 410));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
@@ -172,6 +174,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_eliminarEmp;
     private javax.swing.JButton btn_guardarEmp;
     private javax.swing.JButton btn_nuevoEmp;
+    private javax.swing.JComboBox<String> comboBox_activoEmp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -185,7 +188,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pRegistroEmpleado;
-    private javax.swing.JTextField txt_activoEmp;
     private javax.swing.JTextField txt_apellidoEmp;
     private javax.swing.JTextField txt_contrasenaEmp;
     private javax.swing.JTextField txt_correoEmp;
