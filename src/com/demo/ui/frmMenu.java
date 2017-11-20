@@ -176,7 +176,10 @@ public class frmMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmMenu().setVisible(true);
+                //new frmMenu().setVisible(true);
+                frmMenu menu= new frmMenu();
+                menu.setExtendedState(MAXIMIZED_BOTH);
+                menu.setVisible(true);
             }
         });
     }
