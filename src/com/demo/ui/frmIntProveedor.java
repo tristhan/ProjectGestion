@@ -44,6 +44,11 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txt_correoProv = new javax.swing.JTextField();
+        btn_eliminarProv = new javax.swing.JButton();
+        btn_nuevoProv = new javax.swing.JButton();
+        btn_guardarProv = new javax.swing.JButton();
+        btn_actualizarProv = new javax.swing.JButton();
+        panelConsultaProv = new javax.swing.JPanel();
 
         setClosable(true);
         setResizable(true);
@@ -99,7 +104,37 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         panelRegistroProveedor.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
         panelRegistroProveedor.add(txt_correoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 230, -1));
 
-        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 280));
+        btn_eliminarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
+        btn_eliminarProv.setText("Eliminar");
+        btn_eliminarProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarProvActionPerformed(evt);
+            }
+        });
+        panelRegistroProveedor.add(btn_eliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+
+        btn_nuevoProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
+        btn_nuevoProv.setText("Nuevo");
+        panelRegistroProveedor.add(btn_nuevoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        btn_guardarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
+        btn_guardarProv.setText("Guardar");
+        btn_guardarProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarProvActionPerformed(evt);
+            }
+        });
+        panelRegistroProveedor.add(btn_guardarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+
+        btn_actualizarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
+        btn_actualizarProv.setText("Actualizar");
+        panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
+
+        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 340));
+
+        panelConsultaProv.setBackground(new java.awt.Color(255, 204, 102));
+        panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSULTA DE PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 310, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,8 +143,20 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreProvActionPerformed
 
+    private void btn_eliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarProvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_eliminarProvActionPerformed
+
+    private void btn_guardarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarProvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_guardarProvActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_actualizarProv;
+    private javax.swing.JButton btn_eliminarProv;
+    private javax.swing.JButton btn_guardarProv;
+    private javax.swing.JButton btn_nuevoProv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -118,6 +165,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel panelConsultaProv;
     private javax.swing.JPanel panelRegistroProveedor;
     private javax.swing.JTextField txt_apellidoProv;
     private javax.swing.JTextField txt_celularProv;

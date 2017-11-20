@@ -31,7 +31,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txt_usernameEmp = new javax.swing.JTextField();
+        txt_activoEmp = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -40,10 +40,10 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        btnNuevo = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btn_nuevoEmp = new javax.swing.JButton();
+        btn_guardarEmp = new javax.swing.JButton();
+        btn_editarEmp = new javax.swing.JButton();
+        btn_eliminarEmp = new javax.swing.JButton();
         txt_nombreEmp = new javax.swing.JTextField();
         txt_correoEmp = new javax.swing.JTextField();
         txt_apellidoEmp = new javax.swing.JTextField();
@@ -51,6 +51,8 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txt_rolEmp = new javax.swing.JTextField();
         txt_identificacionEmp = new javax.swing.JTextField();
         txt_direccionEmp = new javax.swing.JTextField();
+        txt_usernameEmp = new javax.swing.JTextField();
+        txt_contrasenaEmp = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
 
@@ -71,7 +73,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Apellidos:");
         pRegistroEmpleado.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-        pRegistroEmpleado.add(txt_usernameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 230, -1));
+        pRegistroEmpleado.add(txt_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 230, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Identificación");
@@ -105,26 +107,26 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jLabel10.setText("Activo:");
         pRegistroEmpleado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
-        btnNuevo.setText("Nuevo");
-        pRegistroEmpleado.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        btn_nuevoEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
+        btn_nuevoEmp.setText("Nuevo");
+        pRegistroEmpleado.add(btn_nuevoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        pRegistroEmpleado.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
+        btn_guardarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
+        btn_guardarEmp.setText("Guardar");
+        pRegistroEmpleado.add(btn_guardarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
-        btnEditar.setText("Actualizar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btn_editarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
+        btn_editarEmp.setText("Actualizar");
+        btn_editarEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btn_editarEmpActionPerformed(evt);
             }
         });
-        pRegistroEmpleado.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
+        pRegistroEmpleado.add(btn_editarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
-        pRegistroEmpleado.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
+        btn_eliminarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
+        btn_eliminarEmp.setText("Eliminar");
+        pRegistroEmpleado.add(btn_eliminarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
         txt_nombreEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +140,8 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado.add(txt_rolEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 230, -1));
         pRegistroEmpleado.add(txt_identificacionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 230, -1));
         pRegistroEmpleado.add(txt_direccionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 230, -1));
+        pRegistroEmpleado.add(txt_usernameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 230, -1));
+        pRegistroEmpleado.add(txt_contrasenaEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 230, -1));
 
         getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 410));
 
@@ -154,9 +158,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btn_editarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarEmpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btn_editarEmpActionPerformed
 
     private void txt_nombreEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreEmpActionPerformed
         // TODO add your handling code here:
@@ -164,10 +168,10 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btn_editarEmp;
+    private javax.swing.JButton btn_eliminarEmp;
+    private javax.swing.JButton btn_guardarEmp;
+    private javax.swing.JButton btn_nuevoEmp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -181,7 +185,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pRegistroEmpleado;
+    private javax.swing.JTextField txt_activoEmp;
     private javax.swing.JTextField txt_apellidoEmp;
+    private javax.swing.JTextField txt_contrasenaEmp;
     private javax.swing.JTextField txt_correoEmp;
     private javax.swing.JTextField txt_direccionEmp;
     private javax.swing.JTextField txt_identificacionEmp;
