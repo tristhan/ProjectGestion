@@ -23,9 +23,7 @@ public class clienteDaoImpl implements clienteInterface {
         Connection con = null;
         PreparedStatement pst = null;
         
-        String sql = "insert into cliente (id_cliente, )";
-
-        String sql1 = "INSERT INTO cliente(nombre, apellido, correo, identificacion) values(?, ?, ?, ?) ";
+        String sql= "INSERT INTO cliente(nombre, apellido, correo, identificacion) values(?, ?, ?, ?) ";
 
         
         try {
