@@ -47,7 +47,6 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         btn_nuevoProv = new javax.swing.JButton();
         btn_guardarProv = new javax.swing.JButton();
         btn_actualizarProv = new javax.swing.JButton();
-        btn_eliminarProv1 = new javax.swing.JButton();
         panelConsultaProv = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txt_busquedaProv = new javax.swing.JTextField();
@@ -119,22 +118,13 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
                 btn_guardarProvActionPerformed(evt);
             }
         });
-        panelRegistroProveedor.add(btn_guardarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        panelRegistroProveedor.add(btn_guardarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
         btn_actualizarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btn_actualizarProv.setText("Actualizar");
-        panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
+        panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, -1));
 
-        btn_eliminarProv1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
-        btn_eliminarProv1.setText("Eliminar");
-        btn_eliminarProv1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_eliminarProv1ActionPerformed(evt);
-            }
-        });
-        panelRegistroProveedor.add(btn_eliminarProv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
-
-        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 340));
+        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 340));
 
         panelConsultaProv.setBackground(new java.awt.Color(255, 204, 102));
         panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSULTA DE PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -168,7 +158,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         });
         panelConsultaProv.add(btn_buscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
-        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 480, 340));
+        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 480, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,10 +179,6 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_busquedaProvActionPerformed
 
-    private void btn_eliminarProv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarProv1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_eliminarProv1ActionPerformed
-
     private void btn_buscarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarProvActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscarProvActionPerformed
@@ -202,7 +188,6 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_actualizarProv;
     private javax.swing.JButton btn_buscEliminarProv;
     private javax.swing.JButton btn_buscarProv;
-    private javax.swing.JButton btn_eliminarProv1;
     private javax.swing.JButton btn_guardarProv;
     private javax.swing.JButton btn_nuevoProv;
     private javax.swing.JLabel jLabel1;
