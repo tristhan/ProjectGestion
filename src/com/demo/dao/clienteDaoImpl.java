@@ -23,7 +23,7 @@ public class clienteDaoImpl implements clienteInterface {
         Connection con = null;
         PreparedStatement pst = null;
 
-        String sql = "INSERT INTO cliente values ";
+        String sql = "INSERT INTO cliente(nombre, apellido, correo, identificacion) values(?, ?, ?, ?) ";
         
         try {
             con = conexion_mysql.conectar();

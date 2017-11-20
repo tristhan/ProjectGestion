@@ -28,7 +28,8 @@ public class empleadoDaoImpl implements empleadoInterface{
         Connection con = null;
         PreparedStatement pst = null;
 
-        String sql = "INSERT INTO empleado values ";
+        String sql = "INSERT INTO empleado (nombre, apellido, correo, cedulaIdentidad, direccion, telefono)"
+                + "values (?, ?, ?, ?, ?, ?)";
 
         try {
             con = conexion_mysql.conectar();

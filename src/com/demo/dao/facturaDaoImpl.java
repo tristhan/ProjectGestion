@@ -26,7 +26,7 @@ public class facturaDaoImpl implements facturaInterface{
          boolean registrar = false;
         Connection con = null;
 
-        String sql = "INSERT INTO factura values ";
+        String sql = "INSERT INTO factura (direccion, telefono) values (?, ?) ";
 
         try {
            con = conexion_mysql.conectar();
