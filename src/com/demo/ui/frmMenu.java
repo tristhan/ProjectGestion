@@ -57,11 +57,11 @@ public class frmMenu extends javax.swing.JFrame {
         menuRrhh = new javax.swing.JMenu();
         itemEmpleado = new javax.swing.JMenuItem();
         itemProveedor = new javax.swing.JMenuItem();
+        itemCliente = new javax.swing.JMenuItem();
         itemArticulo = new javax.swing.JMenuItem();
+        menuConsulta = new javax.swing.JMenu();
         menuFactura = new javax.swing.JMenu();
         itemFacturar = new javax.swing.JMenuItem();
-        menuConfiguracion = new javax.swing.JMenu();
-        menuConsulta = new javax.swing.JMenu();
         menuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,7 +80,7 @@ public class frmMenu extends javax.swing.JFrame {
         getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 360));
 
         menuHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/home.png"))); // NOI18N
-        menuHome.setText("SIFI");
+        menuHome.setText("CENTER TECNO");
         menuHome.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jMenuBar1.add(menuHome);
 
@@ -106,10 +106,22 @@ public class frmMenu extends javax.swing.JFrame {
         });
         menuRrhh.add(itemProveedor);
 
+        itemCliente.setText("Cliente");
+        itemCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemClienteActionPerformed(evt);
+            }
+        });
+        menuRrhh.add(itemCliente);
+
         itemArticulo.setText("Articulo");
         menuRrhh.add(itemArticulo);
 
         jMenuBar1.add(menuRrhh);
+
+        menuConsulta.setText("CONSULTA");
+        menuConsulta.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jMenuBar1.add(menuConsulta);
 
         menuFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/Form.png"))); // NOI18N
         menuFactura.setText("Factura");
@@ -120,15 +132,6 @@ public class frmMenu extends javax.swing.JFrame {
         menuFactura.add(itemFacturar);
 
         jMenuBar1.add(menuFactura);
-
-        menuConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/configuracion.png"))); // NOI18N
-        menuConfiguracion.setText("Configuración");
-        menuConfiguracion.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        jMenuBar1.add(menuConfiguracion);
-
-        menuConsulta.setText("Consulta");
-        menuConsulta.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        jMenuBar1.add(menuConsulta);
 
         menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/menusalir.png"))); // NOI18N
         menuSalir.setText("Salir");
@@ -163,6 +166,13 @@ public class frmMenu extends javax.swing.JFrame {
     private void itemProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemProveedorActionPerformed
+
+    private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
+        // TODO add your handling code here:
+        frmIntCliente intCliente = new frmIntCliente();
+        escritorio.add(intCliente);
+        intCliente.setVisible(true);
+    }//GEN-LAST:event_itemClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,11 +216,11 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JLabel Imagen_fondo;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem itemArticulo;
+    private javax.swing.JMenuItem itemCliente;
     private javax.swing.JMenuItem itemEmpleado;
     private javax.swing.JMenuItem itemFacturar;
     private javax.swing.JMenuItem itemProveedor;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu menuConfiguracion;
     private javax.swing.JMenu menuConsulta;
     private javax.swing.JMenu menuFactura;
     private javax.swing.JMenu menuHome;

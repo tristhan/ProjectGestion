@@ -55,14 +55,14 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         txt_busquedaProv = new javax.swing.JTextField();
         btn_buscarProv = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
 
         setClosable(true);
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRegistroProveedor.setBackground(new java.awt.Color(255, 204, 102));
-        panelRegistroProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REGISTRO DE PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        panelRegistroProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro Proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
         panelRegistroProveedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -163,7 +163,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 210));
 
         panelConsultaProv.setBackground(new java.awt.Color(255, 204, 102));
-        panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSULTA DE PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
         panelConsultaProv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -186,7 +186,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         });
         panelConsultaProv.add(btn_buscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -209,7 +209,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         panelConsultaProv.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 740, 160));
 
@@ -257,9 +257,9 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelConsultaProv;
     private javax.swing.JPanel panelRegistroProveedor;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txt_apellidoProv;
     private javax.swing.JTextField txt_busquedaProv;
     private javax.swing.JTextField txt_celularProv;
