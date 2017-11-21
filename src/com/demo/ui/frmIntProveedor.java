@@ -49,7 +49,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         btn_actualizarProv = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        btn_buscEliminarProv = new javax.swing.JButton();
+        btn_eliminarProv = new javax.swing.JButton();
         panelConsultaProv = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txt_busquedaProv = new javax.swing.JTextField();
@@ -151,14 +151,14 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         jLabel10.setText("Correo:");
         panelRegistroProveedor.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
 
-        btn_buscEliminarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
-        btn_buscEliminarProv.setText("Eliminar");
-        btn_buscEliminarProv.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
+        btn_eliminarProv.setText("Eliminar");
+        btn_eliminarProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscEliminarProvActionPerformed(evt);
+                btn_eliminarProvActionPerformed(evt);
             }
         });
-        panelRegistroProveedor.add(btn_buscEliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
+        panelRegistroProveedor.add(btn_eliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
 
         getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 210));
 
@@ -222,9 +222,9 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreProvActionPerformed
 
-    private void btn_buscEliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscEliminarProvActionPerformed
+    private void btn_eliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarProvActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_buscEliminarProvActionPerformed
+    }//GEN-LAST:event_btn_eliminarProvActionPerformed
 
     private void btn_guardarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarProvActionPerformed
         // TODO add your handling code here:
@@ -241,8 +241,8 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizarProv;
-    private javax.swing.JButton btn_buscEliminarProv;
     private javax.swing.JButton btn_buscarProv;
+    private javax.swing.JButton btn_eliminarProv;
     private javax.swing.JButton btn_guardarProv;
     private javax.swing.JButton btn_nuevoProv;
     private javax.swing.JComboBox<String> jComboBox1;

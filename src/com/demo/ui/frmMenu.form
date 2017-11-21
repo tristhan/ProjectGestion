@@ -20,7 +20,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/com/demo/imagenes/user.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="R.R.H.H"/>
+            <Property name="text" type="java.lang.String" value="REGISTRO"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="16" style="1"/>
             </Property>
@@ -36,6 +36,22 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemEmpleadoActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemProveedor">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/demo/imagenes/cargose.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Proveedor"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemProveedorActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemArticulo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Articulo"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
