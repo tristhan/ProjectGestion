@@ -47,11 +47,15 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         btn_nuevoProv = new javax.swing.JButton();
         btn_guardarProv = new javax.swing.JButton();
         btn_actualizarProv = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        btn_buscEliminarProv = new javax.swing.JButton();
         panelConsultaProv = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txt_busquedaProv = new javax.swing.JTextField();
-        btn_buscEliminarProv = new javax.swing.JButton();
         btn_buscarProv = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setResizable(true);
@@ -79,37 +83,52 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Telefono:");
-        panelRegistroProveedor.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        panelRegistroProveedor.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setText("Celular:");
-        panelRegistroProveedor.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        panelRegistroProveedor.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
 
+        txt_nombreProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_nombreProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreProvActionPerformed(evt);
             }
         });
         panelRegistroProveedor.add(txt_nombreProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 230, -1));
+
+        txt_apellidoProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         panelRegistroProveedor.add(txt_apellidoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 230, -1));
+
+        txt_empresaProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         panelRegistroProveedor.add(txt_empresaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 230, -1));
+
+        txt_rucProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         panelRegistroProveedor.add(txt_rucProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 230, -1));
-        panelRegistroProveedor.add(txt_telefonoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, -1));
-        panelRegistroProveedor.add(txt_celularProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 230, -1));
-        panelRegistroProveedor.add(txt_direccionProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 230, -1));
+
+        txt_telefonoProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        panelRegistroProveedor.add(txt_telefonoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 230, -1));
+
+        txt_celularProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        panelRegistroProveedor.add(txt_celularProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 230, -1));
+
+        txt_direccionProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        panelRegistroProveedor.add(txt_direccionProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 230, -1));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel7.setText("Direccion:");
-        panelRegistroProveedor.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        panelRegistroProveedor.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel8.setText("Correo:");
-        panelRegistroProveedor.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
-        panelRegistroProveedor.add(txt_correoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 230, -1));
+        jLabel8.setText("Activo");
+        panelRegistroProveedor.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        txt_correoProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        panelRegistroProveedor.add(txt_correoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 230, -1));
 
         btn_nuevoProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
         btn_nuevoProv.setText("Nuevo");
-        panelRegistroProveedor.add(btn_nuevoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        panelRegistroProveedor.add(btn_nuevoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         btn_guardarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
         btn_guardarProv.setText("Guardar");
@@ -118,13 +137,30 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
                 btn_guardarProvActionPerformed(evt);
             }
         });
-        panelRegistroProveedor.add(btn_guardarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
+        panelRegistroProveedor.add(btn_guardarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
 
         btn_actualizarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btn_actualizarProv.setText("Actualizar");
-        panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, -1));
+        panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
 
-        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 340));
+        jComboBox1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panelRegistroProveedor.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, -1));
+
+        jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel10.setText("Correo:");
+        panelRegistroProveedor.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
+
+        btn_buscEliminarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
+        btn_buscEliminarProv.setText("Eliminar");
+        btn_buscEliminarProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscEliminarProvActionPerformed(evt);
+            }
+        });
+        panelRegistroProveedor.add(btn_buscEliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
+
+        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 210));
 
         panelConsultaProv.setBackground(new java.awt.Color(255, 204, 102));
         panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSULTA DE PROVEEDOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -134,21 +170,13 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         jLabel9.setText("Busqueda:");
         panelConsultaProv.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
+        txt_busquedaProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_busquedaProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_busquedaProvActionPerformed(evt);
             }
         });
         panelConsultaProv.add(txt_busquedaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 190, 20));
-
-        btn_buscEliminarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
-        btn_buscEliminarProv.setText("Eliminar");
-        btn_buscEliminarProv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscEliminarProvActionPerformed(evt);
-            }
-        });
-        panelConsultaProv.add(btn_buscEliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
 
         btn_buscarProv.setText("Busqueda");
         btn_buscarProv.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +186,34 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         });
         panelConsultaProv.add(btn_buscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
-        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 480, 340));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nombres", "Apellidos", "Empresa", "Ruc", "Celular", "Correo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        panelConsultaProv.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 740, 160));
+
+        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 760, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,7 +245,9 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_buscarProv;
     private javax.swing.JButton btn_guardarProv;
     private javax.swing.JButton btn_nuevoProv;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -199,6 +256,8 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelConsultaProv;
     private javax.swing.JPanel panelRegistroProveedor;
     private javax.swing.JTextField txt_apellidoProv;
