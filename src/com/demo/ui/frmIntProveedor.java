@@ -5,6 +5,9 @@
  */
 package com.demo.ui;
 
+import com.demo.controller.controllerProveedor;
+import com.demo.dominio.Proveedor;
+
 /**
  *
  * @author Jona
@@ -228,6 +231,15 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
     private void btn_guardarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarProvActionPerformed
         // TODO add your handling code here:
+        
+        Proveedor pro= new Proveedor();
+        controllerProveedor con= new controllerProveedor();
+        
+        con.registrar(pro);
+        
+        
+        
+        
     }//GEN-LAST:event_btn_guardarProvActionPerformed
 
     private void txt_busquedaProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busquedaProvActionPerformed
