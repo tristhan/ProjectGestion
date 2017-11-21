@@ -124,7 +124,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel10.setText("Activo:");
+        jLabel10.setText("Estado:");
         pRegistroEmpleado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         btn_nuevoEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
@@ -204,7 +204,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Identificación", "Nombres", "Rol", "Estado"
             }
         ));
         jScrollPane2.setViewportView(tabla);
