@@ -5,6 +5,9 @@
  */
 package com.demo.ui;
 
+import com.demo.dominio.Articulo;
+import com.demo.dominio.Proveedor;
+
 /**
  *
  * @author Jona
@@ -186,6 +189,11 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
@@ -244,6 +252,26 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioCompraActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        Articulo art= new Articulo();
+        art.setNombre(txtNombre.getText());
+        art.setCodigo_fisico(txtCodigo.getText());
+        art.setDescripcion(textaDescripcion.getText());
+        art.setStock(Integer.parseInt(txtStock.getText()));
+        art.setPrecio_venta(Double.parseDouble(txtPrecioVenta.getText()));
+        art.setPrecio_compra(Double.parseDouble(txtPrecioCompra.getText()));
+        //art.setEstado((boolean) cboEstado.getSelectedItem());
+        //art.setProveedor((Proveedor) cboProveedor.getSelectedItem());
+        
+        System.out.println("mirame... "+art.toString());
+       
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    void llenarcboProveedor(){
+        //contro
+        //List<Proveedor>listProveedor = getProveedorAll();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

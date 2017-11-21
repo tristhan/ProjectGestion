@@ -233,8 +233,14 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         Proveedor pro= new Proveedor();
+        pro.setNombre(txt_nombreProv.getText());
+        pro.setApellido(txt_apellidoProv.getText());
+        pro.setEmpresa(txt_empresaProv.getText());
+        pro.setRuc(txt_rucProv.getText());
+        pro.setTelefono(txt_telefonoProv.getText());
+        pro.setCelular(Integer.parseInt(txt_celularProv.getText()));
+        pro.setDireccion(txt_direccionProv.getText());
         controllerProveedor con= new controllerProveedor();
-        
         con.registrar(pro);
         
         

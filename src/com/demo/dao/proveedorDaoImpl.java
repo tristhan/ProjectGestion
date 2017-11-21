@@ -9,6 +9,7 @@ import com.demo.dominio.Proveedor;
 import com.demo.interfaces.proveedorInterface;
 import com.demo.utileria.conexion_mysql;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,23 +24,27 @@ public class proveedorDaoImpl implements proveedorInterface{
     @Override
     public boolean save(Proveedor proveedor) {
         boolean registrar = false;
-        Statement stm = null;
         Connection con = null;
-
+        PreparedStatement pst = null;
+        
         
         String sql= "INSERT INTO proveedor (nombre,apellido,empresa,ruc,telefono,celular,direccion)"
-                + "";
-              /*String sql = "INSERT INTO proveedor values (NULL,'"
-                + proveedor.getRuc() + "','"
-                + proveedor.getNombre() + "','"
-                + proveedor.getApellido() + "')";*/
+                + " values (?,?,?,?,?,?,?)";
+              
 
         try {
-            con = conexion_mysql.conectar();
-            stm = con.createStatement();
-            stm.execute(sql);
+             con = conexion_mysql.conectar();
+            pst=con.prepareStatement(sql);
+			pst.setString(1, proveedor.getNombre());
+			pst.setString(2, proveedor.getApellido());
+			pst.setString(3, proveedor.getEmpresa());
+			pst.setString(4, proveedor.getRuc());
+                        pst.setString(5, proveedor.getTelefono());
+                        pst.setInt(6, proveedor.getCelular());
+                        pst.setString(7, proveedor.getDireccion());          
+            pst.execute();
             registrar = true;
-            stm.close();
+            pst.close();
             con.close();
         } catch (SQLException e) {
             System.out.println("Error: Clase ProveedorDaoImple, método registrar");

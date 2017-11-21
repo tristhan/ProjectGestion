@@ -188,6 +188,12 @@ public class frmMenu extends javax.swing.JFrame {
 
     private void itemArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticuloActionPerformed
         // TODO add your handling code here:
+        frmIntArticulo formulario= new frmIntArticulo();
+        escritorio.add(formulario);
+        
+        formulario.setVisible(true);
+        
+        
     }//GEN-LAST:event_itemArticuloActionPerformed
 
 
