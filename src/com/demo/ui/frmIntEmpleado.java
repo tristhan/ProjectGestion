@@ -74,6 +74,8 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
@@ -95,7 +97,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Identificación");
-        pRegistroEmpleado.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        pRegistroEmpleado.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 67, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel4.setText("Correo:");
@@ -183,10 +185,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         });
         pRegistroEmpleado.add(txt_contrasenaEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 230, -1));
 
+        comboBox_activoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         comboBox_activoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pRegistroEmpleado.add(comboBox_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, -1));
 
-        getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 230));
+        getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 810, 230));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
@@ -206,9 +209,15 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tabla);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 790, 210));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 790, 160));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 810, 260));
+        txtBuscar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 200, -1));
+
+        btnBuscar.setText("Busqueda");
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 150, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 810, 250));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -227,6 +236,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btn_editarEmp;
     private javax.swing.JButton btn_eliminarEmp;
     private javax.swing.JButton btn_guardarEmp;
@@ -246,6 +256,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pRegistroEmpleado;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txt_apellidoEmp;
     private javax.swing.JTextField txt_contrasenaEmp;
     private javax.swing.JTextField txt_correoEmp;
