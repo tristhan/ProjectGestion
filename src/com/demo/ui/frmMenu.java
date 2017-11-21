@@ -107,6 +107,11 @@ public class frmMenu extends javax.swing.JFrame {
         menuRrhh.add(itemProveedor);
 
         itemArticulo.setText("Articulo");
+        itemArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemArticuloActionPerformed(evt);
+            }
+        });
         menuRrhh.add(itemArticulo);
 
         jMenuBar1.add(menuRrhh);
@@ -162,7 +167,17 @@ public class frmMenu extends javax.swing.JFrame {
 
     private void itemProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProveedorActionPerformed
         // TODO add your handling code here:
+        
+        frmIntProveedor formularioProveedor=new frmIntProveedor();
+        escritorio.add(formularioProveedor);
+        
+        formularioProveedor.setVisible(true);
+        
     }//GEN-LAST:event_itemProveedorActionPerformed
+
+    private void itemArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemArticuloActionPerformed
 
     /**
      * @param args the command line arguments
