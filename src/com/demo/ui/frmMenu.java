@@ -115,6 +115,11 @@ public class frmMenu extends javax.swing.JFrame {
         menuRrhh.add(itemCliente);
 
         itemArticulo.setText("Articulo");
+        itemArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemArticuloActionPerformed(evt);
+            }
+        });
         menuRrhh.add(itemArticulo);
 
         jMenuBar1.add(menuRrhh);
@@ -165,14 +170,26 @@ public class frmMenu extends javax.swing.JFrame {
 
     private void itemProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProveedorActionPerformed
         // TODO add your handling code here:
+        
+        frmIntProveedor formularioProveedor=new frmIntProveedor();
+        escritorio.add(formularioProveedor);
+        
+        formularioProveedor.setVisible(true);
+        
     }//GEN-LAST:event_itemProveedorActionPerformed
 
+<<<<<<< HEAD
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
         // TODO add your handling code here:
         frmIntCliente intCliente = new frmIntCliente();
         escritorio.add(intCliente);
         intCliente.setVisible(true);
     }//GEN-LAST:event_itemClienteActionPerformed
+=======
+    private void itemArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemArticuloActionPerformed
+>>>>>>> b2dbe1e1923b8042dad1d885d6583cc064a42a40
 
     /**
      * @param args the command line arguments

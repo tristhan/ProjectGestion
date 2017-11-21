@@ -26,10 +26,13 @@ public class proveedorDaoImpl implements proveedorInterface{
         Statement stm = null;
         Connection con = null;
 
-        String sql = "INSERT INTO proveedor values (NULL,'"
+        
+        String sql= "INSERT INTO proveedor (nombre,apellido,empresa,ruc,telefono,celular,direccion)"
+                + "";
+              /*String sql = "INSERT INTO proveedor values (NULL,'"
                 + proveedor.getRuc() + "','"
                 + proveedor.getNombre() + "','"
-                + proveedor.getApellido() + "')";
+                + proveedor.getApellido() + "')";*/
 
         try {
             con = conexion_mysql.conectar();
