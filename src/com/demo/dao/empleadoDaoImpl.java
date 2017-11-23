@@ -43,15 +43,16 @@ public class empleadoDaoImpl implements empleadoInterface{
                         pst.execute();
              ResultSet rs = pst.getGeneratedKeys();	
                         //envio los demas datos
-            sql = "";
+            sql = "INSERT INTO user (nick, password, rol, activo, empleado_id_empleado) "
+                    + "values (?, ?, ?, ?, ?)";
             if (rs.next())
 		    empleado.setId_empleado(rs.getInt(1));
             pst=con.prepareStatement(sql);
-			pst.setInt(1, empleado.getId_empleado());
-			pst.setString(2, empleado.getUsuraio().getNick());
-                        pst.setString(3, empleado.getUsuraio().getPassword());
-                        pst.setString(4, empleado.getUsuraio().getRol());
-                        pst.setBoolean(5, empleado.getUsuraio().isActivo());//enviar true o 1
+			pst.setString(1, empleado.getUsuraio().getNick());
+                        pst.setString(2, empleado.getUsuraio().getPassword());
+                        pst.setString(3, empleado.getUsuraio().getRol());
+                        pst.setBoolean(4, empleado.getUsuraio().isActivo());//enviar true o 1
+                        pst.setInt(5, empleado.getId_empleado());
 			pst.execute();	
                         
             registrar = true;
@@ -72,7 +73,7 @@ public class empleadoDaoImpl implements empleadoInterface{
 
         String sql = "SELECT * FROM empleado";
 
-        List<Empleado> listaCliente = new ArrayList<Empleado>();
+        List<Empleado> listaCliente = new ArrayList<>();
         try {
             con = conexion_mysql.conectar();
             stm = con.createStatement();
