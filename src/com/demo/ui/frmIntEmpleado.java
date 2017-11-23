@@ -27,6 +27,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private validacion validacion = new validacion();
     // variable para hacer evento de cambio de textfield
     private Character kpress;
+    private boolean estado = false;
     // instancia de controlador de empleado y de su entidad
     private controllerEmpleado ctrlempleado = new controllerEmpleado();
     private Empleado empleado;
@@ -270,6 +271,13 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private void btn_guardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarEmpActionPerformed
         // TODO add your handling code here:
         validarNull();
+        int cbo = (comboBox_activoEmp.getSelectedIndex());
+        if(cbo==0){
+            estado=true;
+        }else{
+            estado=false;
+        }
+        
         // agregamos los cammpos a la entidad para luego pasarlas al controlador y
         // hacer el guardao
         empleado = new Empleado();
@@ -280,9 +288,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         empleado.setNombre(txt_nombreEmp.getText());
         empleado.setTelefono(txt_telefonoEmp.getText());
         empleado.setUsuraio(new User(txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
-        txt_rolEmp.getText(),true));
+        txt_rolEmp.getText(),estado));
         System.out.println("mira... "+empleado.toString());
-        //ctrlempleado.registrar(empleado);
+        ctrlempleado.registrar(empleado);
     }//GEN-LAST:event_btn_guardarEmpActionPerformed
 
     private void txt_nombreEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreEmpKeyTyped

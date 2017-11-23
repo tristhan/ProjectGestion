@@ -11,7 +11,7 @@ public class conexion_mysql {
 
     private static String ACCESO_BASE = "jdbc:mysql://localhost:3306/center";
     private static String USERNAME = "root";
-    private static String PASSWORD = "1234";
+    private static String PASSWORD = "";
 
     public static Connection conectar() {
         Connection con = null;

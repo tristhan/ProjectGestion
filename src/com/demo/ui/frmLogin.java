@@ -5,6 +5,9 @@
  */
 package com.demo.ui;
 
+import com.demo.controller.controllerLogin;
+import com.demo.dominio.User;
+
 /**
  *
  * @author Jona
@@ -14,6 +17,10 @@ public class frmLogin extends javax.swing.JFrame {
     /**
      * Creates new form frmLogin
      */
+    // varible de controlador y entidad
+    private controllerLogin ctrlLogin = new controllerLogin();
+    private User userLogin;
+    
     public frmLogin() {
         initComponents();
         setTitle("Control de Acceso");
@@ -72,6 +79,11 @@ public class frmLogin extends javax.swing.JFrame {
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnok.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         pack();
@@ -81,6 +93,15 @@ public class frmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        userLogin = new User();
+        userLogin.setNick(txtUsuario.getText());
+        userLogin.setPassword(txtConstrasena.getText());
+        
+        ctrlLogin.userLogin(userLogin);
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments

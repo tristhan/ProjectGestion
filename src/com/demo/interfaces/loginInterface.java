@@ -6,12 +6,13 @@
 package com.demo.interfaces;
 
 import com.demo.dominio.User;
+import java.util.List;
 
 /**
  *
  * @author Jona
  */
 public interface loginInterface {
-    public void login(User usuario);
+    public List<User> login(User usuario);
     //
 }

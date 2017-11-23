@@ -9,6 +9,7 @@ import com.demo.dominio.User;
 import com.demo.interfaces.loginInterface;
 import com.demo.utileria.conexion_mysql;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,38 +19,39 @@ import java.util.List;
 /**
  * @author Jona
  */
-public class loginDaoImpl implements loginInterface{
+public class loginDaoImpl implements loginInterface {
 
     // hacer metodo de tipo User
     // solo verifico con el query y si vota diferente hace el logeo
     @Override
-    public void login(User usuario) {
-        Connection co = null;
-        Statement stm = null;
+    public List<User> login(User usuario) {
+        Connection con = null;
+        PreparedStatement pst = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM proveedor";
-        List<User> listaUsuario = new ArrayList<User>();
+        String sql = "select u.nick, u.password, u.empleado_id_empleado "
+                + "from user u inner join empleado e on u.empleado_id_empleado = e.id_empleado "
+                + "where u.nick=? and u.password=? and u.activo=true";
+        List<User> listaUsuario = new ArrayList<>();
         try {
-            co = conexion_mysql.conectar();
-            stm = co.createStatement();
-            rs = stm.executeQuery(sql);
+            con = conexion_mysql.conectar();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, usuario.getNick());
+            pst.setString(2, usuario.getPassword());
+            rs = pst.executeQuery();
+
             while (rs.next()) {
-                User u = new User();
-                //u.setId_proveedor(rs.getInt(1));
-                //u.setApellido(rs.getString(2));
-                //u.setNombre(rs.getString(3));
-                //u.setApellido(rs.getString(4));
-                listaUsuario.add(u);
+                //Encuesta temp = new Encuesta(rs.getInt(1), rs.getString(2));
+                //opcionese.add(temp);
             }
-            stm.close();
+            pst.close();
             rs.close();
-            co.close();
+            con.close();
         } catch (SQLException e) {
             System.out.println("Error: Clase LoginDaoImple, método getlogin");
             e.printStackTrace();
         }
-        //return listaUsuario;
+        return listaUsuario;
     }
-    
+
 }
