@@ -5,7 +5,12 @@
  */
 package com.demo.ui;
 
+import com.demo.controller.controllerEmpleado;
 import com.demo.design.JTableDesign;
+import com.demo.design.validacion;
+import com.demo.dominio.Empleado;
+import com.demo.dominio.User;
+import java.awt.event.KeyEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -18,23 +23,19 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     /**
      * Creates new form frmIntEmpleado
      */
-    private String columnas[] = {"Auto", "Color", "Tipo"};
-    private Object celdas[][] = {{"Kia","Rojo", "C"},
-    {"Toyota","Azul","C"},
-    {"Lexus","Negro","B"},
-    {"BMW","Verde","B"},
-    {"Pagani", "Dorado", "A"},
-    {"Ferrari", "Rojo", "A"}};
-    
+    // variable global de validacion 
+    private validacion validacion = new validacion();
+    // variable para hacer evento de cambio de textfield
+    private Character kpress;
+    // instancia de controlador de empleado y de su entidad
+    private controllerEmpleado ctrlempleado = new controllerEmpleado();
+    private Empleado empleado;
+
     public frmIntEmpleado() {
-        initComponents();        
-        setSize(750, 550);
-        // diseño de jtable
-        tabla = new JTable(celdas,columnas);
-        JTableDesign design = new JTableDesign();
-        tabla.setDefaultRenderer(Object.class, design);
-        
-        
+        initComponents();
+        setSize(845, 545);
+
+        desabilitar();
     }
 
     /**
@@ -78,7 +79,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
 
         setClosable(true);
-        setResizable(true);
         setTitle("Empleado");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,51 +89,63 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Nombres:");
-        pRegistroEmpleado.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        pRegistroEmpleado.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 45, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Apellidos:");
-        pRegistroEmpleado.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        pRegistroEmpleado.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 44, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Identificación");
-        pRegistroEmpleado.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 67, -1, 30));
+        pRegistroEmpleado.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 69, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel4.setText("Correo:");
-        pRegistroEmpleado.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
+        pRegistroEmpleado.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 76, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Dirección:");
-        pRegistroEmpleado.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        pRegistroEmpleado.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 107, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setText("Teléfono:");
-        pRegistroEmpleado.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        pRegistroEmpleado.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 165, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel7.setText("Rol:");
-        pRegistroEmpleado.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        pRegistroEmpleado.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 136, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel8.setText("Username:");
-        pRegistroEmpleado.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+        pRegistroEmpleado.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 106, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel9.setText("Contraseña:");
-        pRegistroEmpleado.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+        pRegistroEmpleado.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 137, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel10.setText("Estado:");
-        pRegistroEmpleado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        pRegistroEmpleado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 194, -1, -1));
 
         btn_nuevoEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
         btn_nuevoEmp.setText("Nuevo");
+        btn_nuevoEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevoEmpActionPerformed(evt);
+            }
+        });
         pRegistroEmpleado.add(btn_nuevoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
 
         btn_guardarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
         btn_guardarEmp.setText("Guardar");
-        pRegistroEmpleado.add(btn_guardarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
+        btn_guardarEmp.setMaximumSize(new java.awt.Dimension(83, 25));
+        btn_guardarEmp.setMinimumSize(new java.awt.Dimension(83, 25));
+        btn_guardarEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarEmpActionPerformed(evt);
+            }
+        });
+        pRegistroEmpleado.add(btn_guardarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 170, -1, -1));
 
         btn_editarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btn_editarEmp.setText("Actualizar");
@@ -142,7 +154,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
                 btn_editarEmpActionPerformed(evt);
             }
         });
-        pRegistroEmpleado.add(btn_editarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, -1, -1));
+        pRegistroEmpleado.add(btn_editarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 170, -1, -1));
 
         btn_eliminarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
         btn_eliminarEmp.setText("Eliminar");
@@ -152,6 +164,14 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txt_nombreEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreEmpActionPerformed(evt);
+            }
+        });
+        txt_nombreEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_nombreEmpKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreEmpKeyTyped(evt);
             }
         });
         pRegistroEmpleado.add(txt_nombreEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 230, -1));
@@ -186,7 +206,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado.add(txt_contrasenaEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 230, -1));
 
         comboBox_activoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        comboBox_activoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBox_activoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         pRegistroEmpleado.add(comboBox_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, -1));
 
         getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 810, 230));
@@ -206,7 +226,15 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
             new String [] {
                 "Identificación", "Nombres", "Rol", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tabla);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 790, 160));
@@ -234,6 +262,69 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_contrasenaEmpActionPerformed
 
+    private void btn_nuevoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoEmpActionPerformed
+        // TODO add your handling code here:
+        habilitar();
+    }//GEN-LAST:event_btn_nuevoEmpActionPerformed
+
+    private void btn_guardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarEmpActionPerformed
+        // TODO add your handling code here:
+        validarNull();
+        // agregamos los cammpos a la entidad para luego pasarlas al controlador y
+        // hacer el guardao
+        empleado = new Empleado();
+        empleado.setApellido(txt_apellidoEmp.getText());
+        empleado.setCedulaIdentidad(txt_identificacionEmp.getText());
+        empleado.setCorreo(txt_correoEmp.getText());
+        empleado.setDireccion(txt_direccionEmp.getText());
+        empleado.setNombre(txt_nombreEmp.getText());
+        empleado.setTelefono(txt_telefonoEmp.getText());
+        empleado.setUsuraio(new User(txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
+        txt_rolEmp.getText(),true));
+        System.out.println("mira... "+empleado.toString());
+        //ctrlempleado.registrar(empleado);
+    }//GEN-LAST:event_btn_guardarEmpActionPerformed
+
+    private void txt_nombreEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreEmpKeyTyped
+        // TODO add your handling code here:
+        validacion.soloLetras(evt);
+    }//GEN-LAST:event_txt_nombreEmpKeyTyped
+
+    private void txt_nombreEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_nombreEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_nombreEmpKeyPressed
+
+    // desabilito los textfield
+    void desabilitar() {
+        txt_apellidoEmp.enable(false);
+        txt_contrasenaEmp.enable(false);
+        txt_correoEmp.enable(false);
+        txt_direccionEmp.enable(false);
+        txt_identificacionEmp.enable(false);
+        txt_nombreEmp.enable(false);
+        txt_rolEmp.enable(false);
+        txt_telefonoEmp.enable(false);
+        txt_usernameEmp.enable(false);
+        comboBox_activoEmp.enable(false);
+    }
+
+    // habilito los textfield y los limpio
+    void habilitar() {
+        txt_apellidoEmp.enable(true);
+        txt_contrasenaEmp.enable(true);
+        txt_correoEmp.enable(true);
+        txt_direccionEmp.enable(true);
+        txt_identificacionEmp.enable(true);
+        txt_nombreEmp.enable(true);
+        txt_rolEmp.enable(true);
+        txt_telefonoEmp.enable(true);
+        txt_usernameEmp.enable(true);
+        comboBox_activoEmp.enable(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -267,4 +358,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_telefonoEmp;
     private javax.swing.JTextField txt_usernameEmp;
     // End of variables declaration//GEN-END:variables
+
+    // verificamos campos nulos... en espera del cliente
+    private void validarNull() {
+
+    }
 }

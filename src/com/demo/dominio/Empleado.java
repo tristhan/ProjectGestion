@@ -119,7 +119,7 @@ public class Empleado {
                 ", direccion=" + direccion + 
                 ", telefono=" + telefono + 
                 ", factura=" + factura + 
-                ", usuraio=" + usuraio + '}';
+                ", usuraio=" + usuraio.toString() + '}';
     }
     
 }

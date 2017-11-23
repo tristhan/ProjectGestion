@@ -100,12 +100,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id_user=" + id_user + 
-                ", empleado=" + empleado.toString() + 
+                //", empleado=" + empleado.toString() + 
                 ", nick=" + nick + 
                 ", password=" + password + 
                 ", rol=" + rol + 
                 ", activo=" + activo + 
-                ", empleadoUsuario=" + empleadoUsuario.toString() + '}';
+                /*", empleadoUsuario=" + empleadoUsuario.toString() +*/ '}';
     }
     
     

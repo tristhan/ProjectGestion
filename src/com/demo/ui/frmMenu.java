@@ -24,7 +24,7 @@ public class frmMenu extends javax.swing.JFrame {
     public frmMenu() {
         initComponents();
         setTitle("Sistema de Inventario y Gestión - Center Techno - ");
-        setSize(1150, 650);
+        setSize(1050, 650);
         setLocationRelativeTo(null);
         
         // agregro el desktop al formulario padre
@@ -157,7 +157,6 @@ public class frmMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmIntEmpleado intEmpleado = new frmIntEmpleado();
         escritorio.add(intEmpleado);
-
         intEmpleado.setVisible(true);
 
     }//GEN-LAST:event_itemEmpleadoActionPerformed
@@ -173,7 +172,6 @@ public class frmMenu extends javax.swing.JFrame {
         
         frmIntProveedor formularioProveedor=new frmIntProveedor();
         escritorio.add(formularioProveedor);
-        
         formularioProveedor.setVisible(true);
         
     }//GEN-LAST:event_itemProveedorActionPerformed
@@ -190,7 +188,6 @@ public class frmMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmIntArticulo formulario= new frmIntArticulo();
         escritorio.add(formulario);
-        
         formulario.setVisible(true);
         
         
