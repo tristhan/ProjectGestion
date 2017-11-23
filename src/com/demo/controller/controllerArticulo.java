@@ -42,12 +42,9 @@ public class controllerArticulo {
 	
 	//llama al DAO para obtener todos los articulo y luego los muestra en la vista
         // convertir en metod list
-	public void verArticulos(){
-		List<Articulo> articulos = new ArrayList<Articulo>();
+	public List<Articulo> verArticulos(){
+		List<Articulo> articulos = new ArrayList<>();
 		articulos=dao.getArticuloAll();
-		//vista.verClientes(clientes);
-                for (Articulo articulo  : articulos) {
-                    System.out.println("asas... "+articulo.getCodigo_fisico());
-            }
+                return articulos;
 	}
 }

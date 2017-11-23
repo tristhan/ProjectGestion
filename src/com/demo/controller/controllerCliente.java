@@ -41,13 +41,10 @@ public class controllerCliente {
 	}
 	
 	//llama al DAO para obtener todos los clientes y luego los muestra en la vista
-	public void verClientes(){
+	public List<Cliente> verClientes(){
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		clientes=dao.getClienteAll();
-		//vista.verClientes(clientes);
-                for (Cliente cli : clientes) {
-                    System.out.println("asas... "+cli.getApellido());
-            }
+                return clientes;
 	}
     
 }//

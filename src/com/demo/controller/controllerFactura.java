@@ -41,12 +41,9 @@ public class controllerFactura {
 	
 	//llama al DAO para obtener todos los clientes y luego los muestra en la vista
         // convertir en metodo list
-	public void verFacturas(){
-		List<FacturaCabecera> facturas = new ArrayList<FacturaCabecera>();
+	public List<FacturaCabecera> verFacturas(){
+		List<FacturaCabecera> facturas = new ArrayList<>();
 		facturas=dao.getFacturaAll();
-		//vista.verClientes(clientes);
-                for (FacturaCabecera factura  : facturas) {
-                    System.out.println("asas... "+factura.getDireccion());
-            }
+		return facturas;
 	}
 }//

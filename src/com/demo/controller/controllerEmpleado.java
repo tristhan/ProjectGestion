@@ -42,13 +42,10 @@ public class controllerEmpleado {
 	
 	//llama al DAO para obtener todos los empleados y luego los muestra en la vista
         // convertir en metod list
-	public void verEmpleados(){
-		List<Empleado> empleados = new ArrayList<Empleado>();
+	public List<Empleado> verEmpleados(){
+		List<Empleado> empleados = new ArrayList<>();
 		empleados=dao.getEmpleadoAll();
-		//vista.verClientes(clientes);
-                for (Empleado empleado  : empleados) {
-                    System.out.println("asas... "+empleado.getApellido());
-            }
+		return empleados;
 	}
     //
 }
