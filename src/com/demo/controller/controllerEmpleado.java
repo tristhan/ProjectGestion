@@ -42,9 +42,9 @@ public class controllerEmpleado {
 	
 	//llama al DAO para obtener todos los empleados y luego los muestra en la vista
         // convertir en metod list
-	public List<Empleado> verEmpleados(){
+	public List<Empleado> verEmpleados(String cedula){
 		List<Empleado> empleados = new ArrayList<>();
-		empleados=dao.getEmpleadoAll();
+		empleados=dao.getEmpleadoAll(cedula);
 		return empleados;
 	}
     //

@@ -11,8 +11,11 @@ import com.demo.design.validacion;
 import com.demo.dominio.Empleado;
 import com.demo.dominio.User;
 import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,7 +32,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private Character kpress;
     private boolean estado = false;
     // instancia de controlador de empleado y de su entidad
-    private controllerEmpleado ctrlempleado = new controllerEmpleado();
+    private controllerEmpleado ctrlempleado;
     private Empleado empleado;
 
     public frmIntEmpleado() {
@@ -37,6 +40,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         setSize(845, 545);
 
         desabilitar();
+        buscar("");
     }
 
     /**
@@ -178,30 +182,74 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado.add(txt_nombreEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 230, -1));
 
         txt_correoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_correoEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_correoEmpKeyPressed(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_correoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 230, -1));
 
         txt_apellidoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_apellidoEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_apellidoEmpKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_apellidoEmpKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_apellidoEmpKeyTyped(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_apellidoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 230, -1));
 
         txt_telefonoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_telefonoEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_telefonoEmpKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoEmpKeyTyped(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_telefonoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 230, -1));
 
         txt_rolEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_rolEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_rolEmpKeyPressed(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_rolEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 230, -1));
 
         txt_identificacionEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         pRegistroEmpleado.add(txt_identificacionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 230, -1));
 
         txt_direccionEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_direccionEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_direccionEmpKeyPressed(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_direccionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 230, -1));
 
         txt_usernameEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_usernameEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_usernameEmpKeyPressed(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_usernameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 230, -1));
 
         txt_contrasenaEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_contrasenaEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_contrasenaEmpActionPerformed(evt);
+            }
+        });
+        txt_contrasenaEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_contrasenaEmpKeyPressed(evt);
             }
         });
         pRegistroEmpleado.add(txt_contrasenaEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 230, -1));
@@ -236,11 +284,24 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabla);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 790, 160));
 
         txtBuscar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 200, -1));
 
         btnBuscar.setText("Busqueda");
@@ -272,12 +333,12 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         validarNull();
         int cbo = (comboBox_activoEmp.getSelectedIndex());
-        if(cbo==0){
-            estado=true;
-        }else{
-            estado=false;
+        if (cbo == 0) {
+            estado = true;
+        } else {
+            estado = false;
         }
-        
+
         // agregamos los cammpos a la entidad para luego pasarlas al controlador y
         // hacer el guardao
         empleado = new Empleado();
@@ -288,9 +349,20 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         empleado.setNombre(txt_nombreEmp.getText());
         empleado.setTelefono(txt_telefonoEmp.getText());
         empleado.setUsuraio(new User(txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
-        txt_rolEmp.getText(),estado));
-        System.out.println("mira... "+empleado.toString());
-        ctrlempleado.registrar(empleado);
+                txt_rolEmp.getText(), estado));
+        System.out.println("mira... " + empleado.toString());
+        try {
+            ctrlempleado.registrar(empleado);
+            JOptionPane.showConfirmDialog(null, " " + empleado.getNombre() + " " + empleado.getApellido()
+                    + "a sido registrado satisfactoriamente", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Error al grabar empleado " + e.getMessage(), "Error", 2);
+        }
+
+
     }//GEN-LAST:event_btn_guardarEmpActionPerformed
 
     private void txt_nombreEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreEmpKeyTyped
@@ -305,6 +377,105 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
             txt_nombreEmp.transferFocus();
         }
     }//GEN-LAST:event_txt_nombreEmpKeyPressed
+
+    private void txt_apellidoEmpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoEmpKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_apellidoEmpKeyReleased
+
+    private void txt_apellidoEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoEmpKeyTyped
+        // TODO add your handling code here:
+        validacion.soloLetras(evt);
+    }//GEN-LAST:event_txt_apellidoEmpKeyTyped
+
+    private void txt_apellidoEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_apellidoEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_apellidoEmpKeyPressed
+
+    private void txt_correoEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_correoEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_contrasenaEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_correoEmpKeyPressed
+
+    private void txt_direccionEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_direccionEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_direccionEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_direccionEmpKeyPressed
+
+    private void txt_telefonoEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoEmpKeyTyped
+        // TODO add your handling code here:
+        validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txt_telefonoEmpKeyTyped
+
+    private void txt_usernameEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usernameEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_usernameEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_usernameEmpKeyPressed
+
+    private void txt_rolEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rolEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_rolEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_rolEmpKeyPressed
+
+    private void txt_contrasenaEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contrasenaEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_contrasenaEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_contrasenaEmpKeyPressed
+
+    private void txt_telefonoEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoEmpKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_telefonoEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_telefonoEmpKeyPressed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        btn_guardarEmp.setEnabled(false);
+        //txtCedula.setEnabled(false);
+        int fila = tabla.rowAtPoint(evt.getPoint());
+        txt_identificacionEmp.setText(tabla.getValueAt(fila, 0).toString());
+        txt_nombreEmp.setText(tabla.getValueAt(fila, 1).toString());
+        txt_apellidoEmp.setText(tabla.getValueAt(fila, 2).toString());
+        txt_rolEmp.setText(tabla.getValueAt(fila, 3).toString());
+        comboBox_activoEmp.setSelectedIndex((int) tabla.getValueAt(fila, 4));
+    }//GEN-LAST:event_tablaMouseClicked
+
+    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
+        // TODO add your handling code here:
+        kpress = evt.getKeyChar();
+        if (kpress == KeyEvent.VK_ENTER) {
+            buscar(txtBuscar.getText());
+        }
+    }//GEN-LAST:event_txtBuscarKeyPressed
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        // TODO add your handling code here:
+        if(txtBuscar.getText().length()>10){
+         JOptionPane.showConfirmDialog(null, "Número de teléfono debe tener 10 dígitos ", "Confirmación", 2);
+        }else{
+        validacion.soloNumeros(evt);
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
     // desabilito los textfield
     void desabilitar() {
@@ -332,6 +503,18 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txt_telefonoEmp.enable(true);
         txt_usernameEmp.enable(true);
         comboBox_activoEmp.enable(true);
+    }
+
+    void limpiar() {
+        txt_apellidoEmp.setText("");
+        txt_contrasenaEmp.setText("");
+        txt_correoEmp.setText("");
+        txt_direccionEmp.setText("");
+        txt_identificacionEmp.setText("");
+        txt_nombreEmp.setText("");
+        txt_rolEmp.setText("");
+        txt_telefonoEmp.setText("");
+        txt_usernameEmp.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -371,4 +554,26 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private void validarNull() {
 
     }
+
+    void buscar(String cedula) {
+        limpiarTabla();
+        ctrlempleado = new controllerEmpleado();
+        List<Empleado> lista = ctrlempleado.verEmpleados(cedula);
+        DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
+        for (Empleado hb : lista) {
+            ///hacer uso de tabla
+            Object[] row = new Object[4];
+            row[0] = hb.getCedulaIdentidad();
+            row[1] = hb.getNombre() + " " + hb.getApellido();
+            row[2] = hb.getApellido();
+            row[3] = hb.getApellido();
+            model1.addRow(row);
+        }
+
+    }
+    
+    void limpiarTabla(){	
+		DefaultTableModel model1 = (DefaultTableModel)tabla.getModel() ; 
+		model1.setRowCount(0) ;
+	}
 }

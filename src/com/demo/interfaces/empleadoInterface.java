@@ -15,7 +15,7 @@ import java.util.List;
 public interface empleadoInterface {
 
     public boolean save(Empleado empleado);
-    public List<Empleado> getEmpleadoAll();
+    public List<Empleado> getEmpleadoAll(String cedula);
     public boolean updateEmpleado(Empleado empleado);
     public boolean deleteEmpleado(Empleado empleado);
 //
