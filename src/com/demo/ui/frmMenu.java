@@ -134,6 +134,11 @@ public class frmMenu extends javax.swing.JFrame {
 
         itemFacturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/factura.png"))); // NOI18N
         itemFacturar.setText("Facturar");
+        itemFacturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFacturarActionPerformed(evt);
+            }
+        });
         menuFactura.add(itemFacturar);
 
         jMenuBar1.add(menuFactura);
@@ -192,6 +197,14 @@ public class frmMenu extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_itemArticuloActionPerformed
+
+    private void itemFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturarActionPerformed
+        // TODO add your handling code here:
+        frmIntFactura formfactura= new frmIntFactura();
+        escritorio.add(formfactura);
+        formfactura.setVisible(true);
+        
+    }//GEN-LAST:event_itemFacturarActionPerformed
 
 
     /**
