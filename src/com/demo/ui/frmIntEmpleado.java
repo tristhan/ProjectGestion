@@ -219,10 +219,21 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_rolEmpKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_rolEmpKeyTyped(evt);
+            }
         });
         pRegistroEmpleado.add(txt_rolEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 230, -1));
 
         txt_identificacionEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_identificacionEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_identificacionEmpKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_identificacionEmpKeyTyped(evt);
+            }
+        });
         pRegistroEmpleado.add(txt_identificacionEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 230, -1));
 
         txt_direccionEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -327,6 +338,8 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private void btn_nuevoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoEmpActionPerformed
         // TODO add your handling code here:
         habilitar();
+        txt_nombreEmp.requestFocus();
+        limpiar();
     }//GEN-LAST:event_btn_nuevoEmpActionPerformed
 
     private void btn_guardarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarEmpActionPerformed
@@ -399,7 +412,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         kpress = evt.getKeyChar();
         if (kpress == KeyEvent.VK_ENTER) {
-            txt_contrasenaEmp.transferFocus();
+            txt_correoEmp.transferFocus();
         }
     }//GEN-LAST:event_txt_correoEmpKeyPressed
 
@@ -413,7 +426,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     private void txt_telefonoEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoEmpKeyTyped
         // TODO add your handling code here:
+        if(txt_telefonoEmp.getText().length()>10){
+            JOptionPane.showConfirmDialog(null, "Número de teléfono debe tener 10 dígitos ", "Confirmación", 2);
+        }
         validacion.soloNumeros(evt);
+        
     }//GEN-LAST:event_txt_telefonoEmpKeyTyped
 
     private void txt_usernameEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usernameEmpKeyPressed
@@ -476,6 +493,26 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         validacion.soloNumeros(evt);
         }
     }//GEN-LAST:event_txtBuscarKeyTyped
+
+    private void txt_identificacionEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_identificacionEmpKeyPressed
+        // TODO add your handling code here:
+        if (kpress == KeyEvent.VK_ENTER) {
+            txt_identificacionEmp.transferFocus();
+        }
+    }//GEN-LAST:event_txt_identificacionEmpKeyPressed
+
+    private void txt_identificacionEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_identificacionEmpKeyTyped
+        // TODO add your handling code here:
+        if(txt_identificacionEmp.getText().length()>10){
+            JOptionPane.showConfirmDialog(null, "Identificación debe tener 10 dígitos ", "Confirmación", 2);
+        }
+        validacion.soloNumeros(evt);
+    }//GEN-LAST:event_txt_identificacionEmpKeyTyped
+
+    private void txt_rolEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rolEmpKeyTyped
+        // TODO add your handling code here:
+        validacion.soloLetras(evt);
+    }//GEN-LAST:event_txt_rolEmpKeyTyped
 
     // desabilito los textfield
     void desabilitar() {
