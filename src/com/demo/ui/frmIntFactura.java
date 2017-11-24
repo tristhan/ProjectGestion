@@ -27,14 +27,239 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        txt_nombreProv1 = new javax.swing.JTextField();
+        txt_nombreProv3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_facturaDetalle = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        btn_descuento = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        btn_descuento1 = new javax.swing.JButton();
+        txt_nombreProv4 = new javax.swing.JTextField();
+        btn_descuento2 = new javax.swing.JButton();
+        txt_nombreProv5 = new javax.swing.JTextField();
+        txt_busqueda = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txt_busqueda1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        txt_nombreProv6 = new javax.swing.JTextField();
+
         setClosable(true);
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Factura ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txt_nombreProv1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_nombreProv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreProv1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nombreProv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 100, -1));
+
+        txt_nombreProv3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_nombreProv3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreProv3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nombreProv3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 100, -1));
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5.setText("Nombre:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        tabla_facturaDetalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cantidad", "Descripción", "Precio Unitario", "Total"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla_facturaDetalle);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 700, 120));
+
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel7.setText("Busqueda: ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        btn_descuento.setText("Descuento");
+        btn_descuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_descuentoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_descuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+
+        jButton2.setText("Iva");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+
+        btn_descuento1.setText("Subtotal ");
+        btn_descuento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_descuento1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_descuento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
+
+        txt_nombreProv4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_nombreProv4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreProv4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nombreProv4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 100, -1));
+
+        btn_descuento2.setText("Total a pagar");
+        btn_descuento2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_descuento2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_descuento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        txt_nombreProv5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_nombreProv5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreProv5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nombreProv5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 100, -1));
+
+        txt_busqueda.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_busqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_busquedaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 230, -1));
+
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel9.setText("Cantidad:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        txt_busqueda1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_busqueda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_busqueda1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_busqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 230, -1));
+
+        jButton3.setText("Agregar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+
+        jButton4.setText("Nuevo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
+
+        jComboBox1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 230, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 460));
+
+        txt_nombreProv6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_nombreProv6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreProv6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_nombreProv6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 230, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_nombreProv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreProv1ActionPerformed
+
+    private void txt_nombreProv3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreProv3ActionPerformed
+
+    private void txt_nombreProv6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreProv6ActionPerformed
+
+    private void btn_descuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_descuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_descuentoActionPerformed
+
+    private void btn_descuento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_descuento1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_descuento1ActionPerformed
+
+    private void txt_nombreProv4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreProv4ActionPerformed
+
+    private void btn_descuento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_descuento2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_descuento2ActionPerformed
+
+    private void txt_nombreProv5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombreProv5ActionPerformed
+
+    private void txt_busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_busquedaActionPerformed
+
+    private void txt_busqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busqueda1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_busqueda1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_descuento;
+    private javax.swing.JButton btn_descuento1;
+    private javax.swing.JButton btn_descuento2;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabla_facturaDetalle;
+    private javax.swing.JTextField txt_busqueda;
+    private javax.swing.JTextField txt_busqueda1;
+    private javax.swing.JTextField txt_nombreProv1;
+    private javax.swing.JTextField txt_nombreProv3;
+    private javax.swing.JTextField txt_nombreProv4;
+    private javax.swing.JTextField txt_nombreProv5;
+    private javax.swing.JTextField txt_nombreProv6;
     // End of variables declaration//GEN-END:variables
 }
