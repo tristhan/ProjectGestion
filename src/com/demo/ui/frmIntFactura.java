@@ -178,7 +178,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 230, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 410));
 
         txt_nombreProv6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_nombreProv6.addActionListener(new java.awt.event.ActionListener() {
