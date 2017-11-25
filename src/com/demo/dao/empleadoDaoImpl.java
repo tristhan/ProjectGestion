@@ -68,7 +68,7 @@ public class empleadoDaoImpl implements empleadoInterface {
 
     // devuelve todo los empleados y por cedulaIdentidad
     @Override
-    public List<Empleado> getEmpleadoAll(String cedula) {
+    public List<Empleado> getEmpleadoByCedula(String cedula) {
         List<Empleado> listaCliente = new ArrayList<>();
         Connection con = null;
         Statement stm = null;
@@ -80,7 +80,7 @@ public class empleadoDaoImpl implements empleadoInterface {
                 "from empleado empleado "+
                 "INNER JOIN user user "+
                 "on empleado.id_empleado = user.empleado_id_empleado "+
-                "where empleado.cedulaIdentidad LIKE "+"'%"+ cedula +"%'";
+                "where empleado.cedulaIdentidad ="+ cedula +"";
 
         try {
             con = conexion_mysql.conectar();
@@ -97,7 +97,6 @@ public class empleadoDaoImpl implements empleadoInterface {
                 e.setTelefono(rs.getString(7));
                 e.setUsuraio(new User(rs.getInt(8),rs.getString(9), rs.getString(10), rs.getString(11), rs.getBoolean(12)));
                 listaCliente.add(e);
-                System.out.println("sasdf... "+e.getApellido());
             }
             stm.close();
             rs.close();
@@ -171,4 +170,45 @@ public class empleadoDaoImpl implements empleadoInterface {
         return eliminar;
     }
 
+    @Override
+    public List<Empleado> getEmpleadoAll() {
+        List<Empleado> listaCliente = new ArrayList<>();
+        Connection con = null;
+        Statement stm = null;
+        ResultSet rs = null;
+        String sql1="SELECT empleado.id_empleado, empleado.nombre, empleado.apellido, empleado.cedulaIdentidad, "
+                + "empleado.correo, "+
+                "empleado.direccion, empleado.telefono, "+
+                "user.id_user, user.nick, user.password, user.rol, user.activo "+
+                "from empleado empleado "+
+                "INNER JOIN user user "+
+                "on empleado.id_empleado = user.empleado_id_empleado ";
+
+        try {
+            con = conexion_mysql.conectar();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql1);
+            while (rs.next()) {
+                Empleado e = new Empleado();
+                e.setId_empleado(rs.getInt(1));
+                e.setNombre(rs.getString(2));
+                e.setApellido(rs.getString(3));
+                e.setCedulaIdentidad(rs.getString(4));
+                e.setCorreo(rs.getString(5));
+                e.setDireccion(rs.getString(6));
+                e.setTelefono(rs.getString(7));
+                e.setUsuraio(new User(rs.getInt(8),rs.getString(9), rs.getString(10), rs.getString(11), rs.getBoolean(12)));
+                listaCliente.add(e);
+            }
+            stm.close();
+            rs.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: Clase EmpleadoDaoImple, método getEmpleadoAll");
+            e.printStackTrace();
+        }
+
+        return listaCliente;
+
+    }
 }

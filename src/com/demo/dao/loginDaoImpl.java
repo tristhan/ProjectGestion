@@ -29,7 +29,7 @@ public class loginDaoImpl implements loginInterface {
         PreparedStatement pst = null;
         ResultSet rs = null;
 
-        String sql = "select u.nick, u.password, u.empleado_id_empleado "
+        String sql = "select e.nombre, e.apellido, u.empleado_id_empleado "
                 + "from user u inner join empleado e on u.empleado_id_empleado = e.id_empleado "
                 + "where u.nick=? and u.password=? and u.activo=true";
         List<User> listaUsuario = new ArrayList<>();
@@ -41,8 +41,8 @@ public class loginDaoImpl implements loginInterface {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                //Encuesta temp = new Encuesta(rs.getInt(1), rs.getString(2));
-                //opcionese.add(temp);
+                User user = new User(rs.getString(1), rs.getString(2), rs.getInt(3));
+                listaUsuario.add(user);
             }
             pst.close();
             rs.close();

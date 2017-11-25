@@ -8,6 +8,7 @@ package com.demo.controller;
 import com.demo.dao.loginDaoImpl;
 import com.demo.dominio.User;
 import com.demo.interfaces.loginInterface;
+import com.demo.ui.frmMenu;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,7 @@ public class controllerLogin {
         
         public List<User> userLogin(User usuario){
             List<User> lista = new ArrayList<>();
-            dao.login(usuario);
-            System.out.println("mira login "+lista.toString());
+            lista = dao.login(usuario);
             return lista;
         }
     

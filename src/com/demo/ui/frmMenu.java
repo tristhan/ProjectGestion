@@ -97,11 +97,11 @@ public class frmMenu extends javax.swing.JFrame {
 
         lblName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblName.setText("Nombre");
-        escritorio.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        escritorio.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 180, -1));
 
         lblRol.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblRol.setText("rol");
-        escritorio.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        escritorio.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/flecha-hacia-abajo.png"))); // NOI18N
         btnMinimizar.setToolTipText("");
@@ -349,9 +349,9 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblRol;
+    public static javax.swing.JLabel lblId;
+    public static javax.swing.JLabel lblName;
+    public static javax.swing.JLabel lblRol;
     private javax.swing.JMenu menuConsulta;
     private javax.swing.JMenu menuFactura;
     private javax.swing.JMenu menuHome;

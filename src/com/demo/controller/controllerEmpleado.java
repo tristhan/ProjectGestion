@@ -44,7 +44,7 @@ public class controllerEmpleado {
         // convertir en metod list
 	public List<Empleado> verEmpleados(String cedula){
 		List<Empleado> empleados = new ArrayList<>();
-		empleados=dao.getEmpleadoAll(cedula);
+		empleados=dao.getEmpleadoByCedula(cedula);
 		return empleados;
 	}
     //

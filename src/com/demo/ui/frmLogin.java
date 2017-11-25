@@ -8,6 +8,9 @@ package com.demo.ui;
 import com.demo.controller.controllerLogin;
 import com.demo.dominio.User;
 import com.sun.awt.AWTUtilities;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +25,7 @@ public class frmLogin extends javax.swing.JFrame {
     int x, y;
     private controllerLogin ctrlLogin = new controllerLogin();
     private User userLogin;
-    
+
     public frmLogin() {
         initComponents();
         //invisible
@@ -84,15 +87,11 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel2.setText("Contraseña:");
         panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        txtConstrasena.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        txtConstrasena.setForeground(new java.awt.Color(153, 153, 153));
-        txtConstrasena.setText("jPasswordField1");
+        txtConstrasena.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtConstrasena.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         panelLogin.add(txtConstrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 160, 30));
 
-        txtUsuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsuario.setText("jona");
+        txtUsuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtUsuario.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         panelLogin.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 160, 30));
 
@@ -115,7 +114,6 @@ public class frmLogin extends javax.swing.JFrame {
         btnCancelar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         btnCancelar.setBorderPainted(false);
         btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setOpaque(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -161,16 +159,24 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        userLogin = new User();
-        userLogin.setNick(txtUsuario.getText());
-        userLogin.setPassword(txtConstrasena.getText());
-        
-        ctrlLogin.userLogin(userLogin);
+            List<User> u = new ArrayList<>();
+            userLogin = new User();
+            userLogin.setNick(txtUsuario.getText());
+            userLogin.setPassword(txtConstrasena.getText());
+            u = ctrlLogin.userLogin(userLogin);
+            if (!u.isEmpty()) {
+                frmMenu menu = new frmMenu();
+                menu.setVisible(true);
+                menu.lblId.setText(String.valueOf(u.get(0).getId_user()));
+                menu.lblName.setText(u.get(0).getNick() + " " + u.get(0).getPassword());
+                this.dispose();
+            }else{
+                JOptionPane.showConfirmDialog(null, "Error al iniciar sesión, compruebe sus credenciales", "Confirmación", 2);
+            }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -178,7 +184,6 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_formMousePressed
 
     private void lblmoverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblmoverMousePressed
-        
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_lblmoverMousePressed
