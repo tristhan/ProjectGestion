@@ -5,6 +5,11 @@
  */
 package com.demo.ui;
 
+import com.demo.controller.controllerArticulo;
+import com.demo.dominio.Articulo;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jona
@@ -14,6 +19,10 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
     /**
      * Creates new form frmIntFactura
      */
+    
+    private controllerArticulo ctrlarticulo;
+    private Articulo articulo; 
+    
     public frmIntFactura() {
         initComponents();
     }
@@ -28,8 +37,8 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txt_nombreProv1 = new javax.swing.JTextField();
-        txt_nombreProv3 = new javax.swing.JTextField();
+        txt_descuento = new javax.swing.JTextField();
+        txt_iva = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_facturaDetalle = new javax.swing.JTable();
@@ -37,15 +46,17 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         btn_descuento = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btn_descuento1 = new javax.swing.JButton();
-        txt_nombreProv4 = new javax.swing.JTextField();
+        txt_subtotal = new javax.swing.JTextField();
         btn_descuento2 = new javax.swing.JButton();
-        txt_nombreProv5 = new javax.swing.JTextField();
+        txt_totalpagar = new javax.swing.JTextField();
         txt_busqueda = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txt_busqueda1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txt_cantidadFactura = new javax.swing.JTextField();
+        btn_agregar = new javax.swing.JButton();
+        comboBox_nombre = new javax.swing.JComboBox<>();
+        btn_buscar = new javax.swing.JButton();
+        btn_limpiar2 = new javax.swing.JButton();
+        btn_eliminar1 = new javax.swing.JButton();
         txt_nombreProv6 = new javax.swing.JTextField();
 
         setClosable(true);
@@ -56,21 +67,21 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Factura ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_nombreProv1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        txt_nombreProv1.addActionListener(new java.awt.event.ActionListener() {
+        txt_descuento.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_descuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreProv1ActionPerformed(evt);
+                txt_descuentoActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_nombreProv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 100, -1));
+        jPanel1.add(txt_descuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 100, -1));
 
-        txt_nombreProv3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        txt_nombreProv3.addActionListener(new java.awt.event.ActionListener() {
+        txt_iva.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_iva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreProv3ActionPerformed(evt);
+                txt_ivaActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_nombreProv3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 100, -1));
+        jPanel1.add(txt_iva, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Nombre:");
@@ -114,13 +125,13 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btn_descuento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
 
-        txt_nombreProv4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        txt_nombreProv4.addActionListener(new java.awt.event.ActionListener() {
+        txt_subtotal.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_subtotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreProv4ActionPerformed(evt);
+                txt_subtotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_nombreProv4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 100, -1));
+        jPanel1.add(txt_subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 100, -1));
 
         btn_descuento2.setText("Total a pagar");
         btn_descuento2.addActionListener(new java.awt.event.ActionListener() {
@@ -130,13 +141,13 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btn_descuento2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
-        txt_nombreProv5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        txt_nombreProv5.addActionListener(new java.awt.event.ActionListener() {
+        txt_totalpagar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_totalpagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreProv5ActionPerformed(evt);
+                txt_totalpagarActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_nombreProv5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 100, -1));
+        jPanel1.add(txt_totalpagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 100, -1));
 
         txt_busqueda.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_busqueda.addActionListener(new java.awt.event.ActionListener() {
@@ -150,33 +161,52 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         jLabel9.setText("Cantidad:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        txt_busqueda1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        txt_busqueda1.addActionListener(new java.awt.event.ActionListener() {
+        txt_cantidadFactura.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_cantidadFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_busqueda1ActionPerformed(evt);
+                txt_cantidadFacturaActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_busqueda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 230, -1));
+        jPanel1.add(txt_cantidadFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 230, -1));
 
-        jButton3.setText("Agregar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
+        btn_agregar.setText("Agregar");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_agregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+        jPanel1.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jButton4.setText("Nuevo");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        comboBox_nombre.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        comboBox_nombre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(comboBox_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 230, -1));
+
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
+        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 230, -1));
+        btn_limpiar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
+        btn_limpiar2.setText("Nuevo");
+        btn_limpiar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiar2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_limpiar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+
+        btn_eliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
+        btn_eliminar1.setText("Eliminar");
+        btn_eliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 410));
 
@@ -191,13 +221,13 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_nombreProv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv1ActionPerformed
+    private void txt_descuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descuentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreProv1ActionPerformed
+    }//GEN-LAST:event_txt_descuentoActionPerformed
 
-    private void txt_nombreProv3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv3ActionPerformed
+    private void txt_ivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ivaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreProv3ActionPerformed
+    }//GEN-LAST:event_txt_ivaActionPerformed
 
     private void txt_nombreProv6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv6ActionPerformed
         // TODO add your handling code here:
@@ -211,43 +241,67 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_descuento1ActionPerformed
 
-    private void txt_nombreProv4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv4ActionPerformed
+    private void txt_subtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_subtotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreProv4ActionPerformed
+    }//GEN-LAST:event_txt_subtotalActionPerformed
 
     private void btn_descuento2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_descuento2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_descuento2ActionPerformed
 
-    private void txt_nombreProv5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreProv5ActionPerformed
+    private void txt_totalpagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_totalpagarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreProv5ActionPerformed
+    }//GEN-LAST:event_txt_totalpagarActionPerformed
 
     private void txt_busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busquedaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_busquedaActionPerformed
 
-    private void txt_busqueda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busqueda1ActionPerformed
+    private void txt_cantidadFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cantidadFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_busqueda1ActionPerformed
+    }//GEN-LAST:event_txt_cantidadFacturaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_agregarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        habilitar();
+        txt_busqueda.requestFocus();
+        txt_cantidadFactura.requestFocus();
+        comboBox_nombre.requestFocus();
+        limpiar();
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
+    private void btn_limpiar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiar2ActionPerformed
+
+    private void btn_eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_eliminar1ActionPerformed
+    void habilitar() {
+        txt_busqueda.enable(true);
+        txt_cantidadFactura.enable(true);
+        comboBox_nombre.enable(true);
+    }
+
+    void limpiar() {
+            txt_busqueda.setText("");
+            txt_cantidadFactura.setText("");
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_descuento;
     private javax.swing.JButton btn_descuento1;
     private javax.swing.JButton btn_descuento2;
+    private javax.swing.JButton btn_eliminar1;
+    private javax.swing.JButton btn_limpiar2;
+    private javax.swing.JComboBox<String> comboBox_nombre;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -255,11 +309,34 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_facturaDetalle;
     private javax.swing.JTextField txt_busqueda;
-    private javax.swing.JTextField txt_busqueda1;
-    private javax.swing.JTextField txt_nombreProv1;
-    private javax.swing.JTextField txt_nombreProv3;
-    private javax.swing.JTextField txt_nombreProv4;
-    private javax.swing.JTextField txt_nombreProv5;
+    private javax.swing.JTextField txt_cantidadFactura;
+    private javax.swing.JTextField txt_descuento;
+    private javax.swing.JTextField txt_iva;
     private javax.swing.JTextField txt_nombreProv6;
+    private javax.swing.JTextField txt_subtotal;
+    private javax.swing.JTextField txt_totalpagar;
     // End of variables declaration//GEN-END:variables
+
+    
+    void buscar(String nombre) {
+        limpiarTabla();
+        ctrlarticulo = new controllerArticulo();
+        List<Articulo> lista = ctrlarticulo.verArticulos(nombre);
+        DefaultTableModel model1 = (DefaultTableModel) tabla_facturaDetalle.getModel();
+        for (Articulo articulo : lista) {
+            ///hacer uso de tabla
+            Object[] row = new Object[12];
+            row[0] = articulo.getDescripcion();
+            row[1] = articulo.getPrecio_venta();
+            model1.addRow(row);
+        }
+
+    }
+    void limpiarTabla(){	
+	DefaultTableModel model1 = (DefaultTableModel) tabla_facturaDetalle.getModel();
+        model1.setRowCount(0);
+	}
+
 }
+
+

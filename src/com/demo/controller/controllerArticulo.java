@@ -42,7 +42,7 @@ public class controllerArticulo {
 	
 	//llama al DAO para obtener todos los articulo y luego los muestra en la vista
         // convertir en metod list
-	public List<Articulo> verArticulos(){
+	public List<Articulo> verArticulos(String nombre){
 		List<Articulo> articulos = new ArrayList<>();
 		articulos=dao.getArticuloAll();
                 return articulos;
