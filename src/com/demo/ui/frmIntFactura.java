@@ -22,6 +22,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
     /**
      * Creates new form frmIntFactura
      */
+    
     private validacion validacion = new validacion();
     private Character kpress;
     private controllerArticulo ctrlarticulo;
@@ -250,8 +251,12 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
          row[0] = txt_cantidadFactura.getText();
          row[1] = comboBox_producto.getSelectedItem(); 
          row[2] = txt_precioUnit.getText();
-         row[3]= txt_total.getText();
+         //row[3]= txt_total.getText();
+         calTotal();
          model1.addRow(row);
+         
+         
+         
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -277,7 +282,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
             if(tabla_facturaDetalle.getSelectedRow()!=-1){
                 filas = tabla_facturaDetalle.getSelectedRow();
                 model.removeRow(filas);
-                //calTotal();
+                calTotal();
             }else{
                 JOptionPane.showConfirmDialog(null,"Seleccione una fila");
             }
@@ -322,8 +327,20 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         }
     
     void calTotal(){
-        double S=0;
-    }
+        double Subtotal=0, iva, total;
+        DefaultTableModel model= (DefaultTableModel) tabla_facturaDetalle.getModel();
+        
+        for (int i=0; i<tabla_facturaDetalle.getRowCount(); i++){
+            //Subtotal = Subtotal+ Double.parseDouble(model.getValueAt(i).toString());
+        }
+        txt_subtotal.setText(String.valueOf(Subtotal));
+        iva= 0.12;
+        total= Subtotal - (Subtotal * 0.12);
+        txt_iva.setText(String.valueOf(iva));
+        txt_totalpagar.setText(String.valueOf(total));
+       
+   }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar;
