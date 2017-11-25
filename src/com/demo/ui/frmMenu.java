@@ -97,7 +97,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         menuRrhh.add(itemEmpleado);
 
-        itemProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/cargose.png"))); // NOI18N
+        itemProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/proveedor.png"))); // NOI18N
         itemProveedor.setText("Proveedor");
         itemProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +106,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         menuRrhh.add(itemProveedor);
 
+        itemCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/cliente.png"))); // NOI18N
         itemCliente.setText("Cliente");
         itemCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

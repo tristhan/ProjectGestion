@@ -77,6 +77,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txt_usernameEmp = new javax.swing.JTextField();
         txt_contrasenaEmp = new javax.swing.JTextField();
         comboBox_activoEmp = new javax.swing.JComboBox<>();
+        txtId = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -163,6 +164,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
         btn_eliminarEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
         btn_eliminarEmp.setText("Eliminar");
+        btn_eliminarEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarEmpActionPerformed(evt);
+            }
+        });
         pRegistroEmpleado.add(btn_eliminarEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, -1, -1));
 
         txt_nombreEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -268,6 +274,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         comboBox_activoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         comboBox_activoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         pRegistroEmpleado.add(comboBox_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, -1));
+        pRegistroEmpleado.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 30, -1));
 
         getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 810, 230));
 
@@ -325,6 +332,24 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     private void btn_editarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarEmpActionPerformed
         // TODO add your handling code here:
+        empleado = new Empleado();
+        empleado.setApellido(txt_apellidoEmp.getText());
+        empleado.setCedulaIdentidad(txt_identificacionEmp.getText());
+        empleado.setCorreo(txt_correoEmp.getText());
+        empleado.setDireccion(txt_direccionEmp.getText());
+        empleado.setNombre(txt_nombreEmp.getText());
+        empleado.setTelefono(txt_telefonoEmp.getText());
+        empleado.setUsuraio(new User(0,txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
+                txt_rolEmp.getText(), estado));
+        try {
+            ctrlempleado.actualizar(empleado);
+            JOptionPane.showConfirmDialog(null, "Datos de " + empleado.getNombre() + " " + empleado.getApellido()
+                    + "han sido actualizado satisfactoriamente", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Error al actualizar datos de empleado " + e.getMessage(), "Error", 2);
+        }
     }//GEN-LAST:event_btn_editarEmpActionPerformed
 
     private void txt_nombreEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreEmpActionPerformed
@@ -351,7 +376,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         } else {
             estado = false;
         }
-
         // agregamos los cammpos a la entidad para luego pasarlas al controlador y
         // hacer el guardao
         empleado = new Empleado();
@@ -361,7 +385,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         empleado.setDireccion(txt_direccionEmp.getText());
         empleado.setNombre(txt_nombreEmp.getText());
         empleado.setTelefono(txt_telefonoEmp.getText());
-        empleado.setUsuraio(new User(txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
+        empleado.setUsuraio(new User(0, txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
                 txt_rolEmp.getText(), estado));
         System.out.println("mira... " + empleado.toString());
         try {
@@ -514,6 +538,23 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         validacion.soloLetras(evt);
     }//GEN-LAST:event_txt_rolEmpKeyTyped
 
+    private void btn_eliminarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarEmpActionPerformed
+        // TODO add your handling code here:
+        empleado = new Empleado();
+        empleado.setId_empleado(Integer.parseInt(txtId.getText()));
+        empleado.setUsuraio(new User(0,null, null,
+                null, estado));
+        try {
+            ctrlempleado.eliminar(empleado);
+            JOptionPane.showConfirmDialog(null, "Empleado " + empleado.getNombre() + " " + empleado.getApellido()
+                    + "dado de baja satisfactoriamente", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "Error al dar de baja a empleado " + e.getMessage(), "Error", 2);
+        }
+    }//GEN-LAST:event_btn_eliminarEmpActionPerformed
+
     // desabilito los textfield
     void desabilitar() {
         txt_apellidoEmp.enable(false);
@@ -576,6 +617,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pRegistroEmpleado;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txt_apellidoEmp;
     private javax.swing.JTextField txt_contrasenaEmp;
     private javax.swing.JTextField txt_correoEmp;
@@ -597,20 +639,20 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         ctrlempleado = new controllerEmpleado();
         List<Empleado> lista = ctrlempleado.verEmpleados(cedula);
         DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
-        for (Empleado hb : lista) {
+        for (Empleado empleado : lista) {
             ///hacer uso de tabla
-            Object[] row = new Object[4];
-            row[0] = hb.getCedulaIdentidad();
-            row[1] = hb.getNombre() + " " + hb.getApellido();
-            row[2] = hb.getApellido();
-            row[3] = hb.getApellido();
+            Object[] row = new Object[12];
+            row[0] = empleado.getCedulaIdentidad();
+            row[1] = empleado.getNombre() + " " + empleado.getApellido();
+            row[2] = empleado.getApellido();
+            row[3] = empleado.getApellido();
             model1.addRow(row);
         }
 
     }
     
     void limpiarTabla(){	
-		DefaultTableModel model1 = (DefaultTableModel)tabla.getModel() ; 
-		model1.setRowCount(0) ;
+	DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
+        model1.setRowCount(0);
 	}
 }

@@ -24,7 +24,8 @@ public class User {
     public User() {
     }
 
-    public User(String nick, String password, String rol, boolean activo) {
+    public User(int id_user, String nick, String password, String rol, boolean activo) {
+        this.id_user = id_user;
         this.nick = nick;
         this.password = password;
         this.rol = rol;

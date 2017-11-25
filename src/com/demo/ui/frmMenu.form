@@ -40,7 +40,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="itemProveedor">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/demo/imagenes/cargose.png"/>
+                  <Image iconType="3" name="/com/demo/imagenes/proveedor.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedor"/>
               </Properties>
@@ -50,6 +50,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemCliente">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/demo/imagenes/cliente.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
               <Events>
