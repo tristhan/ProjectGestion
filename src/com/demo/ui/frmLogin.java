@@ -26,9 +26,9 @@ public class frmLogin extends javax.swing.JFrame {
     public frmLogin() {
         initComponents();
         //invisible
-        //AWTUtilities.setWindowOpaque(this, false);
+        AWTUtilities.setWindowOpaque(this, false);
         setTitle("Control de Acceso");
-        setSize(350,350); 
+        //setSize(350,350); 
         setLocationRelativeTo(null);
     }
 
@@ -41,14 +41,20 @@ public class frmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelLogin = new javax.swing.JPanel();
         imagen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
         txtConstrasena = new javax.swing.JPasswordField();
-        btnCancelar = new javax.swing.JButton();
+        txtUsuario = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblmover = new javax.swing.JLabel();
+        btnminizar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -62,40 +68,60 @@ public class frmLogin extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/login.png"))); // NOI18N
-        getContentPane().add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 160, 160));
+        panelLogin.setBackground(new java.awt.Color(255, 255, 255));
+        panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_User_96px_2.png"))); // NOI18N
+        panelLogin.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 100, 100));
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(238, 112, 82));
         jLabel1.setText("Usuario: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+        panelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(238, 112, 82));
         jLabel2.setText("Contraseña:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        txtUsuario.setText("jona");
-        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 120, -1));
-
+        txtConstrasena.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        txtConstrasena.setForeground(new java.awt.Color(153, 153, 153));
         txtConstrasena.setText("jPasswordField1");
-        getContentPane().add(txtConstrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 120, -1));
+        txtConstrasena.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        panelLogin.add(txtConstrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 160, 30));
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/cancelar.png"))); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+        txtUsuario.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
+        txtUsuario.setText("jona");
+        txtUsuario.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        panelLogin.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 160, 30));
 
-        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnok.png"))); // NOI18N
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/Enter_OFF.png"))); // NOI18N
+        btnAceptar.setBorder(null);
+        btnAceptar.setBorderPainted(false);
+        btnAceptar.setContentAreaFilled(false);
+        btnAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAceptar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/Enter_ON.png"))); // NOI18N
+        btnAceptar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/Enter_ON.png"))); // NOI18N
+        btnAceptar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/Enter_ON.png"))); // NOI18N
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+        panelLogin.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 110, 30));
+
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCancelar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnCancelar.setBorderPainted(false);
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.setOpaque(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        panelLogin.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 30, 20));
 
         lblmover.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         lblmover.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -108,7 +134,27 @@ public class frmLogin extends javax.swing.JFrame {
                 lblmoverMousePressed(evt);
             }
         });
-        getContentPane().add(lblmover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
+        panelLogin.add(lblmover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+
+        btnminizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnminizar.setBorderPainted(false);
+        btnminizar.setContentAreaFilled(false);
+        btnminizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnminizarActionPerformed(evt);
+            }
+        });
+        panelLogin.add(btnminizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 30, 20));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_customer_32px_1.png"))); // NOI18N
+        panelLogin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Key_32px.png"))); // NOI18N
+        panelLogin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        panelLogin.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 160, 10));
+        panelLogin.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 160, 10));
+
+        getContentPane().add(panelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,6 +186,10 @@ public class frmLogin extends javax.swing.JFrame {
     private void lblmoverMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblmoverMouseDragged
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_lblmoverMouseDragged
+
+    private void btnminizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnminizarActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btnminizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,10 +229,16 @@ public class frmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnminizar;
     private javax.swing.JLabel imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblmover;
+    private javax.swing.JPanel panelLogin;
     private javax.swing.JPasswordField txtConstrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

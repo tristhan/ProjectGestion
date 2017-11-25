@@ -5,6 +5,9 @@
  */
 package com.demo.ui;
 
+import com.sun.awt.AWTUtilities;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jona
@@ -14,24 +17,23 @@ public class frmMenu extends javax.swing.JFrame {
     /**
      * Creates new form frmMenu
      */
+    int x, y;
+
     public frmMenu() {
         initComponents();
-        setTitle("Sistema de Inventario y Gestión - Center Techno - ");
-        setSize(900, 650);
+        //setTitle("Sistema de Inventario y Gestión - Center Techno - ");
+        setSize(1050, 650);
         setLocationRelativeTo(null);
-        
+
         // agregro el desktop al formulario padre
-        escritorio.setSize(900, 650);
+        escritorio.setSize(1050, 650);
         setContentPane(escritorio);
         escritorio.setLayout(null);
-        
+
         //imagen
-        Imagen_fondo.setBounds(348, 30,550, 550);
-        //setContentPane(Imagen_fondo);
-        //Imagen_fondo.setHorizontalAlignment(SwingConstants.CENTER);
-        //Imagen_fondo.setVerticalAlignment(SwingConstants.CENTER);
-        //Imagen_fondo.setLocation((getWidth() - getHeight())/2,80);
-                
+        Imagen_fondo.setBounds(348, 30, 550, 550);
+        btnMinimizar.setToolTipText("Minimizar");
+
     }
 
     /**
@@ -43,11 +45,15 @@ public class frmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         escritorio = new javax.swing.JDesktopPane();
         Imagen_fondo = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         lblRol = new javax.swing.JLabel();
+        btnMinimizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuHome = new javax.swing.JMenu();
         menuRrhh = new javax.swing.JMenu();
@@ -60,13 +66,20 @@ public class frmMenu extends javax.swing.JFrame {
         itemFacturar = new javax.swing.JMenuItem();
         menuSalir = new javax.swing.JMenu();
 
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(950, 550));
-        setMinimumSize(new java.awt.Dimension(960, 550));
-        setPreferredSize(new java.awt.Dimension(1050, 260));
+        setMaximumSize(null);
+        setMinimumSize(new java.awt.Dimension(1050, 360));
+        setUndecorated(true);
+        setSize(new java.awt.Dimension(1050, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         escritorio.setBackground(new java.awt.Color(153, 153, 255));
@@ -76,21 +89,51 @@ public class frmMenu extends javax.swing.JFrame {
         Imagen_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/logo_center.png"))); // NOI18N
         Imagen_fondo.setFocusable(false);
         Imagen_fondo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        escritorio.add(Imagen_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 310, 250));
+        escritorio.add(Imagen_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 310, 250));
 
         lblId.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblId.setText("id_user");
-        escritorio.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        escritorio.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblName.setText("Nombre");
-        escritorio.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        escritorio.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         lblRol.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblRol.setText("rol");
-        escritorio.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        escritorio.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 360));
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/flecha-hacia-abajo.png"))); // NOI18N
+        btnMinimizar.setToolTipText("");
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseEntered(evt);
+            }
+        });
+        escritorio.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, 40, 30));
+
+        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 380));
+
+        jMenuBar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jMenuBar1MouseDragged(evt);
+            }
+        });
+        jMenuBar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuBar1MousePressed(evt);
+            }
+        });
 
         menuHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/home.png"))); // NOI18N
         menuHome.setText("CENTER TECNO");
@@ -161,6 +204,11 @@ public class frmMenu extends javax.swing.JFrame {
         menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/menusalir.png"))); // NOI18N
         menuSalir.setText("Salir");
         menuSalir.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        menuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSalirMouseClicked(evt);
+            }
+        });
         menuSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuSalirActionPerformed(evt);
@@ -182,18 +230,15 @@ public class frmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemEmpleadoActionPerformed
 
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
-        // TODO add your handling code here:
-        // tengo que salir y cerrar sesion del logeo
-        
     }//GEN-LAST:event_menuSalirActionPerformed
 
     private void itemProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProveedorActionPerformed
         // TODO add your handling code here:
-        
-        frmIntProveedor formularioProveedor=new frmIntProveedor();
+
+        frmIntProveedor formularioProveedor = new frmIntProveedor();
         escritorio.add(formularioProveedor);
         formularioProveedor.setVisible(true);
-        
+
     }//GEN-LAST:event_itemProveedorActionPerformed
 
 
@@ -206,22 +251,53 @@ public class frmMenu extends javax.swing.JFrame {
 
     private void itemArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticuloActionPerformed
         // TODO add your handling code here:
-        frmIntArticulo formulario= new frmIntArticulo();
+        frmIntArticulo formulario = new frmIntArticulo();
         escritorio.add(formulario);
         formulario.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_itemArticuloActionPerformed
 
     private void itemFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturarActionPerformed
         // TODO add your handling code here:
-        frmIntFactura formfactura= new frmIntFactura();
+        frmIntFactura formfactura = new frmIntFactura();
         escritorio.add(formfactura);
         formfactura.setVisible(true);
-        
+
     }//GEN-LAST:event_itemFacturarActionPerformed
 
+    private void jMenuBar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MousePressed
+        // TODO add your handling code here:
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jMenuBar1MousePressed
 
+    private void jMenuBar1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuBar1MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jMenuBar1MouseDragged
+
+    private void menuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSalirMouseClicked
+        int respuesta = JOptionPane.showConfirmDialog(null, "Estás seguro de cerrar sesión", "Confirmación", 2);
+        if (respuesta == 0) {
+            frmMenu.this.dispose();
+            frmLogin login = new frmLogin();
+            login.toFront();
+            login.setLocationRelativeTo(null);
+            login.setVisible(true);
+        }
+    }//GEN-LAST:event_menuSalirMouseClicked
+    
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMinimizarMouseEntered
+    
+    /*
+    
+    */
     /**
      * @param args the command line arguments
      */
@@ -253,8 +329,8 @@ public class frmMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new frmMenu().setVisible(true);
-                frmMenu menu= new frmMenu();
-                menu.setExtendedState(MAXIMIZED_BOTH);
+                frmMenu menu = new frmMenu();
+                //menu.setExtendedState(MAXIMIZED_BOTH);
                 menu.setVisible(true);
             }
         });
@@ -262,13 +338,17 @@ public class frmMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Imagen_fondo;
+    private javax.swing.JButton btnMinimizar;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem itemArticulo;
     private javax.swing.JMenuItem itemCliente;
     private javax.swing.JMenuItem itemEmpleado;
     private javax.swing.JMenuItem itemFacturar;
     private javax.swing.JMenuItem itemProveedor;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblRol;
