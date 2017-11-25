@@ -28,7 +28,7 @@ public class frmMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         // agregro el desktop al formulario padre
-        //escritorio.setSize(1150, 650);
+        escritorio.setSize(1150, 650);
         setContentPane(escritorio);
         escritorio.setLayout(null);
         
@@ -52,6 +52,9 @@ public class frmMenu extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         Imagen_fondo = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblRol = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuHome = new javax.swing.JMenu();
         menuRrhh = new javax.swing.JMenu();
@@ -76,6 +79,18 @@ public class frmMenu extends javax.swing.JFrame {
         Imagen_fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Imagen_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/logo_center.png"))); // NOI18N
         escritorio.add(Imagen_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 360, 250));
+
+        lblId.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblId.setText("id_user");
+        escritorio.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        lblName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblName.setText("Nombre");
+        escritorio.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        lblRol.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblRol.setText("rol");
+        escritorio.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 360));
 
@@ -115,6 +130,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
         menuRrhh.add(itemCliente);
 
+        itemArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/articulos.png"))); // NOI18N
         itemArticulo.setText("Articulo");
         itemArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,6 +271,9 @@ public class frmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemFacturar;
     private javax.swing.JMenuItem itemProveedor;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblRol;
     private javax.swing.JMenu menuConsulta;
     private javax.swing.JMenu menuFactura;
     private javax.swing.JMenu menuHome;

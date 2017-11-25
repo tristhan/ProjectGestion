@@ -61,7 +61,6 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         tabla = new javax.swing.JTable();
 
         setClosable(true);
-        setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRegistroProveedor.setBackground(new java.awt.Color(255, 204, 102));

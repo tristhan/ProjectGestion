@@ -19,6 +19,8 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
      */
     public frmIntArticulo() {
         initComponents();
+        textaDescripcion.setLineWrap(true);
+        textaDescripcion.setWrapStyleWord(true);
     }
 
     /**
@@ -91,7 +93,6 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jTable2);
 
         setClosable(true);
-        setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 102));
@@ -175,9 +176,9 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         textaDescripcion.setRows(5);
         jScrollPane1.setViewportView(textaDescripcion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 470, 40));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 470, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 610, 210));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 210));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -185,7 +186,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 10, -1, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -194,27 +195,27 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 10, -1, -1));
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 10, -1, -1));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
         btnBorrar.setText("Borrar");
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 10, -1, -1));
 
         btnBuscar.setText("Buscar");
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         txtBuscarArticulo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jPanel1.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 90, -1));
+        jPanel1.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel9.setText("Búscar");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+        jLabel9.setText("Búscar:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 14, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 610, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 610, 40));
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 102));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -235,7 +236,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
 
         jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 130));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 610, 160));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 610, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -254,7 +255,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        Articulo art= new Articulo();
+        Articulo art = new Articulo();
         art.setNombre(txtNombre.getText());
         art.setCodigo_fisico(txtCodigo.getText());
         art.setDescripcion(textaDescripcion.getText());
@@ -263,12 +264,12 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         art.setPrecio_compra(Double.parseDouble(txtPrecioCompra.getText()));
         //art.setEstado((boolean) cboEstado.getSelectedItem());
         //art.setProveedor((Proveedor) cboProveedor.getSelectedItem());
-        
-        System.out.println("mirame... "+art.toString());
-       
+
+        System.out.println("mirame... " + art.toString());
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    void llenarcboProveedor(){
+    void llenarcboProveedor() {
         //contro
         //List<Proveedor>listProveedor = getProveedorAll();
     }
