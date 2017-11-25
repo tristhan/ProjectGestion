@@ -273,6 +273,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
         comboBox_activoEmp.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         comboBox_activoEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        comboBox_activoEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBox_activoEmpActionPerformed(evt);
+            }
+        });
         pRegistroEmpleado.add(comboBox_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, -1));
         pRegistroEmpleado.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 30, -1));
 
@@ -554,6 +559,10 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(null, "Error al dar de baja a empleado " + e.getMessage(), "Error", 2);
         }
     }//GEN-LAST:event_btn_eliminarEmpActionPerformed
+
+    private void comboBox_activoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_activoEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBox_activoEmpActionPerformed
 
     // desabilito los textfield
     void desabilitar() {
