@@ -5,13 +5,6 @@
  */
 package com.demo.ui;
 
-import java.awt.Color;
-import java.util.Locale;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
 /**
  *
  * @author Jona
@@ -24,11 +17,11 @@ public class frmMenu extends javax.swing.JFrame {
     public frmMenu() {
         initComponents();
         setTitle("Sistema de Inventario y Gestión - Center Techno - ");
-        setSize(1050, 650);
+        setSize(900, 650);
         setLocationRelativeTo(null);
         
         // agregro el desktop al formulario padre
-        escritorio.setSize(1150, 650);
+        escritorio.setSize(900, 650);
         setContentPane(escritorio);
         escritorio.setLayout(null);
         
@@ -69,7 +62,10 @@ public class frmMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
-        setMinimumSize(new java.awt.Dimension(1050, 550));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusable(false);
+        setMaximumSize(new java.awt.Dimension(950, 550));
+        setMinimumSize(new java.awt.Dimension(960, 550));
         setPreferredSize(new java.awt.Dimension(1050, 260));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,7 +74,9 @@ public class frmMenu extends javax.swing.JFrame {
 
         Imagen_fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Imagen_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/logo_center.png"))); // NOI18N
-        escritorio.add(Imagen_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 360, 250));
+        Imagen_fondo.setFocusable(false);
+        Imagen_fondo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        escritorio.add(Imagen_fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 310, 250));
 
         lblId.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lblId.setText("id_user");

@@ -7,6 +7,7 @@ package com.demo.ui;
 
 import com.demo.controller.controllerLogin;
 import com.demo.dominio.User;
+import com.sun.awt.AWTUtilities;
 
 /**
  *
@@ -18,11 +19,14 @@ public class frmLogin extends javax.swing.JFrame {
      * Creates new form frmLogin
      */
     // varible de controlador y entidad
+    int x, y;
     private controllerLogin ctrlLogin = new controllerLogin();
     private User userLogin;
     
     public frmLogin() {
         initComponents();
+        //invisible
+        //AWTUtilities.setWindowOpaque(this, false);
         setTitle("Control de Acceso");
         setSize(350,350); 
         setLocationRelativeTo(null);
@@ -44,11 +48,18 @@ public class frmLogin extends javax.swing.JFrame {
         txtConstrasena = new javax.swing.JPasswordField();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
+        lblmover = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 153));
+        setBackground(new java.awt.Color(102, 102, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/login.png"))); // NOI18N
@@ -86,6 +97,19 @@ public class frmLogin extends javax.swing.JFrame {
         });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
+        lblmover.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        lblmover.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lblmoverMouseDragged(evt);
+            }
+        });
+        lblmover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblmoverMousePressed(evt);
+            }
+        });
+        getContentPane().add(lblmover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,6 +126,20 @@ public class frmLogin extends javax.swing.JFrame {
         
         ctrlLogin.userLogin(userLogin);
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMousePressed
+
+    private void lblmoverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblmoverMousePressed
+        
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_lblmoverMousePressed
+
+    private void lblmoverMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblmoverMouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_lblmoverMouseDragged
 
     /**
      * @param args the command line arguments
@@ -144,6 +182,7 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblmover;
     private javax.swing.JPasswordField txtConstrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

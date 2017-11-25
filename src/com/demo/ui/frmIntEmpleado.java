@@ -34,13 +34,19 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     // instancia de controlador de empleado y de su entidad
     private controllerEmpleado ctrlempleado;
     private Empleado empleado;
+    
+    DefaultTableModel modelo;
+    String titulos[]={"Id","Nombre","Apellido","Cédula","E-mail","Dirección","Teléfono","Nick","Contraseña","Rol","Estado"};
 
     public frmIntEmpleado() {
         initComponents();
         setSize(845, 545);
 
+        
+        modelo =new DefaultTableModel(null,titulos);
         desabilitar();
         buscar("");
+        
     }
 
     /**
@@ -283,25 +289,18 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tabla.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Identificación", "Nombres", "Rol", "Estado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
+        tabla.setSelectionBackground(new java.awt.Color(153, 153, 255));
+        tabla.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tabla.getTableHeader().setReorderingAllowed(false);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
@@ -364,6 +363,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         habilitar();
         txt_nombreEmp.requestFocus();
+        btn_editarEmp.setEnabled(false);
         limpiar();
     }//GEN-LAST:event_btn_nuevoEmpActionPerformed
 
@@ -391,7 +391,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         try {
             ctrlempleado.registrar(empleado);
             JOptionPane.showConfirmDialog(null, " " + empleado.getNombre() + " " + empleado.getApellido()
-                    + "a sido registrado satisfactoriamente", "Confirmación", 2);
+                    + " a sido registrado satisfactoriamente", "Confirmación", 2);
             limpiar();
             desabilitar();
 
@@ -489,30 +489,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txt_telefonoEmpKeyPressed
 
-    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        // TODO add your handling code here:
-        btn_guardarEmp.setEnabled(false);
-        //txtCedula.setEnabled(false);
-        /*
-            row[7] = empleado.getUsuraio().getId_user();
-            row[8] = empleado.getUsuraio().getNick();
-            row[9] = empleado.getUsuraio().getPassword();
-            row[10] = empleado.getUsuraio().getRol();
-            row[11] = empleado.getUsuraio().isActivo();
-        */
-        
-        int fila = tabla.rowAtPoint(evt.getPoint());
-        txtId.setText(tabla.getValueAt(fila, 0).toString());
-        txt_nombreEmp.setText(tabla.getValueAt(fila, 1).toString());
-        txt_apellidoEmp.setText(tabla.getValueAt(fila, 2).toString());
-        txt_identificacionEmp.setText(tabla.getValueAt(fila, 3).toString());
-        txt_correoEmp.setText(tabla.getValueAt(fila, 2).toString());
-        txt_direccionEmp.setText(tabla.getValueAt(fila, 2).toString());
-        txt_telefonoEmp.setText(tabla.getValueAt(fila, 3).toString());
-        
-        comboBox_activoEmp.setSelectedIndex((int) tabla.getValueAt(fila, 4));
-    }//GEN-LAST:event_tablaMouseClicked
-
     private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
         // TODO add your handling code here:
         kpress = evt.getKeyChar();
@@ -539,8 +515,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     private void txt_identificacionEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_identificacionEmpKeyTyped
         // TODO add your handling code here:
-        if(txt_identificacionEmp.getText().length()>10){
+        if(txt_identificacionEmp.getText().length()==10){
             JOptionPane.showConfirmDialog(null, "Identificación debe tener 10 dígitos ", "Confirmación", 2);
+            txt_identificacionEmp.requestFocus();
         }
         validacion.soloNumeros(evt);
     }//GEN-LAST:event_txt_identificacionEmpKeyTyped
@@ -566,6 +543,26 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(null, "Error al dar de baja a empleado " + e.getMessage(), "Error", 2);
         }
     }//GEN-LAST:event_btn_eliminarEmpActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        habilitar();
+        btn_guardarEmp.setEnabled(false);
+        //txtCedula.setEnabled(false);
+
+        int fila = tabla.rowAtPoint(evt.getPoint());
+        txtId.setText(tabla.getValueAt(fila, 0).toString());
+        txt_nombreEmp.setText(tabla.getValueAt(fila, 1).toString());
+        txt_apellidoEmp.setText(tabla.getValueAt(fila, 2).toString());
+        txt_identificacionEmp.setText(tabla.getValueAt(fila, 3).toString());
+        txt_correoEmp.setText(tabla.getValueAt(fila, 4).toString());
+        txt_direccionEmp.setText(tabla.getValueAt(fila, 5).toString());
+        txt_telefonoEmp.setText(tabla.getValueAt(fila, 6).toString());
+        txt_usernameEmp.setText(tabla.getValueAt(fila,7).toString());
+        txt_contrasenaEmp.setText(tabla.getValueAt(fila,8).toString());
+        txt_rolEmp.setText(tabla.getValueAt(fila,9).toString());
+        comboBox_activoEmp.setSelectedItem(tabla.getValueAt(fila, 10));
+    }//GEN-LAST:event_tablaMouseClicked
 
     // desabilito los textfield
     void desabilitar() {
@@ -650,24 +647,25 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         limpiarTabla();
         ctrlempleado = new controllerEmpleado();
         List<Empleado> lista = ctrlempleado.verEmpleados(cedula);
-        DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
+        
         for (Empleado empleado : lista) {
             ///hacer uso de tabla
-            Object[] row = new Object[12];
+            Object[] row = new Object[11];
             row[0] = empleado.getId_empleado();
-            row[1] = empleado.getNombre() + " " + empleado.getApellido();
+            row[1] = empleado.getNombre();
             row[2] = empleado.getApellido();
             row[3] = empleado.getCedulaIdentidad();
             row[4] = empleado.getCorreo();
             row[5] = empleado.getDireccion();
             row[6] = empleado.getTelefono();
-            row[7] = empleado.getUsuraio().getId_user();
-            row[8] = empleado.getUsuraio().getNick();
-            row[9] = empleado.getUsuraio().getPassword();
-            row[10] = empleado.getUsuraio().getRol();
-            row[11] = empleado.getUsuraio().isActivo();
-            model1.addRow(row);
+            //row[7] = empleado.getUsuraio().getId_user();
+            row[7] = empleado.getUsuraio().getNick();
+            row[8] = empleado.getUsuraio().getPassword();
+            row[9] = empleado.getUsuraio().getRol();
+            row[10] = empleado.getUsuraio().isActivo();
+            modelo.addRow(row);
         }
+        tabla.setModel(modelo);
 
     }
     
@@ -689,4 +687,15 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 		tabla.getColumnModel().getColumn(4).setMinWidth(0);
 		tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
 	}
+
+    private static class DefaultTableModelImpl extends DefaultTableModel {
+
+        public DefaultTableModelImpl(Object[][] data, Object[] columnNames) {
+            super(data, columnNames);
+        }
+
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    }
 }
