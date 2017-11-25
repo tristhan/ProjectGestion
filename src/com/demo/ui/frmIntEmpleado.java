@@ -493,11 +493,23 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         btn_guardarEmp.setEnabled(false);
         //txtCedula.setEnabled(false);
+        /*
+            row[7] = empleado.getUsuraio().getId_user();
+            row[8] = empleado.getUsuraio().getNick();
+            row[9] = empleado.getUsuraio().getPassword();
+            row[10] = empleado.getUsuraio().getRol();
+            row[11] = empleado.getUsuraio().isActivo();
+        */
+        
         int fila = tabla.rowAtPoint(evt.getPoint());
-        txt_identificacionEmp.setText(tabla.getValueAt(fila, 0).toString());
+        txtId.setText(tabla.getValueAt(fila, 0).toString());
         txt_nombreEmp.setText(tabla.getValueAt(fila, 1).toString());
         txt_apellidoEmp.setText(tabla.getValueAt(fila, 2).toString());
-        txt_rolEmp.setText(tabla.getValueAt(fila, 3).toString());
+        txt_identificacionEmp.setText(tabla.getValueAt(fila, 3).toString());
+        txt_correoEmp.setText(tabla.getValueAt(fila, 2).toString());
+        txt_direccionEmp.setText(tabla.getValueAt(fila, 2).toString());
+        txt_telefonoEmp.setText(tabla.getValueAt(fila, 3).toString());
+        
         comboBox_activoEmp.setSelectedIndex((int) tabla.getValueAt(fila, 4));
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -642,10 +654,18 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         for (Empleado empleado : lista) {
             ///hacer uso de tabla
             Object[] row = new Object[12];
-            row[0] = empleado.getCedulaIdentidad();
+            row[0] = empleado.getId_empleado();
             row[1] = empleado.getNombre() + " " + empleado.getApellido();
             row[2] = empleado.getApellido();
-            row[3] = empleado.getApellido();
+            row[3] = empleado.getCedulaIdentidad();
+            row[4] = empleado.getCorreo();
+            row[5] = empleado.getDireccion();
+            row[6] = empleado.getTelefono();
+            row[7] = empleado.getUsuraio().getId_user();
+            row[8] = empleado.getUsuraio().getNick();
+            row[9] = empleado.getUsuraio().getPassword();
+            row[10] = empleado.getUsuraio().getRol();
+            row[11] = empleado.getUsuraio().isActivo();
             model1.addRow(row);
         }
 
@@ -654,5 +674,19 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     void limpiarTabla(){	
 	DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
         model1.setRowCount(0);
+	}
+    
+    public void ocultar_columnas(){
+		tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(0).setMinWidth(0);
+		tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+		
+		tabla.getColumnModel().getColumn(3).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(3).setMinWidth(0);
+		tabla.getColumnModel().getColumn(3).setPreferredWidth(0);
+		
+		tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(4).setMinWidth(0);
+		tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
 	}
 }
