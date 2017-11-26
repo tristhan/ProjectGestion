@@ -8,6 +8,7 @@ package com.demo.ui;
 import com.demo.controller.controllerProveedor;
 import com.demo.dominio.Proveedor;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,12 +21,15 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
      * Creates new form frmIntProveedor
      */
     private controllerProveedor ctrlProveedor;
+    private Proveedor proveedor;
+
     public frmIntProveedor() {
         initComponents();
-        
+
         buscarAll();
         ocultar_columnas();
-        
+        desabilitar();
+
     }
 
     /**
@@ -57,9 +61,10 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         btn_nuevoProv = new javax.swing.JButton();
         btn_guardarProv = new javax.swing.JButton();
         btn_actualizarProv = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboEstado = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         btn_eliminarProv = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
         panelConsultaProv = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txt_busquedaProv = new javax.swing.JTextField();
@@ -137,6 +142,11 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
         btn_nuevoProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnnuevo.png"))); // NOI18N
         btn_nuevoProv.setText("Nuevo");
+        btn_nuevoProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevoProvActionPerformed(evt);
+            }
+        });
         panelRegistroProveedor.add(btn_nuevoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         btn_guardarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
@@ -150,11 +160,16 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
         btn_actualizarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btn_actualizarProv.setText("Actualizar");
+        btn_actualizarProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarProvActionPerformed(evt);
+            }
+        });
         panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        panelRegistroProveedor.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, -1));
+        cboEstado.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        panelRegistroProveedor.add(cboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, -1));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel10.setText("Correo:");
@@ -168,6 +183,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
             }
         });
         panelRegistroProveedor.add(btn_eliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
+        panelRegistroProveedor.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 30, -1));
 
         getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 210));
 
@@ -225,6 +241,11 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         panelConsultaProv.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 740, 160));
@@ -239,24 +260,34 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_nombreProvActionPerformed
 
     private void btn_eliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarProvActionPerformed
-        // TODO add your handling code here:
+        proveedor = new Proveedor();
+        proveedor.setNombre(txt_nombreProv.getText());
+        proveedor.setId_proveedor(Integer.parseInt(txtId.getText()));
+        
+        if(ctrlProveedor.eliminar(proveedor)){
+            JOptionPane.showConfirmDialog(null, "Proveedor grabado con exito ", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+        }
     }//GEN-LAST:event_btn_eliminarProvActionPerformed
 
     private void btn_guardarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarProvActionPerformed
-        Proveedor pro= new Proveedor();
-        pro.setNombre(txt_nombreProv.getText());
-        pro.setApellido(txt_apellidoProv.getText());
-        pro.setEmpresa(txt_empresaProv.getText());
-        pro.setRuc(txt_rucProv.getText());
-        pro.setTelefono(txt_telefonoProv.getText());
-        pro.setCelular((txt_celularProv.getText()));
-        pro.setDireccion(txt_direccionProv.getText());
-        ctrlProveedor= new controllerProveedor();
-        ctrlProveedor.registrar(pro);
+        proveedor = new Proveedor();
+        proveedor.setNombre(txt_nombreProv.getText());
+        proveedor.setApellido(txt_apellidoProv.getText());
+        proveedor.setEmpresa(txt_empresaProv.getText());
+        proveedor.setRuc(txt_rucProv.getText());
+        proveedor.setTelefono(txt_telefonoProv.getText());
+        proveedor.setCelular((txt_celularProv.getText()));
+        proveedor.setDireccion(txt_direccionProv.getText());
+        proveedor.setCorreo(txt_correoProv.getText());
         
-        
-        
-        
+        if(ctrlProveedor.registrar(proveedor)){
+            JOptionPane.showConfirmDialog(null, "Proveedor grabado con exito ", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+            buscarAll();
+        }
     }//GEN-LAST:event_btn_guardarProvActionPerformed
 
     private void txt_busquedaProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busquedaProvActionPerformed
@@ -264,20 +295,112 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_busquedaProvActionPerformed
 
     private void btn_buscarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarProvActionPerformed
-        // TODO add your handling code here:
+        buscarAll();
     }//GEN-LAST:event_btn_buscarProvActionPerformed
+
+    private void btn_nuevoProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoProvActionPerformed
+        habilitar();
+        btn_actualizarProv.setEnabled(false);
+        btn_eliminarProv.setEnabled(false);
+        limpiar();
+    }//GEN-LAST:event_btn_nuevoProvActionPerformed
+
+    private void btn_actualizarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarProvActionPerformed
+        proveedor = new Proveedor();
+        proveedor.setNombre(txt_nombreProv.getText());
+        proveedor.setApellido(txt_apellidoProv.getText());
+        proveedor.setEmpresa(txt_empresaProv.getText());
+        proveedor.setRuc(txt_rucProv.getText());
+        proveedor.setTelefono(txt_telefonoProv.getText());
+        proveedor.setCelular((txt_celularProv.getText()));
+        proveedor.setDireccion(txt_direccionProv.getText());
+        proveedor.setCorreo(txt_correoProv.getText());
+        proveedor.setId_proveedor(Integer.parseInt(txtId.getText()));
+        
+        if(ctrlProveedor.actualizar(proveedor)){
+            JOptionPane.showConfirmDialog(null, "Proveedor grabado con exito ", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+            buscarAll();
+        }
+    }//GEN-LAST:event_btn_actualizarProvActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        habilitar();
+        btn_guardarProv.setEnabled(false);
+        btn_actualizarProv.setEnabled(true);
+        btn_eliminarProv.setEnabled(true);
+
+        int fila = tabla.rowAtPoint(evt.getPoint());
+        txtId.setText(tabla.getValueAt(fila, 0).toString());
+        txt_nombreProv.setText(tabla.getValueAt(fila, 1).toString());
+        txt_apellidoProv.setText(tabla.getValueAt(fila, 2).toString());
+        txt_empresaProv.setText(tabla.getValueAt(fila, 3).toString());
+        txt_rucProv.setText(tabla.getValueAt(fila, 4).toString());
+        txt_telefonoProv.setText(tabla.getValueAt(fila, 5).toString());
+        txt_celularProv.setText(tabla.getValueAt(fila, 6).toString());
+        txt_direccionProv.setText(tabla.getValueAt(fila, 7).toString());
+        txt_correoProv.setText(tabla.getValueAt(fila, 8).toString());
+    }//GEN-LAST:event_tablaMouseClicked
+
+    void habilitar() {
+        btn_actualizarProv.setEnabled(true);
+        btn_buscarProv.setEnabled(true);
+        btn_eliminarProv.setEnabled(true);
+        btn_guardarProv.setEnabled(true);
+
+        txt_apellidoProv.setEnabled(true);
+        txt_busquedaProv.setEnabled(true);
+        txt_celularProv.setEnabled(true);
+        txt_correoProv.setEnabled(true);
+        txt_direccionProv.setEnabled(true);
+        txt_empresaProv.setEnabled(true);
+        txt_nombreProv.setEnabled(true);
+        txt_rucProv.setEnabled(true);
+        txt_telefonoProv.setEnabled(true);
+        cboEstado.setEnabled(true);
+    }
+
+    void desabilitar() {
+        btn_actualizarProv.setEnabled(false);
+        btn_eliminarProv.setEnabled(false);
+        btn_guardarProv.setEnabled(false);
+
+        txt_apellidoProv.setEnabled(false);
+        txt_busquedaProv.setEnabled(false);
+        txt_celularProv.setEnabled(false);
+        txt_correoProv.setEnabled(false);
+        txt_direccionProv.setEnabled(false);
+        txt_empresaProv.setEnabled(false);
+        txt_nombreProv.setEnabled(false);
+        txt_rucProv.setEnabled(false);
+        txt_telefonoProv.setEnabled(false);
+        cboEstado.setEnabled(false);
+    }
+
+    void limpiar() {
+        txt_apellidoProv.setText("");
+        txt_busquedaProv.setText("");
+        txt_celularProv.setText("");
+        txt_correoProv.setText("");
+        txt_direccionProv.setText("");
+        txt_empresaProv.setText("");
+        txt_nombreProv.setText("");
+        txt_rucProv.setText("");
+        txt_telefonoProv.setText("");
+    }
 
     void limpiarTabla() {
         DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
         model1.setRowCount(0);
     }
-    
+
     void buscarAll() {
         limpiarTabla();
         ctrlProveedor = new controllerProveedor();
-        DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         List<Proveedor> lista = ctrlProveedor.verProveedoresAll();
-        
+
         for (Proveedor proveedor : lista) {
             Object[] row = new Object[9];
             row[0] = proveedor.getId_proveedor();
@@ -293,7 +416,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         }
         tabla.setModel(modelo);
     }
-    
+
     public void ocultar_columnas() {
         tabla.getColumnModel().getColumn(0).setMaxWidth(0);
         tabla.getColumnModel().getColumn(0).setMinWidth(0);
@@ -318,7 +441,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_eliminarProv;
     private javax.swing.JButton btn_guardarProv;
     private javax.swing.JButton btn_nuevoProv;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -333,6 +456,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelConsultaProv;
     private javax.swing.JPanel panelRegistroProveedor;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txt_apellidoProv;
     private javax.swing.JTextField txt_busquedaProv;
     private javax.swing.JTextField txt_celularProv;
