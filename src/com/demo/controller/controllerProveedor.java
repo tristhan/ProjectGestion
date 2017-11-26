@@ -16,35 +16,54 @@ import java.util.List;
  * @author Jona
  */
 public class controllerProveedor {
+
     private proveedorInterface dao;
-    
-    	public controllerProveedor() {
-            if(dao == null){
-                dao= new  proveedorDaoImpl();
-            }
-	}
-	
-	//llama al DAO para guardar un empleado
-	public void registrar(Proveedor proveedor ) {
-		dao.save(proveedor);
-	}
-	
-	//llama al DAO para actualizar un empleado
-	public void actualizar(Proveedor proveedor) {
-		dao.updateProveedor(proveedor);
-	}
-	
-	//llama al DAO para eliminar un empleado
-	public void eliminar(Proveedor proveedor) {
-		dao.deleteProveedor(proveedor);
-	}
-	
-	//llama al DAO para obtener todos los empleados y luego los muestra en la vista
-        // convertir en metod list
-	public List<Proveedor> verProveedoresAll(){
-		List<Proveedor> proveedores = new ArrayList<>();
-		proveedores=dao.getProveedorAll();
-                return proveedores;
-	}
-        //
+
+    public controllerProveedor() {
+        if (dao == null) {
+            dao = new proveedorDaoImpl();
+        }
+    }
+
+    //llama al DAO para guardar un empleado
+    public boolean registrar(Proveedor proveedor) {
+        boolean verificar;
+        if (dao.save(proveedor)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para actualizar un empleado
+    public boolean actualizar(Proveedor proveedor) {
+        boolean verificar;
+        if (dao.updateProveedor(proveedor)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para eliminar un empleado
+    public boolean eliminar(Proveedor proveedor) {
+        boolean verificar;
+        if (dao.deleteProveedor(proveedor)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para obtener todos los empleados y luego los muestra en la vista
+    // convertir en metod list
+    public List<Proveedor> verProveedoresAll() {
+        List<Proveedor> proveedores = new ArrayList<>();
+        proveedores = dao.getProveedorAll();
+        return proveedores;
+    }
+    //
 }

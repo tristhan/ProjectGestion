@@ -7,6 +7,7 @@ package com.demo.ui;
 
 import com.demo.controller.controllerProveedor;
 import com.demo.dominio.Proveedor;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,8 +19,13 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     /**
      * Creates new form frmIntProveedor
      */
+    private controllerProveedor ctrlProveedor;
     public frmIntProveedor() {
         initComponents();
+        
+        buscarAll();
+        ocultar_columnas();
+        
     }
 
     /**
@@ -179,7 +185,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
                 txt_busquedaProvActionPerformed(evt);
             }
         });
-        panelConsultaProv.add(txt_busquedaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 35, 190, 20));
+        panelConsultaProv.add(txt_busquedaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 35, 190, -1));
 
         btn_buscarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px.png"))); // NOI18N
         btn_buscarProv.setBorderPainted(false);
@@ -196,21 +202,23 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombres", "Apellidos", "Empresa", "Ruc", "Celular", "Correo"
+                "Id", "Nombres", "Apellidos", "Empresa", "Ruc", "Celular", "Teléfono", "Dirección", "Correo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -235,18 +243,16 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_eliminarProvActionPerformed
 
     private void btn_guardarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarProvActionPerformed
-        
-        
         Proveedor pro= new Proveedor();
         pro.setNombre(txt_nombreProv.getText());
         pro.setApellido(txt_apellidoProv.getText());
         pro.setEmpresa(txt_empresaProv.getText());
         pro.setRuc(txt_rucProv.getText());
         pro.setTelefono(txt_telefonoProv.getText());
-        pro.setCelular(Integer.parseInt(txt_celularProv.getText()));
+        pro.setCelular((txt_celularProv.getText()));
         pro.setDireccion(txt_direccionProv.getText());
-        controllerProveedor con= new controllerProveedor();
-        con.registrar(pro);
+        ctrlProveedor= new controllerProveedor();
+        ctrlProveedor.registrar(pro);
         
         
         
@@ -266,14 +272,36 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         model1.setRowCount(0);
     }
     
+    void buscarAll() {
+        limpiarTabla();
+        ctrlProveedor = new controllerProveedor();
+        DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
+        List<Proveedor> lista = ctrlProveedor.verProveedoresAll();
+        
+        for (Proveedor proveedor : lista) {
+            Object[] row = new Object[9];
+            row[0] = proveedor.getId_proveedor();
+            row[1] = proveedor.getNombre();
+            row[2] = proveedor.getApellido();
+            row[3] = proveedor.getEmpresa();
+            row[4] = proveedor.getRuc();
+            row[5] = proveedor.getTelefono();
+            row[6] = proveedor.getCelular();
+            row[7] = proveedor.getDireccion();
+            row[8] = proveedor.getCorreo();
+            modelo.addRow(row);
+        }
+        tabla.setModel(modelo);
+    }
+    
     public void ocultar_columnas() {
         tabla.getColumnModel().getColumn(0).setMaxWidth(0);
         tabla.getColumnModel().getColumn(0).setMinWidth(0);
         tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        tabla.getColumnModel().getColumn(1).setMaxWidth(0);
-        tabla.getColumnModel().getColumn(1).setMinWidth(0);
-        tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
+        tabla.getColumnModel().getColumn(7).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(7).setMinWidth(0);
+        tabla.getColumnModel().getColumn(7).setPreferredWidth(0);
 
         tabla.getColumnModel().getColumn(4).setMaxWidth(0);
         tabla.getColumnModel().getColumn(4).setMinWidth(0);

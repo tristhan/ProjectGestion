@@ -19,29 +19,28 @@ import java.util.List;
 /**
  * @author Jona
  */
-public class proveedorDaoImpl implements proveedorInterface{
+public class proveedorDaoImpl implements proveedorInterface {
 
     @Override
     public boolean save(Proveedor proveedor) {
         boolean registrar = false;
         Connection con = null;
         PreparedStatement pst = null;
-        
-        
-        String sql= "INSERT INTO proveedor (nombre,apellido,empresa,ruc,telefono,celular,direccion)"
+
+        String sql = "INSERT INTO proveedor (nombre,apellido,empresa,ruc,telefono,celular,direccion)"
                 + " values (?,?,?,?,?,?,?)";
-              
 
         try {
-             con = conexion_mysql.conectar();
-            pst=con.prepareStatement(sql);
-			pst.setString(1, proveedor.getNombre());
-			pst.setString(2, proveedor.getApellido());
-			pst.setString(3, proveedor.getEmpresa());
-			pst.setString(4, proveedor.getRuc());
-                        pst.setString(5, proveedor.getTelefono());
-                        pst.setInt(6, proveedor.getCelular());
-                        pst.setString(7, proveedor.getDireccion());          
+            con = conexion_mysql.conectar();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, proveedor.getNombre());
+            pst.setString(2, proveedor.getApellido());
+            pst.setString(3, proveedor.getEmpresa());
+            pst.setString(4, proveedor.getRuc());
+            pst.setString(5, proveedor.getTelefono());
+            pst.setString(6, proveedor.getCelular());
+            pst.setString(7, proveedor.getDireccion());
+            pst.setString(8, proveedor.getCorreo());
             pst.execute();
             registrar = true;
             pst.close();
@@ -55,7 +54,7 @@ public class proveedorDaoImpl implements proveedorInterface{
 
     @Override
     public List<Proveedor> getProveedorAll() {
-          Connection co = null;
+        Connection co = null;
         Statement stm = null;
         ResultSet rs = null;
 
@@ -68,9 +67,14 @@ public class proveedorDaoImpl implements proveedorInterface{
             while (rs.next()) {
                 Proveedor p = new Proveedor();
                 p.setId_proveedor(rs.getInt(1));
-                p.setApellido(rs.getString(2));
-                p.setNombre(rs.getString(3));
-                p.setApellido(rs.getString(4));
+                p.setNombre(rs.getString(2));
+                p.setApellido(rs.getString(3));
+                p.setEmpresa(rs.getString(4));
+                p.setRuc(rs.getString(5));
+                p.setTelefono(rs.getString(6));
+                p.setCelular(rs.getString(7));
+                p.setDireccion(rs.getString(8));
+                p.setCorreo(rs.getString(9));
                 listaProveedor.add(p);
             }
             stm.close();
@@ -85,19 +89,27 @@ public class proveedorDaoImpl implements proveedorInterface{
 
     @Override
     public boolean updateProveedor(Proveedor proveedor) {
-        Connection connect = null;
-        Statement stm = null;
+        Connection con = null;
+        PreparedStatement pst = null;
 
         boolean actualizar = false;
 
-        String sql = "UPDATE proveedor SET cedula='" + proveedor.getApellido() + "', "
-                + "nombres='" + proveedor.getNombre() + "', "
-                + "apellidos='" + proveedor.getApellido() + "'"
-                + " WHERE ID=" + proveedor.getId_proveedor();
+        String sql = "UPDATE proveedor SET nombre=?, apellido=?, empresa=?, ruc=?, telefono=?, "
+                + "celular=?, direccion=?, correo=? where id_proveedor=?" ;
         try {
-            connect = conexion_mysql.conectar();
-            stm = connect.createStatement();
-            stm.execute(sql);
+           con = conexion_mysql.conectar();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, proveedor.getNombre());
+            pst.setString(2, proveedor.getApellido());
+            pst.setString(3, proveedor.getEmpresa());
+            pst.setString(4, proveedor.getRuc());
+            pst.setString(5, proveedor.getTelefono());
+            pst.setString(6, proveedor.getCelular());
+            pst.setString(7, proveedor.getDireccion());
+            pst.setString(8, proveedor.getCorreo());
+            pst.setInt(9, proveedor.getId_proveedor());
+            pst.execute();
+            
             actualizar = true;
         } catch (SQLException e) {
             System.out.println("Error: Clase ProveedorDaoImple, método actualizar");
@@ -108,7 +120,7 @@ public class proveedorDaoImpl implements proveedorInterface{
 
     @Override
     public boolean deleteProveedor(Proveedor proveedor) {
-             Connection connect = null;
+        Connection connect = null;
         Statement stm = null;
 
         boolean eliminar = false;
@@ -125,5 +137,5 @@ public class proveedorDaoImpl implements proveedorInterface{
         }
         return eliminar;
     }
-    
+
 }

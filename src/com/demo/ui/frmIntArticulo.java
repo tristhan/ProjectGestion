@@ -35,7 +35,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         initComponents();
         textaDescripcion.setLineWrap(true);
         textaDescripcion.setWrapStyleWord(true);
-        //txtId.setVisible(false);
+        txtId.setVisible(false);
         btnActualizar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnBorrar.setEnabled(false);
@@ -376,6 +376,9 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         
         if (ctrlArticulo.actualizar(articulo)) {
             JOptionPane.showConfirmDialog(null, "Artículo " + txtNombre.getText() + " ha sido actualizado con exito", "Confirmación", 2);
+            buscarAll();
+            limpiar();
+            desabilitar();
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -393,6 +396,9 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
 
         if (ctrlArticulo.eliminar(articulo)) {
             JOptionPane.showConfirmDialog(null, "Artículo  " + txtNombre.getText() + " ha sido desabilitado", "Confirmación", 2);
+            buscarAll();
+            limpiar();
+            desabilitar();
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
@@ -434,6 +440,9 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         txtPrecioVenta.setEnabled(false);
         txtPrecioCompra.setEnabled(false);
         cboEstado.setEnabled(false);
+        
+        btnActualizar.setEnabled(false);
+        btnBorrar.setEnabled(false);
     }
 
     void habilitar() {

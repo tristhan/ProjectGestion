@@ -18,7 +18,7 @@ public class Proveedor {
     private String empresa;
     private String ruc;
     private String telefono;
-    private int celular;
+    private String celular;
     private String direccion;
     private String correo;
     List<Articulo> articulos;
@@ -30,7 +30,7 @@ public class Proveedor {
         this.id_proveedor = id_proveedor;
     }
 
-    public Proveedor(int id_proveedor, String nombre, String apellido, String empresa, String ruc, String telefono, int celular, String direccion, String correo, List<Articulo> articulos) {
+    public Proveedor(int id_proveedor, String nombre, String apellido, String empresa, String ruc, String telefono, String celular, String direccion, String correo, List<Articulo> articulos) {
         this.id_proveedor = id_proveedor;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -91,11 +91,11 @@ public class Proveedor {
         this.telefono = telefono;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 

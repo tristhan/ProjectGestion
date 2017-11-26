@@ -97,8 +97,8 @@ public class articuloDaoImpl implements articuloInterface {
         PreparedStatement pst = null;
         boolean actualizar = false;
 
-        String sql = "UPDATE articulo SET proveedor_id_proveedor=?, nombre=?, codigo_fisico=? "
-                + "descripcion=?, stock=?, precio_venta=?, precio_compra, "
+        String sql = "UPDATE articulo SET proveedor_id_proveedor=?, nombre=?, codigo_fisico=?, "
+                + "descripcion=?, stock=?, precio_venta=?, precio_compra=?, "
                 + "estado=? where id_articulo=?";
         try {
             con = conexion_mysql.conectar();
@@ -116,7 +116,7 @@ public class articuloDaoImpl implements articuloInterface {
 
             actualizar = true;
         } catch (SQLException e) {
-            System.out.println("Error: Clase ArticuloDaoImple, método actualizar"+e.getMessage());
+            System.out.println("Error: Clase ArticuloDaoImple, método actualizar");
             e.printStackTrace();
         }
         return actualizar;
