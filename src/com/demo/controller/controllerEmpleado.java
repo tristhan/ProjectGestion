@@ -16,36 +16,54 @@ import java.util.List;
  * @author Jona
  */
 public class controllerEmpleado {
-    
+
     private empleadoInterface dao;
-    
-    	public controllerEmpleado() {
-            if(dao == null){
-                dao= new  empleadoDaoImpl();
-            }
-	}
-	
-	//llama al DAO para guardar un empleado
-	public void registrar(Empleado empleado ) {
-		dao.save(empleado);
-	}
-	
-	//llama al DAO para actualizar un empleado
-	public void actualizar(Empleado empleado ) {
-		dao.updateEmpleado(empleado);
-	}
-	
-	//llama al DAO para eliminar un empleado
-	public void eliminar(Empleado empleado ) {
-		dao.deleteEmpleado(empleado);
-	}
-	
-	//llama al DAO para obtener todos los empleados y luego los muestra en la vista
-        // convertir en metod list
-	public List<Empleado> verEmpleados(String cedula){
-		List<Empleado> empleados = new ArrayList<>();
-		empleados=dao.getEmpleadoByCedula(cedula);
-		return empleados;
-	}
+
+    public controllerEmpleado() {
+        if (dao == null) {
+            dao = new empleadoDaoImpl();
+        }
+    }
+
+    //llama al DAO para guardar un empleado
+    public void registrar(Empleado empleado) {
+        dao.save(empleado);
+    }
+
+    //llama al DAO para actualizar un empleado
+    public boolean actualizar(Empleado empleado) {
+        boolean verificar;
+        if (dao.updateEmpleado(empleado)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para eliminar un empleado
+    public boolean eliminar(Empleado empleado) {
+        boolean verificar;
+        if (dao.deleteEmpleado(empleado)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para obtener todos los empleados y luego los muestra en la vista
+    // convertir en metod list
+    public List<Empleado> verEmpleadoByCedula(String cedula) {
+        List<Empleado> empleados = new ArrayList<>();
+        empleados = dao.getEmpleadoByCedula(cedula);
+        return empleados;
+    }
+
     //
+    public List<Empleado> verEmpleadoAll() {
+        List<Empleado> empleados = new ArrayList<>();
+        empleados = dao.getEmpleadoAll();
+        return empleados;
+    }
 }

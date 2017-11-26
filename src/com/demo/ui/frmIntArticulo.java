@@ -54,6 +54,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         txtPrecioCompra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         textaDescripcion = new javax.swing.JTextArea();
+        txtId = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -177,6 +178,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(textaDescripcion);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 470, 50));
+        jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 20, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 210));
 
@@ -205,11 +207,17 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         btnBorrar.setText("Borrar");
         jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 10, -1, -1));
 
-        btnBuscar.setText("Buscar");
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px.png"))); // NOI18N
+        btnBuscar.setToolTipText("Búscar todo los articulos");
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btnBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btnBuscar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, 30));
 
         txtBuscarArticulo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jPanel1.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 120, -1));
+        jPanel1.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 140, -1));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel9.setText("Búscar:");
@@ -218,7 +226,8 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 610, 40));
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 102));
-        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de articulos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
+        jPanel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -234,7 +243,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         ));
         jScrollPane4.setViewportView(tabla);
 
-        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 130));
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 580, 130));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 610, 160));
 
@@ -304,6 +313,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea textaDescripcion;
     private javax.swing.JTextField txtBuscarArticulo;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecioCompra;
     private javax.swing.JTextField txtPrecioVenta;

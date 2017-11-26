@@ -80,7 +80,7 @@ public class empleadoDaoImpl implements empleadoInterface {
                 "from empleado empleado "+
                 "INNER JOIN user user "+
                 "on empleado.id_empleado = user.empleado_id_empleado "+
-                "where empleado.cedulaIdentidad ="+ cedula +"";
+                "where empleado.cedulaIdentidad ='"+ cedula +"'";
 
         try {
             con = conexion_mysql.conectar();
@@ -114,7 +114,6 @@ public class empleadoDaoImpl implements empleadoInterface {
     public boolean updateEmpleado(Empleado empleado) {
         Connection con = null;
         PreparedStatement pst = null;
-
         boolean actualizar = false;
 
         String sql = "UPDATE empleado SET nombre=?, apellido=?, cedulaIdentidad=?, correo=?, "
@@ -154,6 +153,7 @@ public class empleadoDaoImpl implements empleadoInterface {
         Connection con = null;
         PreparedStatement pst = null;
         boolean eliminar = false;
+        System.out.println("miraa..."+ empleado.toString());
 
         String sql = "UPDATE user SET activo=? where empleado_id_empleado=?";
         try {

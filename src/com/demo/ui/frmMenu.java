@@ -6,6 +6,13 @@
 package com.demo.ui;
 
 import com.sun.awt.AWTUtilities;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +34,9 @@ public class frmMenu extends javax.swing.JFrame {
 
         // agregro el desktop al formulario padre
         escritorio.setSize(1050, 650);
+
         setContentPane(escritorio);
+        escritorio.setBackground(new Color(69, 64, 92));
         escritorio.setLayout(null);
 
         //imagen
@@ -286,7 +295,7 @@ public class frmMenu extends javax.swing.JFrame {
             login.setVisible(true);
         }
     }//GEN-LAST:event_menuSalirMouseClicked
-    
+
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
@@ -294,10 +303,10 @@ public class frmMenu extends javax.swing.JFrame {
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMinimizarMouseEntered
-    
+
     /*
     
-    */
+     */
     /**
      * @param args the command line arguments
      */

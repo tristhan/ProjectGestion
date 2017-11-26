@@ -34,19 +34,20 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     // instancia de controlador de empleado y de su entidad
     private controllerEmpleado ctrlempleado;
     private Empleado empleado;
-    
+
     DefaultTableModel modelo;
-    String titulos[]={"Id","Nombre","Apellido","Cédula","E-mail","Dirección","Teléfono","Nick","Contraseña","Rol","Estado"};
+    String titulos[] = {"Id", "Nombre", "Apellido", "Cédula", "E-mail", "Dirección", "Teléfono", "Nick", "Contraseña", "Rol", "Estado"};
 
     public frmIntEmpleado() {
         initComponents();
         setSize(845, 545);
         txtId.setVisible(false);
         
-        modelo =new DefaultTableModel(null,titulos);
+        modelo = new DefaultTableModel(null, titulos);
         desabilitar();
-        buscar("");
-        
+        buscarAll();
+        btnBuscar.setToolTipText("Búscar todo los empleados");
+        ocultar_columnas();
     }
 
     /**
@@ -334,6 +335,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
         btnBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
         btnBuscar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 30, 30));
 
         jLabel11.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -348,22 +354,24 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private void btn_editarEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarEmpActionPerformed
         // TODO add your handling code here:
         empleado = new Empleado();
+        empleado.setId_empleado(Integer.parseInt(txtId.getText()));
         empleado.setApellido(txt_apellidoEmp.getText());
         empleado.setCedulaIdentidad(txt_identificacionEmp.getText());
         empleado.setCorreo(txt_correoEmp.getText());
         empleado.setDireccion(txt_direccionEmp.getText());
         empleado.setNombre(txt_nombreEmp.getText());
         empleado.setTelefono(txt_telefonoEmp.getText());
-        empleado.setUsuraio(new User(0,txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
+        empleado.setUsuraio(new User(0, txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
                 txt_rolEmp.getText(), estado));
-        try {
-            ctrlempleado.actualizar(empleado);
+
+        if (ctrlempleado.actualizar(empleado)) {
             JOptionPane.showConfirmDialog(null, "Datos de " + empleado.getNombre() + " " + empleado.getApellido()
                     + "han sido actualizado satisfactoriamente", "Confirmación", 2);
             limpiar();
             desabilitar();
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Error al actualizar datos de empleado " + e.getMessage(), "Error", 2);
+            buscarAll();
+        } else {
+            JOptionPane.showConfirmDialog(null, "Error al actualizar datos de empleado ", "Error", 2);
         }
     }//GEN-LAST:event_btn_editarEmpActionPerformed
 
@@ -403,7 +411,6 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         empleado.setTelefono(txt_telefonoEmp.getText());
         empleado.setUsuraio(new User(0, txt_usernameEmp.getText(), txt_contrasenaEmp.getText(),
                 txt_rolEmp.getText(), estado));
-        System.out.println("mira... " + empleado.toString());
         try {
             ctrlempleado.registrar(empleado);
             JOptionPane.showConfirmDialog(null, " " + empleado.getNombre() + " " + empleado.getApellido()
@@ -466,11 +473,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     private void txt_telefonoEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoEmpKeyTyped
         // TODO add your handling code here:
-        if(txt_telefonoEmp.getText().length()>10){
+        if (txt_telefonoEmp.getText().length() > 10) {
             JOptionPane.showConfirmDialog(null, "Número de teléfono debe tener 10 dígitos ", "Confirmación", 2);
         }
         validacion.soloNumeros(evt);
-        
+
     }//GEN-LAST:event_txt_telefonoEmpKeyTyped
 
     private void txt_usernameEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usernameEmpKeyPressed
@@ -509,16 +516,16 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         kpress = evt.getKeyChar();
         if (kpress == KeyEvent.VK_ENTER) {
-            buscar(txtBuscar.getText());
+            buscarByCedula(txtBuscar.getText());
         }
     }//GEN-LAST:event_txtBuscarKeyPressed
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         // TODO add your handling code here:
-        if(txtBuscar.getText().length()>10){
-         JOptionPane.showConfirmDialog(null, "Número de teléfono debe tener 10 dígitos ", "Confirmación", 2);
-        }else{
-        validacion.soloNumeros(evt);
+        if (txtBuscar.getText().length() > 10) {
+            JOptionPane.showConfirmDialog(null, "Número de teléfono debe tener 10 dígitos ", "Confirmación", 2);
+        } else {
+            validacion.soloNumeros(evt);
         }
     }//GEN-LAST:event_txtBuscarKeyTyped
 
@@ -531,7 +538,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     private void txt_identificacionEmpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_identificacionEmpKeyTyped
         // TODO add your handling code here:
-        if(txt_identificacionEmp.getText().length()==10){
+        if (txt_identificacionEmp.getText().length() == 10) {
             JOptionPane.showConfirmDialog(null, "Identificación debe tener 10 dígitos ", "Confirmación", 2);
             txt_identificacionEmp.requestFocus();
         }
@@ -547,16 +554,16 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         empleado = new Empleado();
         empleado.setId_empleado(Integer.parseInt(txtId.getText()));
-        empleado.setUsuraio(new User(0,null, null,
+        empleado.setUsuraio(new User(0, null, null,
                 null, estado));
-        try {
-            ctrlempleado.eliminar(empleado);
-            JOptionPane.showConfirmDialog(null, "Empleado " + empleado.getNombre() + " " + empleado.getApellido()
+
+        if (ctrlempleado.eliminar(empleado)) {
+            JOptionPane.showConfirmDialog(null, "Empleado " + txt_nombreEmp.getText() + " " + txt_apellidoEmp.getText()
                     + "dado de baja satisfactoriamente", "Confirmación", 2);
             limpiar();
             desabilitar();
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Error al dar de baja a empleado " + e.getMessage(), "Error", 2);
+        } else {
+            JOptionPane.showConfirmDialog(null, "Error al dar de baja a empleado ", "Error", 2);
         }
     }//GEN-LAST:event_btn_eliminarEmpActionPerformed
 
@@ -575,9 +582,9 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txt_correoEmp.setText(tabla.getValueAt(fila, 4).toString());
         txt_direccionEmp.setText(tabla.getValueAt(fila, 5).toString());
         txt_telefonoEmp.setText(tabla.getValueAt(fila, 6).toString());
-        txt_usernameEmp.setText(tabla.getValueAt(fila,7).toString());
-        txt_contrasenaEmp.setText(tabla.getValueAt(fila,8).toString());
-        txt_rolEmp.setText(tabla.getValueAt(fila,9).toString());
+        txt_usernameEmp.setText(tabla.getValueAt(fila, 7).toString());
+        txt_contrasenaEmp.setText(tabla.getValueAt(fila, 8).toString());
+        txt_rolEmp.setText(tabla.getValueAt(fila, 9).toString());
         comboBox_activoEmp.setSelectedItem(tabla.getValueAt(fila, 10));
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -585,6 +592,10 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBox_activoEmpActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        buscarAll();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     // desabilito los textfield
     void desabilitar() {
@@ -666,11 +677,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     }
 
-    void buscar(String cedula) {
+    void buscarByCedula(String cedula) {
         limpiarTabla();
         ctrlempleado = new controllerEmpleado();
-        List<Empleado> lista = ctrlempleado.verEmpleados(cedula);
-        
+        List<Empleado> lista = ctrlempleado.verEmpleadoByCedula(cedula);
+
         for (Empleado empleado : lista) {
             ///hacer uso de tabla
             Object[] row = new Object[11];
@@ -689,27 +700,63 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
             modelo.addRow(row);
         }
         tabla.setModel(modelo);
-
     }
-    
-    void limpiarTabla(){	
-	DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
+
+    void limpiarTabla() {
+        DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
         model1.setRowCount(0);
-	}
-    
-    public void ocultar_columnas(){
-		tabla.getColumnModel().getColumn(0).setMaxWidth(0);
-		tabla.getColumnModel().getColumn(0).setMinWidth(0);
-		tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
-		
-		tabla.getColumnModel().getColumn(3).setMaxWidth(0);
-		tabla.getColumnModel().getColumn(3).setMinWidth(0);
-		tabla.getColumnModel().getColumn(3).setPreferredWidth(0);
-		
-		tabla.getColumnModel().getColumn(4).setMaxWidth(0);
-		tabla.getColumnModel().getColumn(4).setMinWidth(0);
-		tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
-	}
+    }
+
+    public void ocultar_columnas() {
+        tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(4).setMinWidth(0);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
+        
+        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(0);
+        
+        tabla.getColumnModel().getColumn(7).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(7).setMinWidth(0);
+        tabla.getColumnModel().getColumn(7).setPreferredWidth(0);
+
+        tabla.getColumnModel().getColumn(8).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(8).setMinWidth(0);
+        tabla.getColumnModel().getColumn(8).setPreferredWidth(0);
+        
+        tabla.getColumnModel().getColumn(9).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(9).setMinWidth(0);
+        tabla.getColumnModel().getColumn(9).setPreferredWidth(0);
+    }
+
+    private void buscarAll() {
+        limpiarTabla();
+        ctrlempleado = new controllerEmpleado();
+        List<Empleado> lista = ctrlempleado.verEmpleadoAll();
+
+        for (Empleado empleado : lista) {
+            ///hacer uso de tabla
+            Object[] row = new Object[11];
+            row[0] = empleado.getId_empleado();
+            row[1] = empleado.getNombre();
+            row[2] = empleado.getApellido();
+            row[3] = empleado.getCedulaIdentidad();
+            row[4] = empleado.getCorreo();
+            row[5] = empleado.getDireccion();
+            row[6] = empleado.getTelefono();
+            //row[7] = empleado.getUsuraio().getId_user();
+            row[7] = empleado.getUsuraio().getNick();
+            row[8] = empleado.getUsuraio().getPassword();
+            row[9] = empleado.getUsuraio().getRol();
+            row[10] = empleado.getUsuraio().isActivo();
+            modelo.addRow(row);
+        }
+        tabla.setModel(modelo);
+    }
 
     private static class DefaultTableModelImpl extends DefaultTableModel {
 

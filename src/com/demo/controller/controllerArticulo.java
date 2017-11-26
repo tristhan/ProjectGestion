@@ -16,35 +16,41 @@ import java.util.List;
  * @author Jona
  */
 public class controllerArticulo {
-    
+
     private articuloInterface dao;
-    
-    	public controllerArticulo() {
-            if(dao == null){
-                dao= new  articuloDaoImpl();
-            }
-	}
-	
-	//llama al DAO para guardar un articulo
-	public void registrar(Articulo articulo ) {
-		dao.save(articulo);
-	}
-	
-	//llama al DAO para actualizar un articulo
-	public void actualizar(Articulo articulo ) {
-		dao.updateArticulo(articulo);
-	}
-	
-	//llama al DAO para eliminar un articulo
-	public void eliminar(Articulo articulo ) {
-		dao.deleteArticulo(articulo);
-	}
-	
-	//llama al DAO para obtener todos los articulo y luego los muestra en la vista
-        // convertir en metod list
-	public List<Articulo> verArticulos(String nombre){
-		List<Articulo> articulos = new ArrayList<>();
-		articulos=dao.getArticuloAll();
-                return articulos;
-	}
+
+    public controllerArticulo() {
+        if (dao == null) {
+            dao = new articuloDaoImpl();
+        }
+    }
+
+    //llama al DAO para guardar un articulo
+    public boolean registrar(Articulo articulo) {
+        boolean verificar;
+        if (dao.save(articulo)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para actualizar un articulo
+    public void actualizar(Articulo articulo) {
+        dao.updateArticulo(articulo);
+    }
+
+    //llama al DAO para eliminar un articulo
+    public void eliminar(Articulo articulo) {
+        dao.deleteArticulo(articulo);
+    }
+
+    //llama al DAO para obtener todos los articulo y luego los muestra en la vista
+    // convertir en metod list
+    public List<Articulo> verArticulos(String nombre) {
+        List<Articulo> articulos = new ArrayList<>();
+        articulos = dao.getArticuloAll();
+        return articulos;
+    }
 }
