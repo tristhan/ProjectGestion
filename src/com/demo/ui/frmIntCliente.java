@@ -7,6 +7,9 @@ package com.demo.ui;
 
 import com.demo.controller.controllerCliente;
 import com.demo.dominio.Cliente;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +20,19 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form frmIntCliente
      */
+    private controllerCliente ctrlCliente;
+    private Cliente cliente;
+    
+    int x,y;
+
     public frmIntCliente() {
         initComponents();
+        //txtId.setVisible(false);
+        desabilitar();
+        ocultar_columnas();
+        buscarAll();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+
     }
 
     /**
@@ -43,14 +57,20 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
         txt_nombreClien = new javax.swing.JTextField();
         btn_actualizarClien = new javax.swing.JButton();
         btn_eliminarClien = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txt_busquedaClien = new javax.swing.JTextField();
         btn_busquedaClien = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(737, 445));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRegistroCliente.setBackground(new java.awt.Color(255, 204, 102));
@@ -59,19 +79,19 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Nombres:");
-        panelRegistroCliente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        panelRegistroCliente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 33, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Apellidos:");
-        panelRegistroCliente.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        panelRegistroCliente.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 63, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Correo:");
-        panelRegistroCliente.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        panelRegistroCliente.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 93, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel4.setText("Identificacion:");
-        panelRegistroCliente.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, -1, -1));
+        panelRegistroCliente.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 35, -1, -1));
 
         btn_guardarClien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btnguardar.png"))); // NOI18N
         btn_guardarClien.setText("Guardar");
@@ -134,9 +154,15 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
 
         btn_eliminarClien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
         btn_eliminarClien.setText("Eliminar");
+        btn_eliminarClien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarClienActionPerformed(evt);
+            }
+        });
         panelRegistroCliente.add(btn_eliminarClien, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, -1, -1));
+        panelRegistroCliente.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 20, -1));
 
-        getContentPane().add(panelRegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 150));
+        getContentPane().add(panelRegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 730, 150));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
@@ -144,7 +170,7 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Busqueda:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 35, -1, -1));
 
         txt_busquedaClien.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_busquedaClien.addActionListener(new java.awt.event.ActionListener() {
@@ -152,10 +178,15 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
                 txt_busquedaClienActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_busquedaClien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 230, -1));
+        jPanel1.add(txt_busquedaClien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 230, -1));
 
-        btn_busquedaClien.setText("Busqueda");
-        jPanel1.add(btn_busquedaClien, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
+        btn_busquedaClien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px.png"))); // NOI18N
+        btn_busquedaClien.setBorderPainted(false);
+        btn_busquedaClien.setContentAreaFilled(false);
+        btn_busquedaClien.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btn_busquedaClien.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btn_busquedaClien.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        jPanel1.add(btn_busquedaClien, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 26, 40, 30));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,31 +202,74 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 680, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 710, 160));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 730, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 730, 240));
+
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Gestión de clientes");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 3, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 30));
+
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_321px.png"))); // NOI18N
+        btnCerrar.setBorder(null);
+        btnCerrar.setBorderPainted(false);
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_guardarClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarClienActionPerformed
-        // TODO add your handling code here:
-        controllerCliente clienteCont = new controllerCliente();
-        Cliente cliente = new Cliente();
+        cliente = new Cliente();
         cliente.setNombre(txt_nombreClien.getText());
         cliente.setApellido(txt_apellidoClien.getText());
         cliente.setCorreo(txt_correoClien.getText());
         cliente.setIdentificacion(txt_identificacionClien.getText());
-        clienteCont.registrar(cliente);
+        if(ctrlCliente.registrar(cliente)){
+             JOptionPane.showConfirmDialog(null, "Cliente grabado con exito ", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+        }
     }//GEN-LAST:event_btn_guardarClienActionPerformed
 
     private void txt_apellidoClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_apellidoClienActionPerformed
@@ -215,19 +289,129 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_nombreClienActionPerformed
 
     private void btn_nuevoclienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoclienActionPerformed
-        // TODO add your handling code here:
+        habilitar();
+        btn_actualizarClien.setEnabled(false);
+        btn_eliminarClien.setEnabled(false);
+        txt_nombreClien.requestFocus();
     }//GEN-LAST:event_btn_nuevoclienActionPerformed
 
     private void btn_actualizarClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarClienActionPerformed
-        // TODO add your handling code here:
+        cliente = new Cliente();
+        cliente.setNombre(txt_nombreClien.getText());
+        cliente.setApellido(txt_apellidoClien.getText());
+        cliente.setCorreo(txt_correoClien.getText());
+        cliente.setIdentificacion(txt_identificacionClien.getText());
+        cliente.setId_cliente(Integer.parseInt(txtId.getText()));
+        if(ctrlCliente.registrar(cliente)){
+             JOptionPane.showConfirmDialog(null, "Información de cliente actualizado con exito ", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+        }
     }//GEN-LAST:event_btn_actualizarClienActionPerformed
 
     private void txt_busquedaClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busquedaClienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_busquedaClienActionPerformed
 
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        habilitar();
+        btn_actualizarClien.setEnabled(false);
+        btn_eliminarClien.setEnabled(true);
+        btn_guardarClien.setEnabled(true);
+
+        int fila = tabla.rowAtPoint(evt.getPoint());
+        txtId.setText(tabla.getValueAt(fila, 0).toString());
+        txt_nombreClien.setText(tabla.getValueAt(fila, 1).toString());
+        txt_apellidoClien.setText(tabla.getValueAt(fila, 2).toString());
+        txt_correoClien.setText(tabla.getValueAt(fila, 3).toString());
+        txt_identificacionClien.setText(tabla.getValueAt(fila, 4).toString());
+    }//GEN-LAST:event_tablaMouseClicked
+
+    private void btn_eliminarClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarClienActionPerformed
+        cliente = new Cliente();
+        cliente.setId_cliente(Integer.parseInt(txtId.getText()));
+        if(ctrlCliente.registrar(cliente)){
+             JOptionPane.showConfirmDialog(null, "Cliente dado de baja con exito ", "Confirmación", 2);
+            limpiar();
+            desabilitar();
+        }
+    }//GEN-LAST:event_btn_eliminarClienActionPerformed
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    void desabilitar() {
+        txt_nombreClien.enable(false);
+        txt_apellidoClien.enable(false);
+        txt_correoClien.enable(false);
+        txt_identificacionClien.enable(false);
+
+        btn_actualizarClien.setEnabled(false);
+        btn_eliminarClien.setEnabled(false);
+        btn_guardarClien.setEnabled(false);
+    }
+
+    // habilito los textfield y los limpio
+    void habilitar() {
+        txt_nombreClien.enable(true);
+        txt_apellidoClien.enable(true);
+        txt_correoClien.enable(true);
+        txt_identificacionClien.enable(true);
+
+        btn_actualizarClien.setEnabled(true);
+        btn_eliminarClien.setEnabled(true);
+        btn_guardarClien.setEnabled(true);
+    }
+
+    void limpiar() {
+        txt_nombreClien.setText("");
+        txt_apellidoClien.setText("");
+        txt_correoClien.setText("");
+        txt_identificacionClien.setText("");
+    }
+
+    public void ocultar_columnas() {
+        tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+    }
+
+    void limpiarTabla() {
+        DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
+        model1.setRowCount(0);
+    }
+
+    private void buscarAll() {
+        limpiarTabla();
+        ctrlCliente = new controllerCliente();
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        List<Cliente> lista = ctrlCliente.verClientesAll();
+
+        for (Cliente cliente : lista) {
+            ///hacer uso de tabla
+            Object[] row = new Object[5];
+            row[0] = cliente.getId_cliente();
+            row[1] = cliente.getNombre();
+            row[2] = cliente.getApellido();
+            row[3] = cliente.getCorreo();
+            row[4] = cliente.getIdentificacion();
+            modelo.addRow(row);
+        }
+        tabla.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btn_actualizarClien;
     private javax.swing.JButton btn_busquedaClien;
     private javax.swing.JButton btn_eliminarClien;
@@ -238,10 +422,13 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelRegistroCliente;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txt_apellidoClien;
     private javax.swing.JTextField txt_busquedaClien;
     private javax.swing.JTextField txt_correoClien;

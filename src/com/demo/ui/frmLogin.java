@@ -72,6 +72,7 @@ public class frmLogin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelLogin.setBackground(new java.awt.Color(255, 255, 255));
+        panelLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_User_96px_2.png"))); // NOI18N

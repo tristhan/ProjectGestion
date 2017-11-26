@@ -16,35 +16,53 @@ import com.demo.interfaces.clienteInterface;
  * @author Jona
  */
 public class controllerCliente {
-    
+
     private clienteInterface dao;
-    
-    	public controllerCliente() {
-            if(dao == null){
-                dao= new  clienteDaoImpl();
-            }
-	}
-	
-	//llama al DAO para guardar un cliente
-	public void registrar(Cliente cliente ) {
-		dao.save(cliente);
-	}
-	
-	//llama al DAO para actualizar un cliente
-	public void actualizar(Cliente cliente) {
-		dao.updateCliente(cliente);
-	}
-	
-	//llama al DAO para eliminar un cliente
-	public void eliminar(Cliente cliente) {
-		dao.deleteCliente(cliente);
-	}
-	
-	//llama al DAO para obtener todos los clientes y luego los muestra en la vista
-	public List<Cliente> verClientes(){
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		clientes=dao.getClienteAll();
-                return clientes;
-	}
-    
+
+    public controllerCliente() {
+        if (dao == null) {
+            dao = new clienteDaoImpl();
+        }
+    }
+
+    //llama al DAO para guardar un cliente
+    public boolean registrar(Cliente cliente) {
+        boolean verificar;
+        if (dao.save(cliente)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para actualizar un cliente
+    public boolean actualizar(Cliente cliente) {
+        boolean verificar;
+        if (dao.updateCliente(cliente)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para eliminar un cliente
+    public boolean eliminar(Cliente cliente) {
+        boolean verificar;
+        if (dao.deleteCliente(cliente)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
+    }
+
+    //llama al DAO para obtener todos los clientes y luego los muestra en la vista
+    public List<Cliente> verClientesAll() {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        clientes = dao.getClienteAll();
+        return clientes;
+    }
+
 }//
