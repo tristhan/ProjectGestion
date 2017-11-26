@@ -6,6 +6,7 @@
 package com.demo.controller;
 
 import com.demo.dao.articuloDaoImpl;
+import com.demo.dao.empleadoDaoImpl;
 import com.demo.dominio.Articulo;
 import com.demo.interfaces.articuloInterface;
 import java.util.ArrayList;
@@ -37,17 +38,36 @@ public class controllerArticulo {
     }
 
     //llama al DAO para actualizar un articulo
-    public void actualizar(Articulo articulo) {
-        dao.updateArticulo(articulo);
+    public boolean actualizar(Articulo articulo) {
+        boolean verificar;
+        if (dao.updateArticulo(articulo)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
     }
 
     //llama al DAO para eliminar un articulo
-    public void eliminar(Articulo articulo) {
-        dao.deleteArticulo(articulo);
+    public boolean eliminar(Articulo articulo) {
+        boolean verificar;
+        if (dao.deleteArticulo(articulo)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
     }
 
     //llama al DAO para obtener todos los articulo y luego los muestra en la vista
     // convertir en metod list
+    public List<Articulo> verArticulosAll() {
+        List<Articulo> articulos = new ArrayList<>();
+        articulos = dao.getArticuloAll();
+        return articulos;
+    }
+    
+    // preguntar a grosella
     public List<Articulo> verArticulos(String nombre) {
         List<Articulo> articulos = new ArrayList<>();
         articulos = dao.getArticuloAll();

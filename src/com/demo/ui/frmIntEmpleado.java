@@ -35,15 +35,15 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private controllerEmpleado ctrlempleado;
     private Empleado empleado;
 
-    DefaultTableModel modelo;
-    String titulos[] = {"Id", "Nombre", "Apellido", "Cédula", "E-mail", "Dirección", "Teléfono", "Nick", "Contraseña", "Rol", "Estado"};
 
     public frmIntEmpleado() {
         initComponents();
         setSize(845, 545);
         txtId.setVisible(false);
+        btn_editarEmp.setEnabled(false);
+        btn_eliminarEmp.setEnabled(false);
+        btn_guardarEmp.setEnabled(false);
         
-        modelo = new DefaultTableModel(null, titulos);
         desabilitar();
         buscarAll();
         btnBuscar.setToolTipText("Búscar todo los empleados");
@@ -299,12 +299,30 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         tabla.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-
+                "Id", "Nombre", "Apellido", "Cédula", "E-mail", "Dirección", "Teléfono", "Username", "Contraseña", "Rol", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla.setSelectionBackground(new java.awt.Color(153, 153, 255));
         tabla.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tabla.getTableHeader().setReorderingAllowed(false);
@@ -315,7 +333,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tabla);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 790, 160));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 790, 170));
 
         txtBuscar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtBuscar.setBorder(null);
@@ -572,7 +590,8 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         habilitar();
         btn_guardarEmp.setEnabled(false);
-        //txtCedula.setEnabled(false);
+        btn_editarEmp.setEnabled(true);
+        btn_eliminarEmp.setEnabled(true);
 
         int fila = tabla.rowAtPoint(evt.getPoint());
         txtId.setText(tabla.getValueAt(fila, 0).toString());
@@ -680,6 +699,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     void buscarByCedula(String cedula) {
         limpiarTabla();
         ctrlempleado = new controllerEmpleado();
+        DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
         List<Empleado> lista = ctrlempleado.verEmpleadoByCedula(cedula);
 
         for (Empleado empleado : lista) {
@@ -736,6 +756,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private void buscarAll() {
         limpiarTabla();
         ctrlempleado = new controllerEmpleado();
+        DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
         List<Empleado> lista = ctrlempleado.verEmpleadoAll();
 
         for (Empleado empleado : lista) {
@@ -758,14 +779,4 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         tabla.setModel(modelo);
     }
 
-    private static class DefaultTableModelImpl extends DefaultTableModel {
-
-        public DefaultTableModelImpl(Object[][] data, Object[] columnNames) {
-            super(data, columnNames);
-        }
-
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    }
 }

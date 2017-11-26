@@ -26,8 +26,14 @@ public class controllerEmpleado {
     }
 
     //llama al DAO para guardar un empleado
-    public void registrar(Empleado empleado) {
-        dao.save(empleado);
+    public boolean registrar(Empleado empleado) {
+        boolean verificar;
+        if (dao.save(empleado)) {
+            verificar = true;
+        } else {
+            verificar = false;
+        }
+        return verificar;
     }
 
     //llama al DAO para actualizar un empleado

@@ -26,6 +26,10 @@ public class Proveedor {
     public Proveedor() {
     }
 
+    public Proveedor(int id_proveedor) {
+        this.id_proveedor = id_proveedor;
+    }
+
     public Proveedor(int id_proveedor, String nombre, String apellido, String empresa, String ruc, String telefono, int celular, String direccion, String correo, List<Articulo> articulos) {
         this.id_proveedor = id_proveedor;
         this.nombre = nombre;
@@ -130,7 +134,8 @@ public class Proveedor {
                 ", celular=" + celular + 
                 ", direccion=" + direccion + 
                 ", correo=" + correo + 
-                ", articulos=" + articulos.toString() + '}';
+                /*", articulos=" + articulos.toString() + */
+                '}';
     }
     
     

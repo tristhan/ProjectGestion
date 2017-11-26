@@ -41,7 +41,7 @@ public class controllerProveedor {
 	
 	//llama al DAO para obtener todos los empleados y luego los muestra en la vista
         // convertir en metod list
-	public List<Proveedor> verProveedores(){
+	public List<Proveedor> verProveedoresAll(){
 		List<Proveedor> proveedores = new ArrayList<>();
 		proveedores=dao.getProveedorAll();
                 return proveedores;

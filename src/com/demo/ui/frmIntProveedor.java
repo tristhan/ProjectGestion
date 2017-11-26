@@ -7,6 +7,7 @@ package com.demo.ui;
 
 import com.demo.controller.controllerProveedor;
 import com.demo.dominio.Proveedor;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -146,7 +147,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         panelRegistroProveedor.add(btn_actualizarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
 
         jComboBox1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         panelRegistroProveedor.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, -1));
 
         jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -165,11 +166,11 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 210));
 
         panelConsultaProv.setBackground(new java.awt.Color(255, 204, 102));
-        panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
+        panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Proveedores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
         panelConsultaProv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel9.setText("Busqueda:");
+        jLabel9.setText("Búscar:");
         panelConsultaProv.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         txt_busquedaProv.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -178,15 +179,20 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
                 txt_busquedaProvActionPerformed(evt);
             }
         });
-        panelConsultaProv.add(txt_busquedaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 190, 20));
+        panelConsultaProv.add(txt_busquedaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 35, 190, 20));
 
-        btn_buscarProv.setText("Busqueda");
+        btn_buscarProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px.png"))); // NOI18N
+        btn_buscarProv.setBorderPainted(false);
+        btn_buscarProv.setContentAreaFilled(false);
+        btn_buscarProv.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btn_buscarProv.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btn_buscarProv.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
         btn_buscarProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_buscarProvActionPerformed(evt);
             }
         });
-        panelConsultaProv.add(btn_buscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
+        panelConsultaProv.add(btn_buscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 50, 30));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -215,7 +221,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
 
         panelConsultaProv.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 740, 160));
 
-        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 760, 340));
+        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 760, 260));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -229,7 +235,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_eliminarProvActionPerformed
 
     private void btn_guardarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarProvActionPerformed
-        // TODO add your handling code here:
+        
         
         Proveedor pro= new Proveedor();
         pro.setNombre(txt_nombreProv.getText());
@@ -255,6 +261,28 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscarProvActionPerformed
 
+    void limpiarTabla() {
+        DefaultTableModel model1 = (DefaultTableModel) tabla.getModel();
+        model1.setRowCount(0);
+    }
+    
+    public void ocultar_columnas() {
+        tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+
+        tabla.getColumnModel().getColumn(1).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(1).setMinWidth(0);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(0);
+
+        tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(4).setMinWidth(0);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
+
+        tabla.getColumnModel().getColumn(8).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(8).setMinWidth(0);
+        tabla.getColumnModel().getColumn(8).setPreferredWidth(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizarProv;
