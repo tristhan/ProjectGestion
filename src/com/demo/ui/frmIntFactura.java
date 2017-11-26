@@ -72,13 +72,14 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Factura ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txt_iva.setEditable(false);
         txt_iva.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_iva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ivaActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_iva, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 100, -1));
+        jPanel1.add(txt_iva, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Nombre:");
@@ -94,7 +95,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tabla_facturaDetalle);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 680, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 520, 120));
 
         jLabel7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel7.setText("Producto: ");
@@ -107,7 +108,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
                 txt_subtotalActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 100, -1));
+        jPanel1.add(txt_subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 100, -1));
 
         txt_totalpagar.setEditable(false);
         txt_totalpagar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -116,7 +117,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
                 txt_totalpagarActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_totalpagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 100, -1));
+        jPanel1.add(txt_totalpagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, -1));
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel9.setText("Cantidad:");
@@ -145,7 +146,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
                 btn_agregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        jPanel1.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         comboBox_producto.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         comboBox_producto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -162,7 +163,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
                 btn_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
+        jPanel1.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
 
         btn_limpiar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneditar.png"))); // NOI18N
         btn_limpiar2.setText("Nuevo");
@@ -171,7 +172,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
                 btn_limpiar2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_limpiar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        jPanel1.add(btn_limpiar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
         btn_eliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/btneliminar.png"))); // NOI18N
         btn_eliminar1.setText("Eliminar");
@@ -180,7 +181,7 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
                 btn_eliminar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
+        jPanel1.add(btn_eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         comboBox_nombre1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         comboBox_nombre1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -200,17 +201,17 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
 
         jLabel11.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel11.setText("Total a pagar: ");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 90, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 90, -1));
 
         jLabel13.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel13.setText("Subtotal:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 60, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 60, -1));
 
         jLabel14.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel14.setText("Iva:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 30, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 30, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 410));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 410));
 
         txt_nombreProv6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_nombreProv6.addActionListener(new java.awt.event.ActionListener() {
@@ -327,15 +328,13 @@ public class frmIntFactura extends javax.swing.JInternalFrame {
         }
     
     void calTotal(){
-        double Subtotal=0, iva, total;
+        double Subtotal=0, iva= 0.12, total;
         DefaultTableModel model= (DefaultTableModel) tabla_facturaDetalle.getModel();
-        
         for (int i=0; i<tabla_facturaDetalle.getRowCount(); i++){
-            //Subtotal = Subtotal+ Double.parseDouble(model.getValueAt(i).toString());
+            Subtotal = Subtotal + Double.parseDouble(model.getValueAt(i,2).toString());
         }
         txt_subtotal.setText(String.valueOf(Subtotal));
-        iva= 0.12;
-        total= Subtotal - (Subtotal * 0.12);
+        total= Subtotal + (Subtotal * iva);
         txt_iva.setText(String.valueOf(iva));
         txt_totalpagar.setText(String.valueOf(total));
        
