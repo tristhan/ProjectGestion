@@ -30,9 +30,12 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
     private Articulo articulo;
     private validacion validacion;
     private boolean estado = false;
+    
+    int x,y;
 
     public frmIntArticulo() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
         textaDescripcion.setLineWrap(true);
         textaDescripcion.setWrapStyleWord(true);
         txtId.setVisible(false);
@@ -90,6 +93,9 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,6 +123,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -207,7 +214,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 490, 50));
         jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 20, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 210));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 620, 210));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -265,7 +272,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         jLabel9.setText("Búscar:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 14, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 620, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 620, 40));
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 102));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de articulos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
@@ -302,7 +309,43 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
 
         jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 600, 140));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 620, 170));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 620, 170));
+
+        jPanel4.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+        });
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Gestión de artículos");
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 3, -1, -1));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 30));
+
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_321px.png"))); // NOI18N
+        btnCerrar.setBorder(null);
+        btnCerrar.setBorderPainted(false);
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -421,6 +464,19 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tablaMouseClicked
 
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jPanel4MouseDragged
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
     void llenarcboProveedor() {
         ctrlProveedor = new controllerProveedor();
         List<Proveedor> proveedors = (ArrayList<Proveedor>) ctrlProveedor.verProveedoresAll();
@@ -515,11 +571,13 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JComboBox cboProveedor;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -531,6 +589,7 @@ public class frmIntArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

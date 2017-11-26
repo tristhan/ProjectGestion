@@ -35,10 +35,10 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private controllerEmpleado ctrlempleado;
     private Empleado empleado;
 
-
+    int x,y;
     public frmIntEmpleado() {
         initComponents();
-        setSize(845, 545);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
         txtId.setVisible(false);
         btn_editarEmp.setEnabled(false);
         btn_eliminarEmp.setEnabled(false);
@@ -91,7 +91,11 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
         setTitle("Empleado");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -289,7 +293,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         pRegistroEmpleado.add(comboBox_activoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 230, -1));
         pRegistroEmpleado.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 30, -1));
 
-        getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 810, 230));
+        getContentPane().add(pRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 810, 230));
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
@@ -364,7 +368,43 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         jLabel11.setText("Búsqueda por cédula:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 810, 250));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 810, 250));
+
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel3MouseDragged(evt);
+            }
+        });
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel3MousePressed(evt);
+            }
+        });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Gestión de empleados");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 3, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 30));
+
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_321px.png"))); // NOI18N
+        btnCerrar.setBorder(null);
+        btnCerrar.setBorderPainted(false);
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -616,6 +656,19 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
         buscarAll();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel3MousePressed
+
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jPanel3MouseDragged
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
     // desabilito los textfield
     void desabilitar() {
         txt_apellidoEmp.enable(false);
@@ -658,6 +711,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btn_editarEmp;
     private javax.swing.JButton btn_eliminarEmp;
     private javax.swing.JButton btn_guardarEmp;
@@ -666,6 +720,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -675,6 +730,7 @@ public class frmIntEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pRegistroEmpleado;
     private javax.swing.JTable tabla;

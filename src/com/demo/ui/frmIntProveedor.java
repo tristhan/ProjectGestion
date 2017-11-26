@@ -23,8 +23,11 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private controllerProveedor ctrlProveedor;
     private Proveedor proveedor;
 
+    int x,y;
     public frmIntProveedor() {
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+        txtId.setVisible(false);
 
         buscarAll();
         ocultar_columnas();
@@ -71,7 +74,11 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         btn_buscarProv = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -185,7 +192,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         panelRegistroProveedor.add(btn_eliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
         panelRegistroProveedor.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 30, -1));
 
-        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 210));
+        getContentPane().add(panelRegistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 760, 210));
 
         panelConsultaProv.setBackground(new java.awt.Color(255, 204, 102));
         panelConsultaProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Proveedores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 16))); // NOI18N
@@ -248,9 +255,45 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        panelConsultaProv.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 740, 160));
+        panelConsultaProv.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 740, 180));
 
-        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 760, 260));
+        getContentPane().add(panelConsultaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 760, 260));
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Gestión de proveedores");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 3, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 30));
+
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_321px.png"))); // NOI18N
+        btnCerrar.setBorder(null);
+        btnCerrar.setBorderPainted(false);
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,7 +308,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         proveedor.setId_proveedor(Integer.parseInt(txtId.getText()));
         
         if(ctrlProveedor.eliminar(proveedor)){
-            JOptionPane.showConfirmDialog(null, "Proveedor grabado con exito ", "Confirmación", 2);
+            JOptionPane.showConfirmDialog(null, "Proveedor dado de baja", "Confirmación", 2);
             limpiar();
             desabilitar();
         }
@@ -342,6 +385,19 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
         txt_direccionProv.setText(tabla.getValueAt(fila, 7).toString());
         txt_correoProv.setText(tabla.getValueAt(fila, 8).toString());
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x= evt.getX();
+        y= evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     void habilitar() {
         btn_actualizarProv.setEnabled(true);
@@ -436,6 +492,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btn_actualizarProv;
     private javax.swing.JButton btn_buscarProv;
     private javax.swing.JButton btn_eliminarProv;
@@ -444,6 +501,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -452,6 +510,7 @@ public class frmIntProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelConsultaProv;
     private javax.swing.JPanel panelRegistroProveedor;
