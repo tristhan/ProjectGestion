@@ -28,10 +28,11 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
     public frmIntCliente() {
         initComponents();
         //txtId.setVisible(false);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
         desabilitar();
         ocultar_columnas();
         buscarAll();
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+        
 
     }
 
@@ -186,6 +187,11 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
         btn_busquedaClien.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
         btn_busquedaClien.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
         btn_busquedaClien.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/demo/imagenes/icons8_Search_32px_2.png"))); // NOI18N
+        btn_busquedaClien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_busquedaClienActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_busquedaClien, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 26, 40, 30));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -209,6 +215,7 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabla.getTableHeader().setReorderingAllowed(false);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
@@ -269,6 +276,8 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
              JOptionPane.showConfirmDialog(null, "Cliente grabado con exito ", "Confirmación", 2);
             limpiar();
             desabilitar();
+            limpiarTabla();
+            buscarAll();
         }
     }//GEN-LAST:event_btn_guardarClienActionPerformed
 
@@ -302,10 +311,12 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
         cliente.setCorreo(txt_correoClien.getText());
         cliente.setIdentificacion(txt_identificacionClien.getText());
         cliente.setId_cliente(Integer.parseInt(txtId.getText()));
-        if(ctrlCliente.registrar(cliente)){
+        if(ctrlCliente.actualizar(cliente)){
              JOptionPane.showConfirmDialog(null, "Información de cliente actualizado con exito ", "Confirmación", 2);
             limpiar();
             desabilitar();
+            limpiarTabla();
+            buscarAll();
         }
     }//GEN-LAST:event_btn_actualizarClienActionPerformed
 
@@ -315,9 +326,9 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
         habilitar();
-        btn_actualizarClien.setEnabled(false);
+        btn_actualizarClien.setEnabled(true);
         btn_eliminarClien.setEnabled(true);
-        btn_guardarClien.setEnabled(true);
+        btn_guardarClien.setEnabled(false);
 
         int fila = tabla.rowAtPoint(evt.getPoint());
         txtId.setText(tabla.getValueAt(fila, 0).toString());
@@ -330,10 +341,12 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
     private void btn_eliminarClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarClienActionPerformed
         cliente = new Cliente();
         cliente.setId_cliente(Integer.parseInt(txtId.getText()));
-        if(ctrlCliente.registrar(cliente)){
+        if(ctrlCliente.eliminar(cliente)){
              JOptionPane.showConfirmDialog(null, "Cliente dado de baja con exito ", "Confirmación", 2);
             limpiar();
             desabilitar();
+            limpiarTabla();
+            buscarAll();
         }
     }//GEN-LAST:event_btn_eliminarClienActionPerformed
 
@@ -349,6 +362,10 @@ public class frmIntCliente extends javax.swing.JInternalFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btn_busquedaClienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_busquedaClienActionPerformed
+        buscarAll();
+    }//GEN-LAST:event_btn_busquedaClienActionPerformed
 
     void desabilitar() {
         txt_nombreClien.enable(false);
